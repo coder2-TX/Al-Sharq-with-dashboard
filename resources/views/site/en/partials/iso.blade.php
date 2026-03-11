@@ -25,7 +25,7 @@
 
           <a
             class="lp-cta lp-cta--iso"
-            href="pages/iso/index.html"
+            href="{{ route('site.en.iso') }}"
             aria-label="ISO certificate details"
           >
             <span class="lp-cta__stroke" aria-hidden="true"></span>

@@ -16,7 +16,7 @@
           <div class="lp-isoShowcase__layer">
             <img
               class="lp-isoShowcase__image"
-              src="../../assets/images/about/ISO-9001.jpg"
+              src="{{ asset('assets/images/about/ISO-9001.jpg') }}"
               alt="شهادة ISO-9001:2015 الخاصة بشركة الشرق"
             />
           </div>

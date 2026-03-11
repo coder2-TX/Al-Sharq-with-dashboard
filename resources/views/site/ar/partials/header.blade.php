@@ -4,13 +4,13 @@
   <a
     class="lp-headerBrand"
     id="lpHeaderBrand"
-    href="/index.html"
+    href="{{ route('site.ar.home') }}"
     aria-label="العودة للرئيسية"
     hidden
   >
     <img
       id="lpHeaderBrandImg"
-      src="/assets/images/header/Brand_Mark.png"
+      src="{{ asset('assets/images/header/Brand_Mark.png') }}"
       alt="Brand Mark"
       decoding="async"
     />
@@ -50,15 +50,15 @@
     </div>
 
     <nav class="lp-drawer__nav" aria-label="روابط الهيدر">
-      <a class="lp-drawer__link" href="/index.html">الرئيسية</a>
-      <a class="lp-drawer__link" href="/pages/about/index.html">عن الشركة</a>
-      <a class="lp-drawer__link" href="/pages/news/index.html">الاخبار</a>
-      <a class="lp-drawer__link" href="#sectors">القطاعات</a>
-      <a class="lp-drawer__link" href="/pages/contact/index.html">اتصل بنا</a>
+      <a class="lp-drawer__link" href="{{ route('site.ar.home') }}">الرئيسية</a>
+      <a class="lp-drawer__link" href="{{ route('site.ar.about') }}">عن الشركة</a>
+      <a class="lp-drawer__link" href="{{ route('site.ar.news') }}">الاخبار</a>
+      <a class="lp-drawer__link" href="{{ route('site.ar.home') }}#sectors">القطاعات</a>
+      <a class="lp-drawer__link" href="{{ route('site.ar.contact') }}">اتصل بنا</a>
     </nav>
 
     <div class="lp-drawer__cta">
-      <a class="lp-cta" href="/pages/contact/index.html" aria-label="زر تواصل معنا">
+      <a class="lp-cta" href="{{ route('site.ar.contact') }}" aria-label="زر تواصل معنا">
         <span class="lp-cta__stroke" aria-hidden="true"></span>
         <span class="lp-cta__layer" aria-hidden="true">
           <span class="lp-cta__text">تواصل معنا</span>

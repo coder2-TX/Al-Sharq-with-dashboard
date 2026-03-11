@@ -2,13 +2,13 @@
   <a
     class="lp-headerBrand"
     id="lpHeaderBrand"
-    href="/site-en/index.html"
+    href="{{ route('site.en.home') }}"
     aria-label="Back to home"
     hidden
   >
     <img
       id="lpHeaderBrandImg"
-      src="../assets/images/header/Brand_Mark.png"
+      src="{{ asset('assets/images/header/Brand_Mark.png') }}"
       alt="Brand Mark"
       decoding="async"
     />
@@ -48,15 +48,15 @@
     </div>
 
     <nav class="lp-drawer__nav" aria-label="Header links">
-      <a class="lp-drawer__link" href="/site-en/index.html">Home</a>
-      <a class="lp-drawer__link" href="/site-en/pages/about/index.html">About</a>
-      <a class="lp-drawer__link" href="/site-en/pages/news/index.html">News</a>
-      <a class="lp-drawer__link" href="#sectors">Sectors</a>
-      <a class="lp-drawer__link" href="/site-en/pages/contact/index.html">Contact Us</a>
+      <a class="lp-drawer__link" href="{{ route('site.en.home') }}">Home</a>
+      <a class="lp-drawer__link" href="{{ route('site.en.about') }}">About</a>
+      <a class="lp-drawer__link" href="{{ route('site.en.news') }}">News</a>
+      <a class="lp-drawer__link" href="{{ route('site.en.home') }}#sectors">Sectors</a>
+      <a class="lp-drawer__link" href="{{ route('site.en.contact') }}">Contact Us</a>
     </nav>
 
     <div class="lp-drawer__cta">
-      <a class="lp-cta" href="/site-en/pages/contact/index.html" aria-label="Contact us button">
+      <a class="lp-cta" href="{{ route('site.en.contact') }}" aria-label="Contact us button">
         <span class="lp-cta__stroke" aria-hidden="true"></span>
         <span class="lp-cta__layer" aria-hidden="true">
           <span class="lp-cta__text">Contact Us</span>

@@ -11,37 +11,33 @@
     />
 
     <!-- Base -->
-    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
     <!-- Shared -->
-    <link rel="stylesheet" href="../../assets/css/header.css" />
-    <link rel="stylesheet" href="../../assets/css/sectors.css" />
-    <link rel="stylesheet" href="../../assets/css/footer.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/sectors.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}" />
 
     <!-- ISO -->
-    <link rel="stylesheet" href="../../assets/css/pages/iso/section-1.css" />
-    <link rel="stylesheet" href="../../assets/css/pages/iso/section-2.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/iso/section-1.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/iso/section-2.css') }}" />
 
-    <script src="../../assets/js/header.js" defer></script>
+    <script src="{{ asset('assets/js/header.js') }}" defer></script>
     <script
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
       defer
     ></script>
-    <script src="../../assets/js/hero.js" defer></script>
-    <script src="../../assets/js/app.js" defer></script>
+    <script src="{{ asset('assets/js/hero.js') }}" defer></script>
+    <script src="{{ asset('assets/js/app.js') }}" defer></script>
   </head>
 
   <body
     class="lp-page--iso"
     data-show-brand="true"
-    data-brand-src="../../assets/images/header/Brand_Mark.png"
-    data-brand-href="../../index.html#home"
+    data-brand-src="{{ asset('assets/images/header/Brand_Mark.png') }}"
+    data-brand-href="{{ route('site.ar.home') }}#home"
   >
-    <div
-      id="header-slot"
-      data-partial="../../partials/header.html"
-      data-after="lpInitHeader"
-    ></div>
+    @include('site.ar.partials.header')
 
     <main id="iso-page">
       <section
@@ -119,13 +115,9 @@
         </div>
       </section>
 
-      <div id="iso-s2-slot" data-partial="partials/section-2.html"></div>
+      @include('site.ar.pages.iso.partials.section-2')
     </main>
 
-    <div
-      id="footer-slot"
-      data-partial="../../partials/footer.html"
-      data-after="lpInitHeroLines"
-    ></div>
+    @include('site.ar.partials.footer')
   </body>
 </html>
