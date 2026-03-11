@@ -1,0 +1,69 @@
+<!-- partials/header.html -->
+<header class="lp-header" id="lpHeader">
+  <!--  Brand Mark (مخفي افتراضيًا ويتفعّل بالصفحات المطلوبة) -->
+  <a
+    class="lp-headerBrand"
+    id="lpHeaderBrand"
+    href="/index.html"
+    aria-label="العودة للرئيسية"
+    hidden
+  >
+    <img
+      id="lpHeaderBrandImg"
+      src="/assets/images/header/Brand_Mark.png"
+      alt="Brand Mark"
+      decoding="async"
+    />
+  </a>
+
+  <button
+    class="lp-menuBtn"
+    id="lpMenuBtn"
+    type="button"
+    aria-label="فتح القائمة"
+    aria-controls="lpDrawer"
+    aria-expanded="false"
+  >
+    <span class="lp-menuBtn__stroke" aria-hidden="true"></span>
+    <span class="lp-menuBtn__layer" aria-hidden="true">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </span>
+  </button>
+</header>
+
+<div class="lp-drawer" id="lpDrawer" aria-hidden="true">
+  <div
+    class="lp-drawer__backdrop"
+    data-lp-drawer-close
+    aria-hidden="true"
+  ></div>
+
+  <aside
+    class="lp-drawer__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="القائمة"
+    tabindex="-1"
+  >
+    <div class="lp-drawer__head">
+      <div class="lp-drawer__title">القائمة</div>
+    </div>
+
+    <nav class="lp-drawer__nav" aria-label="روابط الهيدر">
+      <a class="lp-drawer__link" href="/index.html">الرئيسية</a>
+      <a class="lp-drawer__link" href="/pages/about/index.html">عن الشركة</a>
+      <a class="lp-drawer__link" href="/pages/news/index.html">الاخبار</a>
+      <a class="lp-drawer__link" href="#sectors">القطاعات</a>
+      <a class="lp-drawer__link" href="/pages/contact/index.html">اتصل بنا</a>
+    </nav>
+
+    <div class="lp-drawer__cta">
+      <a class="lp-cta" href="/pages/contact/index.html" aria-label="زر تواصل معنا">
+        <span class="lp-cta__stroke" aria-hidden="true"></span>
+        <span class="lp-cta__layer" aria-hidden="true">
+          <span class="lp-cta__text">تواصل معنا</span>
+        </span>
+      </a>
+    </div>
+  </aside>
+</div>

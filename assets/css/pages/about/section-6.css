@@ -1,0 +1,251 @@
+.lp-aboutS6{
+  position: relative;
+  background: #fff;
+  color: #111;
+  overflow: hidden;
+
+  --s6-pad: clamp(54px, 7vw, 110px);
+  --s6-split: clamp(130px, 14vw, 180px);
+  --s6-head-pad-top: clamp(8px, 1vw, 12px);
+  --s6-head-pad-bottom: clamp(14px, 1.6vw, 20px);
+}
+
+/* فصل مستقل لكل لغة لكن بدون تضخيم الفراغ */
+.lp-aboutS6--ar{
+  --s6-split: clamp(142px, 15vw, 196px);
+  --s6-head-pad-top: clamp(10px, 1vw, 14px);
+  --s6-head-pad-bottom: clamp(18px, 1.8vw, 24px);
+}
+
+.lp-aboutS6--en{
+  --s6-split: clamp(142px, 15vw, 196px);
+  --s6-head-pad-top: clamp(10px, 1vw, 14px);
+  --s6-head-pad-bottom: clamp(18px, 1.8vw, 24px);
+}
+
+.lp-aboutS6::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--lp-about-title) 0 var(--s6-split),
+    #fff var(--s6-split) 100%
+  );
+  z-index: 0;
+}
+
+.lp-aboutS6__inner{
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-block: var(--s6-pad);
+}
+
+/* Mobile title (hidden by default) */
+.lp-aboutS6__mobileHead{
+  display: none;
+  margin-bottom: 12px;
+}
+
+html[dir="rtl"] .lp-aboutS6__mobileHead{ text-align: right; }
+html[dir="ltr"] .lp-aboutS6__mobileHead{ text-align: left; }
+
+.lp-aboutS6__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 3.5vw, 60px);
+  align-items: stretch;
+  grid-template-areas: "content media";
+}
+
+html[dir="rtl"] .lp-aboutS6__grid{
+  grid-template-areas: "media content";
+}
+
+.lp-aboutS6__media{
+  grid-area: media;
+}
+
+.lp-aboutS6__content{
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.lp-aboutS6__head{
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding-top: var(--s6-head-pad-top);
+  padding-bottom: var(--s6-head-pad-bottom);
+}
+
+html[dir="rtl"] .lp-aboutS6__head{
+  text-align: right;
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .lp-aboutS6__head{
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.lp-aboutS6__title{
+  margin: 0;
+  color: #fff;
+}
+
+.lp-aboutS6 .lp-sectors__titleAccent{
+  color: #fff;
+}
+
+.lp-aboutS6__titleAccent{
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.lp-aboutS6__text{
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  color: #000;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 2;
+  font-weight: 300;
+  padding-top: clamp(8px, .8vw, 12px);
+
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: .06em;
+  text-align-last: start;
+}
+
+html[dir="rtl"] .lp-aboutS6__text{
+  text-align-last: right;
+}
+
+.lp-aboutS6Media{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 8px;
+}
+
+.lp-aboutS6Media__stroke{
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--lp-stroke);
+  border-radius: 22px;
+  z-index: 1;
+
+  opacity: .9;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.10);
+  pointer-events: none;
+}
+
+.lp-aboutS6Media__layer{
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255,255,255,.06);
+  transform: translate(-8px, 8px);
+  transition: transform .22s ease;
+}
+
+html[dir="rtl"] .lp-aboutS6Media__layer{
+  transform: translate(8px, 8px);
+}
+
+.lp-aboutS6Media:hover .lp-aboutS6Media__layer{
+  transform: translate(0, 0);
+}
+
+.lp-aboutS6Media__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Breakpoint مضمون لحل تداخل 911 + ترتيب الموبايل */
+@media (max-width: 920px){
+
+  .lp-aboutS6__inner{
+    padding-top: var(--s6-pad);
+    padding-bottom: calc(var(--s6-pad) + var(--s6-pad));
+  }
+
+  .lp-aboutS6::before{
+    background: #fff;
+  }
+
+  .lp-aboutS6__mobileHead{
+    display: block;
+    background: var(--lp-about-title);
+    border-radius: 22px;
+    padding: clamp(18px, 4.2vw, 26px);
+    margin-bottom: clamp(14px, 3.5vw, 22px);
+  }
+
+  .lp-aboutS6__deskHead{
+    display: none;
+  }
+
+  .lp-aboutS6__grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "content"
+      "media";
+  }
+
+  /* 🌟 التعديل الذي تم إضافته هنا 🌟 */
+  html[dir="rtl"] .lp-aboutS6__grid {
+    grid-template-areas:
+      "content"
+      "media";
+  }
+
+  .lp-aboutS6__content{
+    display: block;
+    justify-content: flex-start;
+  }
+
+  .lp-aboutS6__text{
+    margin-top: 12px;
+    padding-top: 0;
+  }
+
+  .lp-aboutS6__media{
+    margin-top: clamp(14px, 3.5vw, 22px);
+    display: block !important;
+  }
+
+  .lp-aboutS6Media{
+    height: auto;
+    padding-bottom: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .lp-aboutS6Media__layer{
+    height: 100% !important;
+    transform: translate(0, 0) !important;
+  }
+
+  html[dir="rtl"] .lp-aboutS6Media__layer{
+    transform: translate(0, 0) !important;
+  }
+}
+
+/* موبايل صغير جداً: نخلي الصورة أطول شوي */
+@media (max-width: 420px){
+  .lp-aboutS6Media{
+    aspect-ratio: 4 / 3;
+  }
+}

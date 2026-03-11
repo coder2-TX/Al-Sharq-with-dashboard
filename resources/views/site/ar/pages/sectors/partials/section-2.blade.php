@@ -1,0 +1,251 @@
+<!-- pages\sectors-2\partials\section-2.html -->
+<section class="lp-section lp-sectorsSection2" id="sectors-section-2" aria-label="بطاقة القطاعات">
+  <div class="lp-sectorsSection2__inner">
+    <div class="lp-sectorsSection2__card">
+      <header
+        class="lp-sectorsSection2__head lp-s2Reveal lp-s2Reveal--head"
+        style="--lp-s2-delay: .04s;"
+      >
+        <h2 class="lp-sectorsSection2__heading">
+          قطاعات شركة <span class="lp-sectorsSection2__accent">الشرق</span>
+        </h2>
+      </header>
+
+      <div
+        class="lp-sectorsSection2__halfCircle lp-s2Reveal lp-s2Reveal--circle"
+        aria-hidden="true"
+        style="--lp-s2-delay: .16s;"
+      ></div>
+
+      <div
+        class="lp-sectorsSection2__centerLogo lp-s2Reveal lp-s2Reveal--logo"
+        aria-hidden="true"
+        style="--lp-s2-delay: .28s;"
+      >
+        <img
+          class="lp-sectorsSection2__centerLogoImg"
+          src="../../assets/images/header/Brand_Mark.png"
+          alt=""
+        />
+      </div>
+
+      <div class="lp-sectorsSection2__tracks" aria-label="قطاعات شركة الشرق">
+        <!-- المجموعة الأولى: القطاع الطبي -->
+        <div class="lp-sectorsSection2__trackGroup">
+          <div class="lp-sectorsSection2__track lp-sectorsSection2__track--primary">
+            <span
+              class="lp-sectorsSection2__trackDot lp-s2Reveal lp-s2Reveal--dot"
+              aria-hidden="true"
+              style="--lp-s2-delay: .18s;"
+            >
+              <span class="lp-sectorsSection2__trackDotInner"></span>
+            </span>
+
+            <span
+              class="lp-sectorsSection2__trackLine lp-s2Reveal lp-s2Reveal--line"
+              aria-hidden="true"
+              style="--lp-s2-delay: .22s;"
+            ></span>
+
+            <article
+              class="lp-sectorsSection2__sectorCard lp-sectorsSection2__sectorCard--primary lp-s2Reveal lp-s2Reveal--card"
+              aria-label="القطاع الطبي"
+              data-number="1"
+              style="--lp-s2-delay: .30s;"
+            >
+              <span class="lp-sectorsSection2__sectorIconCircle" aria-hidden="true">
+                <img
+                  class="lp-sectorsSection2__sectorIcon"
+                  src="../../assets/images/sector/icon/medical.svg"
+                  alt=""
+                />
+              </span>
+              <span class="lp-sectorsSection2__sectorText">القطاع الطبي</span>
+            </article>
+          </div>
+
+          <div
+            class="lp-sectorsSection2__subTracks lp-sectorsSection2__subTracks--single"
+            aria-label="القطاعات الفرعية للقطاع الطبي"
+          >
+            <span
+              class="lp-sectorsSection2__subStem lp-s2Reveal lp-s2Reveal--stem"
+              aria-hidden="true"
+              style="--lp-s2-delay: .38s;"
+            ></span>
+
+            <div class="lp-sectorsSection2__subTrack">
+              <span
+                class="lp-sectorsSection2__subTrackDot lp-s2Reveal lp-s2Reveal--dot"
+                aria-hidden="true"
+                style="--lp-s2-delay: .42s;"
+              >
+                <span class="lp-sectorsSection2__subTrackDotInner"></span>
+              </span>
+
+              <span
+                class="lp-sectorsSection2__subTrackLine lp-s2Reveal lp-s2Reveal--line"
+                aria-hidden="true"
+                style="--lp-s2-delay: .46s;"
+              ></span>
+
+              <article
+                class="lp-sectorsSection2__sectorCard lp-sectorsSection2__sectorCard--sub lp-s2Reveal lp-s2Reveal--card"
+                aria-label="قطاع حليب الأطفال والأغذية"
+                style="--lp-s2-delay: .54s;"
+              >
+                <span class="lp-sectorsSection2__sectorIconCircle" aria-hidden="true">
+                  <img
+                    class="lp-sectorsSection2__sectorIcon"
+                    src="../../assets/images/sector/icon/milk.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="lp-sectorsSection2__sectorText">قطاع حليب الأطفال والأغذية</span>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- المجموعة الثانية: القطاع التجاري -->
+        <div class="lp-sectorsSection2__trackGroup">
+          <div class="lp-sectorsSection2__track lp-sectorsSection2__track--primary">
+            <span
+              class="lp-sectorsSection2__trackDot lp-s2Reveal lp-s2Reveal--dot"
+              aria-hidden="true"
+              style="--lp-s2-delay: .58s;"
+            >
+              <span class="lp-sectorsSection2__trackDotInner"></span>
+            </span>
+
+            <span
+              class="lp-sectorsSection2__trackLine lp-s2Reveal lp-s2Reveal--line"
+              aria-hidden="true"
+              style="--lp-s2-delay: .62s;"
+            ></span>
+
+            <article
+              class="lp-sectorsSection2__sectorCard lp-sectorsSection2__sectorCard--primary lp-s2Reveal lp-s2Reveal--card"
+              aria-label="القطاع التجاري"
+              data-number="2"
+              style="--lp-s2-delay: .70s;"
+            >
+              <span class="lp-sectorsSection2__sectorIconCircle" aria-hidden="true">
+                <img
+                  class="lp-sectorsSection2__sectorIcon"
+                  src="../../assets/images/sector/icon/commerical.svg"
+                  alt=""
+                />
+              </span>
+              <span class="lp-sectorsSection2__sectorText">القطاع التجاري</span>
+            </article>
+          </div>
+
+          <div
+            class="lp-sectorsSection2__subTracks"
+            aria-label="القطاعات الفرعية للقطاع التجاري"
+          >
+            <span
+              class="lp-sectorsSection2__subStem lp-s2Reveal lp-s2Reveal--stem"
+              aria-hidden="true"
+              style="--lp-s2-delay: .78s;"
+            ></span>
+
+            <div class="lp-sectorsSection2__subTrack">
+              <span
+                class="lp-sectorsSection2__subTrackDot lp-s2Reveal lp-s2Reveal--dot"
+                aria-hidden="true"
+                style="--lp-s2-delay: .82s;"
+              >
+                <span class="lp-sectorsSection2__subTrackDotInner"></span>
+              </span>
+
+              <span
+                class="lp-sectorsSection2__subTrackLine lp-s2Reveal lp-s2Reveal--line"
+                aria-hidden="true"
+                style="--lp-s2-delay: .86s;"
+              ></span>
+
+              <article
+                class="lp-sectorsSection2__sectorCard lp-sectorsSection2__sectorCard--sub lp-s2Reveal lp-s2Reveal--card"
+                aria-label="قطاع زيوت المحركات"
+                style="--lp-s2-delay: .94s;"
+              >
+                <span class="lp-sectorsSection2__sectorIconCircle" aria-hidden="true">
+                  <img
+                    class="lp-sectorsSection2__sectorIcon"
+                    src="../../assets/images/sector/icon/oil.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="lp-sectorsSection2__sectorText">قطاع زيوت المحركات</span>
+              </article>
+            </div>
+
+            <div class="lp-sectorsSection2__subTrack">
+              <span
+                class="lp-sectorsSection2__subTrackDot lp-s2Reveal lp-s2Reveal--dot"
+                aria-hidden="true"
+                style="--lp-s2-delay: .98s;"
+              >
+                <span class="lp-sectorsSection2__subTrackDotInner"></span>
+              </span>
+
+              <span
+                class="lp-sectorsSection2__subTrackLine lp-s2Reveal lp-s2Reveal--line"
+                aria-hidden="true"
+                style="--lp-s2-delay: 1.02s;"
+              ></span>
+
+              <article
+                class="lp-sectorsSection2__sectorCard lp-sectorsSection2__sectorCard--sub lp-s2Reveal lp-s2Reveal--card"
+                aria-label="قطاع الدعاية والإعلان"
+                style="--lp-s2-delay: 1.10s;"
+              >
+                <span class="lp-sectorsSection2__sectorIconCircle" aria-hidden="true">
+                  <img
+                    class="lp-sectorsSection2__sectorIcon"
+                    src="../../assets/images/sector/icon/adveristing.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="lp-sectorsSection2__sectorText">قطاع الدعاية والإعلان</span>
+              </article>
+            </div>
+
+            <div class="lp-sectorsSection2__subTrack">
+              <span
+                class="lp-sectorsSection2__subTrackDot lp-s2Reveal lp-s2Reveal--dot"
+                aria-hidden="true"
+                style="--lp-s2-delay: 1.14s;"
+              >
+                <span class="lp-sectorsSection2__subTrackDotInner"></span>
+              </span>
+
+              <span
+                class="lp-sectorsSection2__subTrackLine lp-s2Reveal lp-s2Reveal--line"
+                aria-hidden="true"
+                style="--lp-s2-delay: 1.18s;"
+              ></span>
+
+              <article
+                class="lp-sectorsSection2__sectorCard lp-sectorsSection2__sectorCard--sub lp-s2Reveal lp-s2Reveal--card"
+                aria-label="قطاع الإتصالات"
+                style="--lp-s2-delay: 1.26s;"
+              >
+                <span class="lp-sectorsSection2__sectorIconCircle" aria-hidden="true">
+                  <img
+                    class="lp-sectorsSection2__sectorIcon"
+                    src="../../assets/images/sector/icon/telecommunication.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="lp-sectorsSection2__sectorText">قطاع الإتصالات</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
