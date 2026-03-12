@@ -1,3 +1,18 @@
+@php
+    $homePageSectorsSection = \App\Models\HomePageSectorsSection::query()->first();
+
+    $firstSectorName = $homePageSectorsSection?->first_sector_name_ar ?: 'القطاع الطبي';
+    $secondSectorName = $homePageSectorsSection?->second_sector_name_ar ?: 'القطاع التجاري';
+
+    $firstSectorImage = $homePageSectorsSection?->first_sector_image
+        ? \Illuminate\Support\Facades\Storage::url($homePageSectorsSection->first_sector_image)
+        : asset('assets/images/section/1.png');
+
+    $secondSectorImage = $homePageSectorsSection?->second_sector_image
+        ? \Illuminate\Support\Facades\Storage::url($homePageSectorsSection->second_sector_image)
+        : asset('assets/images/section/2.jpeg');
+@endphp
+
 <section class="lp-section lp-sectors" id="sectors" aria-label="قطاعات شركة الشرق">
   <div class="lp-sectors__inner">
 
@@ -11,26 +26,26 @@
       <div class="lp-sectors__slider lp-focus" tabindex="0">
         <div class="lp-sectors__track">
 
-          <article class="lp-sectorCard" aria-label="القطاع الطبي">
-            <img src="/assets/images/section/1.png" alt="القطاع الطبي">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل القطاع الطبي">
+          <article class="lp-sectorCard" aria-label="{{ $firstSectorName }}">
+            <img src="{{ $firstSectorImage }}" alt="{{ $firstSectorName }}">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل {{ $firstSectorName }}">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
               </span>
             </a>
-            <div class="lp-sectorCard__name">القطاع الطبي</div>
+            <div class="lp-sectorCard__name">{{ $firstSectorName }}</div>
           </article>
 
-          <article class="lp-sectorCard" aria-label="القطاع التجاري">
-            <img src="/assets/images/section/2.jpeg" alt="القطاع التجاري">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل القطاع التجاري">
+          <article class="lp-sectorCard" aria-label="{{ $secondSectorName }}">
+            <img src="{{ $secondSectorImage }}" alt="{{ $secondSectorName }}">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل {{ $secondSectorName }}">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
               </span>
             </a>
-            <div class="lp-sectorCard__name">القطاع التجاري</div>
+            <div class="lp-sectorCard__name">{{ $secondSectorName }}</div>
           </article>
 
         </div>
