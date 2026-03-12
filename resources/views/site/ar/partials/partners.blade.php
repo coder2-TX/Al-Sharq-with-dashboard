@@ -1,3 +1,37 @@
+@php
+    $partnerLogos = \App\Models\PartnerLogo::query()
+        ->orderBy('sort_order')
+        ->get();
+
+    $defaultPartnerFiles = [
+        '1.png',
+        '2.png',
+        '3.png',
+        '4.png',
+        '5.png',
+        '6.png',
+        '8.png',
+        '9.png',
+        '10.png',
+        '11.png',
+        '12.png',
+        '13.png',
+        '14.png',
+        '15.png',
+        '16.png',
+        '17.png',
+        '18.png',
+        '19.png',
+        '20.png',
+        '21.png',
+        '22.png',
+        '23.png',
+        '24.png',
+        '25.png',
+        '26.png',
+    ];
+@endphp
+
 <section class="lp-partners lp-section" id="partners" dir="rtl" lang="ar" aria-label="شركاء الشرق">
   <div class="lp-partners__inner">
     <h2 class="lp-partners__title">
@@ -8,32 +42,27 @@
       <div id="lp-partners-logos" class="splide" aria-label="شعارات الشركاء">
         <div class="splide__track">
           <ul class="splide__list">
-            <li class="splide__slide"><img src="assets/images/parteners/1.png"  alt="شعار شريك 1"  class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/2.png"  alt="شعار شريك 2"  class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/3.png"  alt="شعار شريك 3"  class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/4.png"  alt="شعار شريك 4"  class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/5.png"  alt="شعار شريك 5"  class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/6.png"  alt="شعار شريك 6"  class="lp-partners__image"></li>
-
-            <li class="splide__slide"><img src="assets/images/parteners/8.png"  alt="شعار شريك 8"  class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/9.png"  alt="شعار شريك 9"  class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/10.png" alt="شعار شريك 10" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/11.png" alt="شعار شريك 11" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/12.png" alt="شعار شريك 12" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/13.png" alt="شعار شريك 13" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/14.png" alt="شعار شريك 14" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/15.png" alt="شعار شريك 15" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/16.png" alt="شعار شريك 16" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/17.png" alt="شعار شريك 17" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/18.png" alt="شعار شريك 18" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/19.png" alt="شعار شريك 19" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/20.png" alt="شعار شريك 20" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/21.png" alt="شعار شريك 21" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/22.png" alt="شعار شريك 22" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/23.png" alt="شعار شريك 23" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/24.png" alt="شعار شريك 24" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/25.png" alt="شعار شريك 25" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="assets/images/parteners/26.png" alt="شعار شريك 26" class="lp-partners__image"></li>
+            @if($partnerLogos->count())
+              @foreach($partnerLogos as $partnerLogo)
+                <li class="splide__slide">
+                  <img
+                    src="{{ $partnerLogo->image_url }}"
+                    alt="شعار شريك {{ $loop->iteration }}"
+                    class="lp-partners__image"
+                  >
+                </li>
+              @endforeach
+            @else
+              @foreach($defaultPartnerFiles as $file)
+                <li class="splide__slide">
+                  <img
+                    src="{{ asset('assets/images/parteners/' . $file) }}"
+                    alt="شعار شريك {{ $loop->iteration }}"
+                    class="lp-partners__image"
+                  >
+                </li>
+              @endforeach
+            @endif
           </ul>
         </div>
       </div>

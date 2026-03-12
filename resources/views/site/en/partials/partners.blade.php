@@ -1,3 +1,37 @@
+@php
+    $partnerLogos = \App\Models\PartnerLogo::query()
+        ->orderBy('sort_order')
+        ->get();
+
+    $defaultPartnerFiles = [
+        '1.png',
+        '2.png',
+        '3.png',
+        '4.png',
+        '5.png',
+        '6.png',
+        '8.png',
+        '9.png',
+        '10.png',
+        '11.png',
+        '12.png',
+        '13.png',
+        '14.png',
+        '15.png',
+        '16.png',
+        '17.png',
+        '18.png',
+        '19.png',
+        '20.png',
+        '21.png',
+        '22.png',
+        '23.png',
+        '24.png',
+        '25.png',
+        '26.png',
+    ];
+@endphp
+
 <section class="lp-partners lp-section" id="partners" dir="ltr" lang="en" aria-label="Al Sharq partners">
   <div class="lp-partners__inner">
     <h2 class="lp-partners__title">
@@ -8,31 +42,27 @@
       <div id="lp-partners-logos" class="splide" aria-label="Partner logos">
         <div class="splide__track">
           <ul class="splide__list">
-            <li class="splide__slide"><img src="../assets/images/parteners/1.png" alt="Partner logo 1" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/2.png" alt="Partner logo 2" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/3.png" alt="Partner logo 3" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/4.png" alt="Partner logo 4" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/5.png" alt="Partner logo 5" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/6.png" alt="Partner logo 6" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/8.png" alt="Partner logo 8" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/9.png" alt="Partner logo 9" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/10.png" alt="Partner logo 10" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/11.png" alt="Partner logo 11" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/12.png" alt="Partner logo 12" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/13.png" alt="Partner logo 13" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/14.png" alt="Partner logo 14" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/15.png" alt="Partner logo 15" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/16.png" alt="Partner logo 16" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/17.png" alt="Partner logo 17" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/18.png" alt="Partner logo 18" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/19.png" alt="Partner logo 19" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/20.png" alt="Partner logo 20" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/21.png" alt="Partner logo 21" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/22.png" alt="Partner logo 22" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/23.png" alt="Partner logo 23" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/24.png" alt="Partner logo 24" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/25.png" alt="Partner logo 25" class="lp-partners__image"></li>
-            <li class="splide__slide"><img src="../assets/images/parteners/26.png" alt="Partner logo 26" class="lp-partners__image"></li>
+            @if($partnerLogos->count())
+              @foreach($partnerLogos as $partnerLogo)
+                <li class="splide__slide">
+                  <img
+                    src="{{ $partnerLogo->image_url }}"
+                    alt="Partner logo {{ $loop->iteration }}"
+                    class="lp-partners__image"
+                  >
+                </li>
+              @endforeach
+            @else
+              @foreach($defaultPartnerFiles as $file)
+                <li class="splide__slide">
+                  <img
+                    src="{{ asset('assets/images/parteners/' . $file) }}"
+                    alt="Partner logo {{ $loop->iteration }}"
+                    class="lp-partners__image"
+                  >
+                </li>
+              @endforeach
+            @endif
           </ul>
         </div>
       </div>
