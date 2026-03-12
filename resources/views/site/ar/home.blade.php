@@ -5,6 +5,8 @@
 ])
 
 @section('content')
+    @php($homePageHeroSection = \App\Models\HomePageHeroSection::query()->first())
+
     @include('site.ar.partials.header')
 
     <main id="home">
@@ -33,7 +35,7 @@
                         </h1>
 
                         <p class="lp-hero__subtitle">
-                            واحدة من أهم الشركات الرائدة في مجال الاستيراد والتسويق والتوزيع في الجمهورية اليمنية حيث تمثل شركة الشرق عددا كبيرا من الوكالات العالمية
+                            {{ $homePageHeroSection?->subtitle_ar ?: 'واحدة من أهم الشركات الرائدة في مجال الاستيراد والتسويق والتوزيع في الجمهورية اليمنية حيث تمثل شركة الشرق عددا كبيرا من الوكالات العالمية' }}
                         </p>
                     </div>
 

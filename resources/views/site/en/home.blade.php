@@ -5,6 +5,8 @@
 ])
 
 @section('content')
+    @php($homePageHeroSection = \App\Models\HomePageHeroSection::query()->first())
+
     @include('site.en.partials.header')
 
     <main id="home">
@@ -37,7 +39,7 @@
                         </h1>
 
                         <p class="lp-hero__subtitle">
-                            One of the leading companies in import, marketing, and distribution in Yemen, representing a large number of international agencies.
+                            {{ $homePageHeroSection?->subtitle_en ?: 'One of the leading companies in import, marketing, and distribution in Yemen, representing a large number of international agencies.' }}
                         </p>
                     </div>
                 </div>
