@@ -1,3 +1,5 @@
+@php($homePageAboutSection = \App\Models\HomePageAboutSection::query()->first())
+
 <section class="lp-section lp-about" id="about" aria-label="من نحن">
   <div class="lp-about__inner">
     <div class="lp-about__grid">
@@ -17,7 +19,7 @@
           </a>
 
           <a class="lp-about__play"
-            href="https://www.youtube.com/watch?v=T90XuuZx9ws"
+            href="{{ $homePageAboutSection?->youtube_url ?: 'https://www.youtube.com/watch?v=T90XuuZx9ws' }}"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="تشغيل فيديو شهادة ISO">
@@ -31,12 +33,11 @@
 
       <div class="lp-about__body">
         <p class="lp-about__lead">
-          شركة الشرق للتجارة والتوكيلات واحدة من الشركات الرائدة في مجال الاستيراد والتسويق والتوزيع في الجمهورية اليمنية.
+          {{ $homePageAboutSection?->lead_ar ?: 'شركة الشرق للتجارة والتوكيلات واحدة من الشركات الرائدة في مجال الاستيراد والتسويق والتوزيع في الجمهورية اليمنية.' }}
         </p>
 
         <p class="lp-about__text">
-          نعمل على بناء شراكات طويلة المدى وتمثيل وكالات عالمية متعددة، مع الالتزام بالجودة وتوفير المنتجات وفق أعلى المعايير،
-          وبأسلوب يخدم السوق ويواكب احتياجات العملاء.
+          {{ $homePageAboutSection?->text_ar ?: 'نعمل على بناء شراكات طويلة المدى وتمثيل وكالات عالمية متعددة، مع الالتزام بالجودة وتوفير المنتجات وفق أعلى المعايير، وبأسلوب يخدم السوق ويواكب احتياجات العملاء.' }}
         </p>
       </div>
 

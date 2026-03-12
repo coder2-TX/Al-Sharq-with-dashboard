@@ -1,3 +1,5 @@
+@php($homePageAboutSection = \App\Models\HomePageAboutSection::query()->first())
+
 <section class="lp-section lp-about" id="about" aria-label="About us">
   <div class="lp-about__inner">
     <div class="lp-about__grid">
@@ -21,7 +23,7 @@
 
           <a
             class="lp-about__play"
-            href="https://www.youtube.com/watch?v=T90XuuZx9ws"
+            href="{{ $homePageAboutSection?->youtube_url ?: 'https://www.youtube.com/watch?v=T90XuuZx9ws' }}"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Play ISO certificate video"
@@ -36,15 +38,11 @@
 
       <div class="lp-about__body">
         <p class="lp-about__lead">
-          Al Sharq Trading & Agencies Company is one of the leading companies in
-          import, marketing, and distribution in the Republic of Yemen.
+          {{ $homePageAboutSection?->lead_en ?: 'Al Sharq Trading & Agencies Company is one of the leading companies in import, marketing, and distribution in the Republic of Yemen.' }}
         </p>
 
         <p class="lp-about__text">
-          We build long-term partnerships and represent multiple international
-          agencies, with a strong commitment to quality and delivering products
-          that meet the highest standards in a way that serves the market and
-          responds to customer needs.
+          {{ $homePageAboutSection?->text_en ?: 'We build long-term partnerships and represent multiple international agencies, with a strong commitment to quality and delivering products that meet the highest standards in a way that serves the market and responds to customer needs.' }}
         </p>
       </div>
     </div>
