@@ -1,9 +1,14 @@
+@php
+    $isoCertificateContent = \App\Models\IsoCertificateContent::query()->first();
+    $certificateName = $isoCertificateContent?->certificate_name_display ?: 'ISO-9001:2015';
+@endphp
+
 <!doctype html>
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>شهادة ISO-9001:2015 | شركة الشرق</title>
+    <title>شهادة {{ $certificateName }} | شركة الشرق</title>
 
     <link
       rel="stylesheet"
@@ -43,7 +48,7 @@
       <section
         class="lp-section lp-isoIntro"
         id="iso-intro"
-        aria-label="شهادة ISO-9001:2015"
+        aria-label="شهادة {{ $certificateName }}"
       >
         <div class="lp-isoIntro__graphics" aria-hidden="true">
           <svg
@@ -108,7 +113,7 @@
             <h2 class="lp-isoIntro__heading">
               <span class="lp-isoIntro__accent">شهادة</span>
               <span class="lp-isoIntro__code lp-enDigits" dir="ltr" lang="en">
-                ISO-9001:2015
+                {{ $certificateName }}
               </span>
             </h2>
           </header>

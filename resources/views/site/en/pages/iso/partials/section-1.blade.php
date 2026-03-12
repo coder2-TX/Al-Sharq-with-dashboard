@@ -1,7 +1,12 @@
+@php
+    $isoCertificateContent = \App\Models\IsoCertificateContent::query()->first();
+    $certificateName = $isoCertificateContent?->certificate_name_display ?: 'ISO-9001:2015';
+@endphp
+
 <section
   class="lp-section lp-isoIntro"
   id="iso-intro"
-  aria-label="ISO-9001:2015 Certificate"
+  aria-label="{{ $certificateName }} Certificate"
 >
   <div class="lp-isoIntro__graphics" aria-hidden="true">
     <svg
@@ -65,7 +70,7 @@
     <header class="lp-isoIntro__head">
       <h1 class="lp-isoIntro__heading">
         <span class="lp-isoIntro__code lp-enDigits" dir="ltr" lang="en">
-          ISO-9001:2015
+          {{ $certificateName }}
         </span>
         <span class="lp-isoIntro__accent">Certificate</span>
       </h1>
