@@ -1,19 +1,13 @@
 /* assets/css/pages/about/section-1.css */
 
 .lp-aboutS1{
-  /*  خلي أعلى الصفحة (منطقة الهيدر) أبيض وما يتأثر */
   background: #fff;
-
-  /*  نص السكشن أبيض */
   color: #fff;
-
-  /*  Needed for pseudo layers */
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
 
-/*  Background IMAGE يبدأ بعد ارتفاع الهيدر (عشان الهيدر يظل أبيض) */
 .lp-aboutS1::before{
   content: "";
   position: absolute;
@@ -21,17 +15,14 @@
   right: 0;
   top: var(--lp-header-h, 0px);
   bottom: 0;
-
   background-image: url("../../../images/pages/about/section4/1.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   z-index: 0;
   pointer-events: none;
 }
 
-/*  Overlay color يبدأ بعد الهيدر + شفافية أقل (الصورة أوضح) */
 .lp-aboutS1::after{
   content: "";
   position: absolute;
@@ -39,52 +30,53 @@
   right: 0;
   top: var(--lp-header-h, 0px);
   bottom: 0;
-
   background: var(--lp-about-title, #111);
   opacity: 0.70;
   z-index: 1;
   pointer-events: none;
 }
 
-/*  Ensure content is above image + overlay */
 .lp-aboutS1__inner{
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-
-  /*  نفس البادنج فوق وتحت */
   --lp-aboutS1-pad: clamp(52px, 7vw, 110px);
-
   padding-top: calc(var(--lp-header-h) + var(--lp-aboutS1-pad));
   padding-bottom: var(--lp-aboutS1-pad);
-
   position: relative;
   z-index: 2;
 }
 
-.lp-aboutS1__head{ margin-bottom: 12px; }
+.lp-aboutS1__head{
+  margin-bottom: 12px;
+}
 
-html[dir="rtl"] .lp-aboutS1__head{ text-align: right; }
-html[dir="ltr"] .lp-aboutS1__head{ text-align: left; }
+html[dir="rtl"] .lp-aboutS1__head{
+  text-align: right;
+}
 
-.lp-aboutS1__title{ margin: 0; }
+html[dir="ltr"] .lp-aboutS1__head{
+  text-align: left;
+}
 
-/*  Title + accent inside it become white */
+.lp-aboutS1__title{
+  margin: 0;
+}
+
 .lp-aboutS1 .lp-sectors__title,
 .lp-aboutS1 .lp-sectors__titleAccent{
   color: #fff;
 }
 
-/*  Subtitle becomes white */
 .lp-aboutS1__subTitle{
   margin-top: 10px;
   color: #fff;
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(18px, 2.1vw, 26px);
   line-height: 1.55;
+  font-synthesis: weight style;
 }
 
-/*  Paragraph becomes white */
 .lp-aboutS1__text{
   margin: 18px 0 0;
   width: 100%;
@@ -92,14 +84,147 @@ html[dir="ltr"] .lp-aboutS1__head{ text-align: left; }
   color: #fff;
   font-size: var(--lp-subtitle-size);
   line-height: 2;
-
+  font-weight: 400;
   text-align: justify;
   text-justify: inter-word;
   word-spacing: .06em;
-
   text-align-last: start;
+  font-synthesis: weight style;
 }
 
 html[dir="rtl"] .lp-aboutS1__text{
   text-align-last: right;
+}
+
+.lp-aboutS1__subTitle > :first-child,
+.lp-aboutS1__text > :first-child{
+  margin-top: 0;
+}
+
+.lp-aboutS1__subTitle > :last-child,
+.lp-aboutS1__text > :last-child{
+  margin-bottom: 0;
+}
+
+.lp-aboutS1__subTitle p,
+.lp-aboutS1__subTitle div,
+.lp-aboutS1__subTitle h2,
+.lp-aboutS1__subTitle h3,
+.lp-aboutS1__subTitle blockquote,
+.lp-aboutS1__subTitle ul,
+.lp-aboutS1__subTitle ol{
+  margin: 0 0 .45em;
+  color: inherit;
+  line-height: inherit;
+}
+
+.lp-aboutS1__text p,
+.lp-aboutS1__text div,
+.lp-aboutS1__text blockquote,
+.lp-aboutS1__text ul,
+.lp-aboutS1__text ol{
+  margin: 0 0 1em;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+.lp-aboutS1__subTitle ul,
+.lp-aboutS1__subTitle ol,
+.lp-aboutS1__text ul,
+.lp-aboutS1__text ol{
+  padding-inline-start: 1.35em;
+}
+
+.lp-aboutS1__subTitle li,
+.lp-aboutS1__text li{
+  margin-bottom: .35em;
+}
+
+.lp-aboutS1__subTitle h2,
+.lp-aboutS1__subTitle h3,
+.lp-aboutS1__text h2,
+.lp-aboutS1__text h3{
+  color: inherit;
+  line-height: 1.45;
+  margin: 0 0 .55em;
+  font-weight: 800;
+}
+
+.lp-aboutS1__subTitle h2{
+  font-size: clamp(20px, 2.4vw, 30px);
+}
+
+.lp-aboutS1__subTitle h3{
+  font-size: clamp(18px, 2vw, 26px);
+}
+
+.lp-aboutS1__text h2{
+  font-size: clamp(22px, 2.3vw, 32px);
+}
+
+.lp-aboutS1__text h3{
+  font-size: clamp(19px, 2vw, 28px);
+}
+
+.lp-aboutS1__subTitle strong,
+.lp-aboutS1__subTitle b,
+.lp-aboutS1__text strong,
+.lp-aboutS1__text b{
+  font-weight: 900 !important;
+}
+
+.lp-aboutS1__subTitle em,
+.lp-aboutS1__subTitle i,
+.lp-aboutS1__text em,
+.lp-aboutS1__text i{
+  font-style: italic !important;
+}
+
+.lp-aboutS1__subTitle u,
+.lp-aboutS1__text u{
+  text-decoration: underline !important;
+}
+
+.lp-aboutS1__subTitle s,
+.lp-aboutS1__subTitle strike,
+.lp-aboutS1__text s,
+.lp-aboutS1__text strike{
+  text-decoration: line-through !important;
+}
+
+.lp-aboutS1__subTitle a,
+.lp-aboutS1__text a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .16em;
+  font-weight: 700;
+}
+
+/* إلغاء الخط العمودي الذي كان يظهر بسبب blockquote */
+.lp-aboutS1__subTitle blockquote,
+.lp-aboutS1__text blockquote{
+  border: 0;
+  padding: 0;
+  margin: 0 0 1em;
+  opacity: 1;
+}
+
+/* RichEditor text colors - Filament public rendering fix */
+.lp-aboutS1 .color,
+.lp-aboutS1 span.color,
+.lp-aboutS1 [data-color].color,
+.lp-aboutS1 [data-color][style*="--color"]{
+  color: var(--color) !important;
+}
+
+.lp-aboutS1 strong .color,
+.lp-aboutS1 b .color,
+.lp-aboutS1 em .color,
+.lp-aboutS1 i .color,
+.lp-aboutS1 u .color,
+.lp-aboutS1 s .color,
+.lp-aboutS1 strike .color{
+  color: var(--color) !important;
 }
