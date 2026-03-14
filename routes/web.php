@@ -15,5 +15,6 @@ Route::prefix('en')->name('site.en.')->group(function () {
     Route::view('/about', 'site.en.pages.about.index')->name('about');
     Route::view('/contact', 'site.en.pages.contact.index')->name('contact');
     Route::view('/news', 'site.en.pages.news.index')->name('news');
+    Route::view('/news/details', 'site.en.pages.news.details')->name('news.details');
     Route::view('/iso', 'site.en.pages.iso.index')->name('iso');
 });
