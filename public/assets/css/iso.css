@@ -124,6 +124,39 @@
   transform: translate(0, 0);
 }
 
+/* =========================
+   English mirror only
+   ========================= */
+html[lang="en"] .lp-isoCard__layer,
+[dir="ltr"] .lp-iso .lp-isoCard__layer{
+  transform: translate(8px, 8px);
+}
+
+html[lang="en"] .lp-isoCard__row,
+[dir="ltr"] .lp-iso .lp-isoCard__row{
+  direction: ltr;
+}
+
+html[lang="en"] .lp-cta.lp-cta--iso .lp-cta__stroke,
+[dir="ltr"] .lp-iso .lp-cta.lp-cta--iso .lp-cta__stroke{
+  border-top-left-radius: 0;
+  border-top-right-radius: 22px;
+}
+
+html[lang="en"] .lp-cta.lp-cta--iso .lp-cta__layer,
+[dir="ltr"] .lp-iso .lp-cta.lp-cta--iso .lp-cta__layer{
+  border-top-left-radius: 0;
+  border-top-right-radius: 22px;
+  transform: translate(6px, 6px);
+}
+
+html[lang="en"] .lp-cta.lp-cta--iso:hover .lp-cta__layer,
+html[lang="en"] .lp-cta.lp-cta--iso:focus-visible .lp-cta__layer,
+[dir="ltr"] .lp-iso .lp-cta.lp-cta--iso:hover .lp-cta__layer,
+[dir="ltr"] .lp-iso .lp-cta.lp-cta--iso:focus-visible .lp-cta__layer{
+  transform: translate(0, 0);
+}
+
 @media (max-width: 700px){
   .lp-iso__inner{ margin-top: -14px; }
 
