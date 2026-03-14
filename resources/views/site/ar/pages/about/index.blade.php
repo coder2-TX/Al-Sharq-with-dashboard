@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/pages/about/section-2.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/about/section-3.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/about/section-4.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/about/section-5.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/about/section-6.css') }}" />
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
@@ -32,7 +31,6 @@
         @include('site.ar.pages.about.partials.section-2')
         @include('site.ar.pages.about.partials.section-3')
         @include('site.ar.pages.about.partials.section-4')
-        @include('site.ar.pages.about.partials.section-5')
         @include('site.ar.pages.about.partials.section-6')
     </main>
 
