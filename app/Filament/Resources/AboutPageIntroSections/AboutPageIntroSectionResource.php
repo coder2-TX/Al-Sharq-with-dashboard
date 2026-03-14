@@ -34,11 +34,12 @@ class AboutPageIntroSectionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('المحتوى العربي')
+            Section::make('النص الفرعي')
                 ->columnSpanFull()
+                ->columns(2)
                 ->schema([
                     RichEditor::make('subtitle_ar')
-                        ->label('النص الفرعي بالعربية')
+                        ->label('النص العربي')
                         ->toolbarButtons([
                             ['bold', 'italic', 'underline', 'strike', 'textColor', 'clearFormatting'],
                             ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
@@ -46,11 +47,12 @@ class AboutPageIntroSectionResource extends Resource
                             ['undo', 'redo'],
                         ])
                         ->textColors(TextColor::getDefaults())
+                        ->customTextColors()
                         ->required()
                         ->columnSpanFull(),
 
-                    RichEditor::make('article_ar')
-                        ->label('المقال بالعربية')
+                    RichEditor::make('subtitle_en')
+                        ->label('النص الإنجليزي')
                         ->toolbarButtons([
                             ['bold', 'italic', 'underline', 'strike', 'textColor', 'clearFormatting'],
                             ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
@@ -58,15 +60,17 @@ class AboutPageIntroSectionResource extends Resource
                             ['undo', 'redo'],
                         ])
                         ->textColors(TextColor::getDefaults())
+                        ->customTextColors()
                         ->required()
                         ->columnSpanFull(),
                 ]),
 
-            Section::make('English Content')
+            Section::make('المقال')
                 ->columnSpanFull()
+                ->columns(2)
                 ->schema([
-                    RichEditor::make('subtitle_en')
-                        ->label('Subtitle in English')
+                    RichEditor::make('article_ar')
+                        ->label('النص العربي')
                         ->toolbarButtons([
                             ['bold', 'italic', 'underline', 'strike', 'textColor', 'clearFormatting'],
                             ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
@@ -74,11 +78,12 @@ class AboutPageIntroSectionResource extends Resource
                             ['undo', 'redo'],
                         ])
                         ->textColors(TextColor::getDefaults())
+                        ->customTextColors()
                         ->required()
                         ->columnSpanFull(),
 
                     RichEditor::make('article_en')
-                        ->label('Article in English')
+                        ->label('النص الإنجليزي')
                         ->toolbarButtons([
                             ['bold', 'italic', 'underline', 'strike', 'textColor', 'clearFormatting'],
                             ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
@@ -86,6 +91,7 @@ class AboutPageIntroSectionResource extends Resource
                             ['undo', 'redo'],
                         ])
                         ->textColors(TextColor::getDefaults())
+                        ->customTextColors()
                         ->required()
                         ->columnSpanFull(),
                 ]),

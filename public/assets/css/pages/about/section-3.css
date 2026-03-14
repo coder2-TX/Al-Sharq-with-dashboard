@@ -1,6 +1,3 @@
-/* assets/css/pages/about/section-3.css */
-/* ABOUT - Section 3 (Vision / Message + Values) - FULL cards (Values = one card) + equal height top cards */
-
 .lp-vmv{
   background: #ffffff;
   color: #111;
@@ -13,16 +10,14 @@
   padding-block: clamp(54px, 7vw, 110px);
 }
 
-/* Top 2 columns */
 .lp-vmv__top{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(18px, 3.5vw, 60px);
-  align-items: stretch; /*  يخلي عمودين نفس الارتفاع */
+  align-items: stretch;
   position: relative;
 }
 
-/* Divider line between Vision & Message (desktop only) */
 @media (min-width: 901px){
   .lp-vmv__top::before{
     content: "";
@@ -38,19 +33,13 @@
   }
 }
 
-/* =========================
-    Card (white) + shadow uses --lp-about-title
-   ========================= */
 .lp-vmv__card{
   background: #fff;
   border-radius: 22px;
-
-  /* fallback */
   border: 1px solid rgba(0,0,0,.08);
   box-shadow: 0 12px 30px rgba(0,0,0,.08);
 }
 
-/* Use about-title color in shadow/border when supported */
 @supports (color: color-mix(in srgb, #000 10%, transparent)){
   .lp-vmv__card{
     border-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
@@ -60,23 +49,18 @@
   }
 }
 
-/* Top cards (Vision/Message) */
 .lp-vmv__card--top{
   padding: clamp(18px, 2.2vw, 28px) clamp(18px, 2.4vw, 30px);
   text-align: center;
-
-  /*  يخلي الكارد يملأ ارتفاع الخلية في grid */
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-/*  يخلي الفقرة "تتمدد" لو الكارد الثاني أطول، وبالتالي الفراغ يكون تحت */
 .lp-vmv__card--top .lp-vmv__text{
   flex: 1 1 auto;
 }
 
-/* Icons */
 .lp-vmv__icon{
   width: clamp(76px, 7.6vw, 112px);
   height: auto;
@@ -93,7 +77,6 @@
   font-size: clamp(22px, 2.6vw, 34px);
 }
 
-/* Base text sizes like section-1 */
 .lp-vmv__text{
   margin: 0;
   width: 100%;
@@ -101,16 +84,108 @@
   color: #111;
   font-size: var(--lp-subtitle-size);
   line-height: 2;
+  font-synthesis: weight style;
 }
 
-/* Centered text for Vision/Message paragraphs */
 .lp-vmv__text--center{
   text-align: center;
 }
 
-/* =========================
-   Values (ONE full card)
-   ========================= */
+.lp-vmv__text--values{
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: .06em;
+  text-align-last: start;
+}
+
+html[dir="rtl"] .lp-vmv__text--values{
+  text-align-last: right;
+}
+
+.lp-vmv__text > :first-child{
+  margin-top: 0;
+}
+
+.lp-vmv__text > :last-child{
+  margin-bottom: 0;
+}
+
+.lp-vmv__text p,
+.lp-vmv__text div,
+.lp-vmv__text blockquote,
+.lp-vmv__text ul,
+.lp-vmv__text ol{
+  margin: 0 0 1em;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+.lp-vmv__text ul,
+.lp-vmv__text ol{
+  padding-inline-start: 1.35em;
+}
+
+.lp-vmv__text li{
+  margin-bottom: .35em;
+}
+
+.lp-vmv__text h2,
+.lp-vmv__text h3{
+  color: inherit;
+  line-height: 1.45;
+  margin: 0 0 .55em;
+  font-weight: 800;
+}
+
+.lp-vmv__text h2{
+  font-size: clamp(22px, 2.3vw, 32px);
+}
+
+.lp-vmv__text h3{
+  font-size: clamp(19px, 2vw, 28px);
+}
+
+.lp-vmv__text strong,
+.lp-vmv__text b{
+  font-weight: 900 !important;
+}
+
+.lp-vmv__text em,
+.lp-vmv__text i{
+  font-style: italic !important;
+}
+
+.lp-vmv__text u{
+  text-decoration: underline !important;
+}
+
+.lp-vmv__text s,
+.lp-vmv__text strike{
+  text-decoration: line-through !important;
+}
+
+.lp-vmv__text a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .16em;
+  font-weight: 700;
+}
+
+.lp-vmv__text blockquote{
+  border: 0;
+  padding: 0;
+  margin: 0 0 1em;
+  opacity: 1;
+}
+
+.lp-vmv__text--center ul,
+.lp-vmv__text--center ol{
+  display: inline-block;
+  text-align: start;
+}
+
 .lp-vmv__values{
   margin-top: clamp(28px, 4vw, 70px);
 }
@@ -131,82 +206,27 @@
   margin-top: 12px;
 }
 
-/* Values list inside the card */
 .lp-vmv__valuesBody{
   margin-top: 18px;
-  display: grid;
-  gap: 0; /*  لأننا بنعمل فواصل */
 }
 
-/* Value row (not a card anymore) */
-.lp-vmv__value{
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 12px;
-  align-items: start;
-  padding-block: 14px;
+.lp-vmv .color,
+.lp-vmv span.color,
+.lp-vmv [data-color].color,
+.lp-vmv [data-color][style*="--color"]{
+  color: var(--color) !important;
 }
 
-/* divider between rows */
-.lp-vmv__value + .lp-vmv__value{
-  border-top: 1px solid rgba(0,0,0,.08); /* fallback */
+.lp-vmv strong .color,
+.lp-vmv b .color,
+.lp-vmv em .color,
+.lp-vmv i .color,
+.lp-vmv u .color,
+.lp-vmv s .color,
+.lp-vmv strike .color{
+  color: var(--color) !important;
 }
 
-@supports (color: color-mix(in srgb, #000 10%, transparent)){
-  .lp-vmv__value + .lp-vmv__value{
-    border-top-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
-  }
-}
-
-/* Number badge */
-.lp-vmv__valueNo{
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-
-  background: rgba(46,49,145,.10); /* fallback */
-  background: color-mix(in srgb, var(--lp-accent) 12%, transparent);
-
-  color: var(--lp-accent);
-  font-weight: 700;
-  line-height: 1;
-
-  direction: ltr;
-  unicode-bidi: isolate;
-  font-variant-numeric: lining-nums;
-}
-
-.lp-vmv__valueTitle{
-  margin: 0 0 8px;
-  color: var(--lp-about-title);
-  font-weight: 700;
-  font-size: clamp(16px, 1.8vw, 20px);
-  line-height: 1.35;
-}
-
-/* Values text: keep justify like section-1 */
-.lp-vmv__valueText{
-  margin: 0;
-  width: 100%;
-  max-width: none;
-  color: #111;
-  font-size: var(--lp-subtitle-size);
-  line-height: 2;
-
-  text-align: justify;
-  text-justify: inter-word;
-  word-spacing: .06em;
-
-  text-align-last: start;
-}
-
-html[dir="rtl"] .lp-vmv__valueText{
-  text-align-last: right;
-}
-
-/* Responsive */
 @media (max-width: 900px){
   .lp-vmv__top{
     grid-template-columns: 1fr;
@@ -216,7 +236,6 @@ html[dir="rtl"] .lp-vmv__valueText{
     content: none;
   }
 
-  /* على الموبايل طبيعي كل كارد لحاله */
   .lp-vmv__card--top{
     height: auto;
   }
