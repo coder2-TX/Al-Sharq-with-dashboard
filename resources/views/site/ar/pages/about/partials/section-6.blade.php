@@ -1,33 +1,36 @@
+@php
+    $aboutPageTodaySection = \App\Models\AboutPageTodaySection::query()->first();
+
+    $subtitleAr = $aboutPageTodaySection?->subtitle_ar_display
+        ?: 'والتوكيلات اليوم باحترام ومكانة بارزة بين شركات الاستيراد والتسويق والتوزيع العاملة في هذا السوق، ونحن ملتزمون بمواصلة توسيع خدمتنا والتحسين المستمر في الجودة والأداء.';
+
+    $imageUrl = $aboutPageTodaySection?->image_url
+        ?: asset('assets/images/pages/about/section4/1.jpeg');
+@endphp
+
 <section
-  class="lp-section lp-aboutS6"
+  class="lp-section lp-aboutS6 lp-aboutS6--ar"
   id="about-today"
   aria-label="شركة الشرق اليوم"
 >
   <div class="lp-aboutS6__inner">
-    <!--  Mobile Title (يظهر فقط على الآيباد/الهاتف) -->
     <header class="lp-aboutS6__mobileHead" aria-label="عنوان شركة الشرق اليوم">
       <h2 class="lp-sectors__title lp-aboutS6__title">
         تتمع شركة
-        <span class="lp-sectors__titleAccent lp-aboutS6__titleAccent"
-          >الشرق</span
-        >
+        <span class="lp-sectors__titleAccent lp-aboutS6__titleAccent">الشرق</span>
         للتجارة
       </h2>
     </header>
 
     <div class="lp-aboutS6__grid">
       <div class="lp-aboutS6__media" aria-label="صورة شركة الشرق اليوم">
-        <div
-          class="lp-aboutS6Media"
-          role="group"
-          aria-label="صورة شركة الشرق اليوم"
-        >
+        <div class="lp-aboutS6Media" role="group" aria-label="صورة شركة الشرق اليوم">
           <span class="lp-aboutS6Media__stroke" aria-hidden="true"></span>
 
           <div class="lp-aboutS6Media__layer">
             <img
               class="lp-aboutS6Media__img"
-              src="../../assets/images/pages/about/section4/1.jpeg"
+              src="{{ $imageUrl }}"
               alt="شركة الشرق اليوم"
             />
           </div>
@@ -35,22 +38,17 @@
       </div>
 
       <div class="lp-aboutS6__content">
-        <!--  Desktop Title (يظهر فقط على اللابتوب/الديسكتوب) -->
         <header class="lp-aboutS6__head lp-aboutS6__deskHead">
           <h2 class="lp-sectors__title lp-aboutS6__title">
             تتمع شركة
-            <span class="lp-sectors__titleAccent lp-aboutS6__titleAccent"
-              >الشرق</span
-            >
+            <span class="lp-sectors__titleAccent lp-aboutS6__titleAccent">الشرق</span>
             للتجارة
           </h2>
         </header>
 
-        <p class="lp-aboutS6__text">
-          والتوكلات اليوم باحترام ومكانة بارزة بين شركات الاستيراد والتسويق
-          والتوزيع العاملة في هذا السوق ، ونحن ملتزمون بمواصلة توسيع خدمتنا
-          والتحسين المستمر في الجودة والاداء
-        </p>
+        <div class="lp-aboutS6__text">
+          {!! $subtitleAr !!}
+        </div>
       </div>
     </div>
   </div>
