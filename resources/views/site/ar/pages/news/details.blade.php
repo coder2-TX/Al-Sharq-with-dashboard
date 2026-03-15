@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -18,7 +19,9 @@
     <script src="{{ asset('assets/js/hero.js') }}" defer></script>
     <script src="{{ asset('assets/js/pages/news/details.js') }}" defer></script>
 </head>
-<body>
+
+<body data-show-brand="true" data-brand-href="{{ route('site.ar.home') }}"
+    data-brand-src="{{ asset('assets/images/header/Brand_Mark.png') }}">
     @include('site.ar.partials.header')
 
     <main id="news-details-page">
@@ -28,7 +31,7 @@
     @include('site.ar.partials.footer')
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             if (typeof window.lpInitHeader === 'function') {
                 window.lpInitHeader();
             }
@@ -46,4 +49,5 @@
         });
     </script>
 </body>
+
 </html>

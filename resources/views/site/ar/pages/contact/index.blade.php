@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -22,8 +23,10 @@
     <script src="{{ asset('assets/js/header.js') }}" defer></script>
     <script src="{{ asset('assets/js/hero.js') }}" defer></script>
 </head>
-<body>
-    @include('site.ar.partials.header')
+
+<body data-show-brand="true" data-brand-href="{{ route('site.ar.home') }}"
+    data-brand-src="{{ asset('assets/images/header/Brand_Mark.png') }}">
+     @include('site.ar.partials.header')
 
     <main id="contact-page">
         @include('site.ar.pages.contact.partials.section-1')
@@ -35,7 +38,7 @@
     @include('site.ar.partials.footer')
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             if (typeof window.lpInitHeader === 'function') {
                 window.lpInitHeader();
             }
@@ -57,4 +60,5 @@
         });
     </script>
 </body>
+
 </html>

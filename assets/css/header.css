@@ -241,31 +241,103 @@ body.lp-header-scrolled .lp-drawer__panel{
   color: var(--lp-about-title);
 }
 
+.lp-drawer__top{
+  display: flex;
+  margin-bottom: 18px;
+}
+
+html[dir="rtl"] .lp-drawer__top{
+  justify-content: flex-end;
+}
+
+html[dir="ltr"] .lp-drawer__top{
+  justify-content: flex-start;
+}
+
+.lp-drawer__langBtn{
+  width: 128px;
+  height: 40px;
+  flex: 0 0 auto;
+}
+
+.lp-drawer__langBtn .lp-cta__stroke,
+.lp-drawer__langBtn .lp-cta__layer{
+  width: 122px;
+  height: 34px;
+}
+
 .lp-drawer__nav{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .lp-drawer__link{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 14px 18px;
   text-decoration: none;
   color: var(--lp-about-title);
   font-weight: 800;
   font-size: 18px;
-  padding: 10px 10px;
-  border-radius: 12px;
-  transition: background .18s ease, transform .18s ease;
+  line-height: 1.2;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  transition:
+    color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    background .18s ease,
+    transform .18s ease;
 }
 
-.lp-drawer__link:hover{
-  background: rgba(0,191,242,.10);
-  transform: translateX(-2px);
+@supports (color: color-mix(in srgb, #000 10%, transparent)){
+  .lp-drawer__link{
+    border-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
+    box-shadow:
+      0 12px 30px color-mix(in srgb, var(--lp-about-title) 12%, transparent),
+      0 2px 0 rgba(0,0,0,.02);
+  }
+}
+
+.lp-drawer__link:hover,
+.lp-drawer__link:focus-visible{
+  color: var(--lp-accent);
+  background: rgba(0,191,242,.04);
+  border-color: rgba(0,191,242,.34);
+  box-shadow:
+    0 14px 34px rgba(0,191,242,.16),
+    0 2px 0 rgba(0,0,0,.02);
+  transform: translateY(-1px);
+}
+
+.lp-drawer__link:focus-visible{
+  outline: none;
 }
 
 .lp-drawer__cta{
-  margin-top: 18px;
+  margin-top: 22px;
   display: flex;
+}
+
+html[dir="rtl"] .lp-drawer__cta{
+  justify-content: flex-end;
+}
+
+html[dir="ltr"] .lp-drawer__cta{
   justify-content: flex-start;
+}
+
+html[dir="rtl"] .lp-drawer__link{
+  text-align: right;
+}
+
+html[dir="ltr"] .lp-drawer__link{
+  text-align: left;
 }
 
 @media (max-width: 900px){
