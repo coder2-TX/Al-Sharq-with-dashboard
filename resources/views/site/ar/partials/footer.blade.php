@@ -1,5 +1,65 @@
+@php
+    $siteFooterSection = \App\Models\SiteFooterSection::query()->first();
+
+    $homeUrl = route('site.ar.home');
+    $aboutUrl = route('site.ar.about');
+    $newsUrl = route('site.ar.news');
+    $sectorsUrl = route('site.ar.sectors');
+    $contactUrl = route('site.ar.contact');
+
+    $links = [
+        'home' => [
+            'label' => 'الرئيسية',
+            'url' => $homeUrl,
+            'description' => $siteFooterSection?->home_description_ar_display ?: 'تعد شركة الشرق من أهم الشركات الرائدة في مجال الاستيراد والتسويق والتوزيع في الجمهورية اليمنية حيث تمثل شركة الشرق عددا كبيرا من الوكالات العالمية',
+        ],
+        'about' => [
+            'label' => 'عن الشركة',
+            'url' => $aboutUrl,
+            'description' => $siteFooterSection?->about_description_ar_display ?: 'تعرف على شركة الشرق ومسيرتها ورؤيتها ورسالتها والقيم التي تنطلق منها في أعمالها المختلفة.',
+        ],
+        'news' => [
+            'label' => 'الاخبار',
+            'url' => $newsUrl,
+            'description' => $siteFooterSection?->news_description_ar_display ?: 'تابع أحدث أخبار الشركة ومشاركاتها وفعالياتها والأنشطة التي تقدمها في مختلف القطاعات.',
+        ],
+        'sectors' => [
+            'label' => 'القطاعات',
+            'url' => $sectorsUrl,
+            'description' => $siteFooterSection?->sectors_description_ar_display ?: 'استعرض القطاعات والخدمات التي تعمل فيها شركة الشرق وما تقدمه من حلول متنوعة للسوق.',
+        ],
+        'contact' => [
+            'label' => 'اتصل بنا',
+            'url' => $contactUrl,
+            'description' => $siteFooterSection?->contact_description_ar_display ?: 'تواصل معنا عبر وسائل الاتصال المختلفة لمعرفة المزيد عن خدماتنا وفروعنا ومعلومات التواصل.',
+        ],
+    ];
+
+    $currentKey = 'home';
+
+    if (request()->routeIs('site.ar.about')) {
+        $currentKey = 'about';
+    } elseif (request()->routeIs('site.ar.news*')) {
+        $currentKey = 'news';
+    } elseif (request()->routeIs('site.ar.sectors')) {
+        $currentKey = 'sectors';
+    } elseif (request()->routeIs('site.ar.contact')) {
+        $currentKey = 'contact';
+    }
+
+    $currentLink = $links[$currentKey];
+
+    $whatsappHref = $siteFooterSection?->whatsapp_href ?: '#';
+    $facebookUrl = $siteFooterSection?->facebook_url ?: '#';
+    $instagramUrl = $siteFooterSection?->instagram_url ?: '#';
+    $phoneHref = $siteFooterSection?->phone_href ?: '#';
+    $phoneDisplay = $siteFooterSection?->phone_display ?: '+967 1 444454/55';
+    $emailHref = $siteFooterSection?->email_href ?: 'mailto:info@ata-yemen.com';
+    $emailDisplay = $siteFooterSection?->email_display ?: 'info@ata-yemen.com';
+    $addressDisplay = $siteFooterSection?->address_ar_display ?: 'صنعاء , شارع الستين - خلف مبنى الأمم المتحدة';
+@endphp
+
 <footer class="lp-footer" id="contact" aria-label="Footer">
-  <!--  خطوط متحركة: فقط الجهة المقابلة (بدون جهة اللوجو) -->
   <div class="lp-footer__graphics" aria-hidden="true">
     <svg
       class="lp-lines lp-lines--bottomEnd"
@@ -21,10 +81,10 @@
   <div class="lp-footer__inner">
     <div class="lp-footer__grid">
       <div class="lp-footer__col lp-footer__col--brand">
-        <a class="lp-footer__logo" href="#home" aria-label="العودة للرئيسية">
+        <a class="lp-footer__logo" href="{{ $homeUrl }}" aria-label="العودة للرئيسية">
           <img
             class="lp-footer__logoImg"
-            src="/assets/images/header/logo.png"
+            src="{{ asset('assets/images/header/logo.png') }}"
             alt="شعار شركة الشرق"
           />
         </a>
@@ -36,8 +96,10 @@
           >
             <a
               class="lp-socialIcon lp-socialIcon--sm"
-              href="#"
+              href="{{ $whatsappHref }}"
               aria-label="واتساب"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span class="lp-socialIcon__stroke" aria-hidden="true"></span>
               <span class="lp-socialIcon__layer" aria-hidden="true">
@@ -47,8 +109,10 @@
 
             <a
               class="lp-socialIcon lp-socialIcon--sm"
-              href="#"
+              href="{{ $facebookUrl }}"
               aria-label="فيسبوك"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span class="lp-socialIcon__stroke" aria-hidden="true"></span>
               <span class="lp-socialIcon__layer" aria-hidden="true">
@@ -58,8 +122,10 @@
 
             <a
               class="lp-socialIcon lp-socialIcon--sm"
-              href="#"
+              href="{{ $instagramUrl }}"
               aria-label="انستجرام"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span class="lp-socialIcon__stroke" aria-hidden="true"></span>
               <span class="lp-socialIcon__layer" aria-hidden="true">
@@ -72,21 +138,17 @@
 
       <div class="lp-footer__col lp-footer__col--nav">
         <nav class="lp-footer__linksRow" aria-label="روابط سريعة">
-          <a class="lp-footer__link lp-footer__link--active" href="#home"
-            >الرئيسية</a
-          >
-          <a class="lp-footer__link" href="#about">عن الشركة</a>
-          <a class="lp-footer__link" href="#news">الاخبار</a>
-          <a class="lp-footer__link" href="#sectors">القطاعات</a>
-          <a class="lp-footer__link" href="#contact">اتصل بنا</a>
+          <a class="lp-footer__link @if($currentKey === 'home') lp-footer__link--active @endif" href="{{ $links['home']['url'] }}">الرئيسية</a>
+          <a class="lp-footer__link @if($currentKey === 'about') lp-footer__link--active @endif" href="{{ $links['about']['url'] }}">عن الشركة</a>
+          <a class="lp-footer__link @if($currentKey === 'news') lp-footer__link--active @endif" href="{{ $links['news']['url'] }}">الاخبار</a>
+          <a class="lp-footer__link @if($currentKey === 'sectors') lp-footer__link--active @endif" href="{{ $links['sectors']['url'] }}">القطاعات</a>
+          <a class="lp-footer__link @if($currentKey === 'contact') lp-footer__link--active @endif" href="{{ $links['contact']['url'] }}">اتصل بنا</a>
         </nav>
 
         <div class="lp-footer__brandText">
-          <div class="lp-footer__brandTitle">الرئيسية</div>
+          <div class="lp-footer__brandTitle">{{ $currentLink['label'] }}</div>
           <div class="lp-footer__brandDesc">
-            تعد شركة الشرق من أهم الشركات الرائدة في مجال الاستيراد والتسويق
-            والتوزيع في الجمهورية اليمنية حيث تمثل شركة الشرق عددا كبيرا من
-            الوكالات العالمية
+            {!! $currentLink['description'] !!}
           </div>
         </div>
       </div>
@@ -96,26 +158,24 @@
           <div class="lp-footer__contactBlock">
             <div class="lp-footer__label">الهاتف</div>
             <a
-              class="lp-footer__value lp-footer__value--ltr lp-enDigits"
-              href="tel:+967144445455"
+              class="lp-footer__value lp-footer__value--ltr"
+              href="{{ $phoneHref }}"
               dir="ltr"
               lang="en"
             >
-              +967 1 444454/55
+              {!! $phoneDisplay !!}
             </a>
           </div>
 
           <div class="lp-footer__contactBlock">
             <div class="lp-footer__label">بريد الكتروني</div>
-            <a class="lp-footer__value" href="mailto:info@ata-yemen.com"
-              >info@ata-yemen.com</a
-            >
+            <a class="lp-footer__value" href="{{ $emailHref }}">{!! $emailDisplay !!}</a>
           </div>
 
           <div class="lp-footer__contactBlock">
             <div class="lp-footer__label">العنوان</div>
             <div class="lp-footer__value">
-              صنعاء , شارع الستين - خلف مبنى الأمم المتحدة
+              {!! $addressDisplay !!}
             </div>
           </div>
         </div>
@@ -123,8 +183,7 @@
     </div>
 
     <div class="lp-footer__bottom">
-      © <span class="lp-enDigits" dir="ltr" lang="en">2026</span> جميع الحقوق
-      محفوظة شركة الشرق للتجارة والتوكيلات .
+      © <span class="lp-enDigits" dir="ltr" lang="en">{{ now()->year }}</span> جميع الحقوق محفوظة شركة الشرق للتجارة والتوكيلات .
     </div>
   </div>
 </footer>

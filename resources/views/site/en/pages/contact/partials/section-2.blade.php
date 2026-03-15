@@ -1,19 +1,38 @@
+@php
+    $contactPageBranches = \App\Models\ContactPageBranch::query()
+        ->orderBy('sort_order')
+        ->orderBy('id')
+        ->get();
+
+    $selectedBranchId = (int) request()->query('branch');
+    $selectedBranch = $contactPageBranches->firstWhere('id', $selectedBranchId) ?: $contactPageBranches->first();
+@endphp
+
 <section class="lp-section lp-contactSection2" id="contact-section-2" aria-label="Contact card">
   <div class="lp-contactSection2__inner">
     <div class="lp-contactSection2__card">
-
       <div class="lp-contactSection2__layout">
         <aside class="lp-contactSection2__branches" aria-label="Our branches">
           <div class="lp-contactSection2__branchesHead">Branches</div>
+
           <div class="lp-contactSection2__branchesBody">
-            <div class="lp-contactSection2__branch">Sana’a - Baby Milk</div>
-            <div class="lp-contactSection2__branch">Aden</div>
-            <div class="lp-contactSection2__branch">Taiz</div>
-            <div class="lp-contactSection2__branch">Hadramout</div>
-            <div class="lp-contactSection2__branch">Dhamar</div>
-            <div class="lp-contactSection2__branch">Al Hudaydah</div>
-            <div class="lp-contactSection2__branch">Ibb</div>
-            <div class="lp-contactSection2__branch">Marib</div>
+            @forelse($contactPageBranches as $branch)
+              <button
+                type="button"
+                class="lp-contactSection2__branch @if($selectedBranch && $selectedBranch->id === $branch->id) is-active @endif"
+                data-branch-id="{{ $branch->id }}"
+                data-name="{{ e($branch->name_en) }}"
+                data-email="{{ e($branch->email) }}"
+                data-phone="{{ e($branch->phone) }}"
+                data-address="{{ e($branch->address_en) }}"
+                data-whatsapp="{{ e($branch->whatsapp_number_normalized) }}"
+                aria-pressed="@if($selectedBranch && $selectedBranch->id === $branch->id) true @else false @endif"
+              >
+                {{ $branch->name_en }}
+              </button>
+            @empty
+              <div class="lp-contactSection2__branch">No branches available</div>
+            @endforelse
           </div>
         </aside>
 
@@ -25,8 +44,13 @@
               </div>
               <div class="lp-contactSection2__infoBody">
                 <div class="lp-contactSection2__infoLabel">Email</div>
-                <div class="lp-contactSection2__infoText lp-contactSection2__infoText--ltr" dir="ltr" lang="en">
-                  sanaa.jaber@ata-yemen.com
+                <div
+                  class="lp-contactSection2__infoText lp-contactSection2__infoText--ltr"
+                  dir="ltr"
+                  lang="en"
+                  id="lpContactBranchEmail"
+                >
+                  {!! $selectedBranch?->email_display ?: '—' !!}
                 </div>
               </div>
             </div>
@@ -37,8 +61,13 @@
               </div>
               <div class="lp-contactSection2__infoBody">
                 <div class="lp-contactSection2__infoLabel">Phone</div>
-                <div class="lp-contactSection2__infoText lp-contactSection2__infoText--ltr" dir="ltr" lang="en">
-                  01/283078
+                <div
+                  class="lp-contactSection2__infoText lp-contactSection2__infoText--ltr"
+                  dir="ltr"
+                  lang="en"
+                  id="lpContactBranchPhone"
+                >
+                  {!! $selectedBranch?->phone_display ?: '—' !!}
                 </div>
               </div>
             </div>
@@ -49,12 +78,25 @@
               </div>
               <div class="lp-contactSection2__infoBody">
                 <div class="lp-contactSection2__infoLabel">Address</div>
-                <div class="lp-contactSection2__infoText">Al Tahrir</div>
+                <div class="lp-contactSection2__infoText" id="lpContactBranchAddress">
+                  {!! $selectedBranch?->address_en_display ?: '—' !!}
+                </div>
               </div>
             </div>
           </div>
 
-          <form class="lp-contactSection2__form" action="#" method="post" aria-label="Contact form" novalidate>
+          <form
+            class="lp-contactSection2__form"
+            action="#"
+            method="post"
+            aria-label="Contact form"
+            novalidate
+            id="lpContactWhatsappForm"
+          >
+            <input type="hidden" name="branch_id" value="{{ $selectedBranch?->id }}" id="lpContactBranchId" />
+            <input type="hidden" name="whatsapp_number" value="{{ $selectedBranch?->whatsapp_number_normalized }}" id="lpContactWhatsappNumber" />
+            <input type="hidden" name="branch_name" value="{{ $selectedBranch?->name_en }}" id="lpContactBranchName" />
+
             <div class="lp-contactSection2__field">
               <input
                 class="lp-contactSection2__formField"
@@ -119,7 +161,10 @@
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </section>
+
+@once
+  <script src="{{ asset('assets/js/pages/contact/section-2.js') }}" defer></script>
+@endonce

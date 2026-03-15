@@ -20,7 +20,6 @@
   border-radius: clamp(24px, 3vw, 38px) clamp(24px, 3vw, 38px) 0 0;
   transform: translateY(clamp(-160px, -30vw, -240px));
   margin-bottom: -120px;
-
   border: 0;
   box-shadow: none;
   position: relative;
@@ -66,17 +65,53 @@
 }
 
 .lp-contactSection2__branch{
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  color: #ffffff;
+  font-family: inherit;
   font-size: clamp(14px, 1.05vw, 16px);
   line-height: 1.9;
   font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 14px;
-  transition: background-color .22s ease, color .22s ease;
+  text-align: start;
+  cursor: pointer;
+  transition: background-color .22s ease, color .22s ease, transform .22s ease;
+}
+
+html[dir="rtl"] .lp-contactSection2__branch{
+  text-align: right;
+}
+
+html[dir="ltr"] .lp-contactSection2__branch{
+  text-align: left;
 }
 
 .lp-contactSection2__branch:hover{
-  background: var(--lp-accent);
+  transform: translateY(-1px);
+}
+
+.lp-contactSection2__branch:focus,
+.lp-contactSection2__branch:focus-visible{
+  outline: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.lp-contactSection2__branch.is-active,
+.lp-contactSection2__branch[aria-pressed="true"]{
+  background: var(--lp-accent, #00BFF2);
   color: #ffffff;
+  border: 0;
+  box-shadow: none;
+  outline: none;
 }
 
 .lp-contactSection2__content{
@@ -145,7 +180,7 @@
   direction: ltr;
   unicode-bidi: embed;
   text-align: left;
-  font-family: Arial, Tahoma, sans-serif;
+  font-family: inherit;
   font-variant-numeric: lining-nums;
   font-feature-settings: "lnum" 1;
 }
@@ -226,10 +261,8 @@
 
 .lp-contactSection2__submit.lp-cta.lp-cta--more{
   --lp-contactSection2-submit-w: 188px;
-  --lp-contactSection2-submit-h: 44px;
-
-  width: var(--lp-contactSection2-submit-w);
   height: 52px;
+  width: var(--lp-contactSection2-submit-w);
   padding: 0;
   border: 0;
   background: transparent;
@@ -242,7 +275,7 @@
 .lp-contactSection2__submit.lp-cta.lp-cta--more .lp-cta__stroke{
   width: 100%;
   max-width: 100%;
-  height: var(--lp-contactSection2-submit-h);
+  height: var(--lp-contactSection2-submit-h, 44px);
   border-top-left-radius: 24px;
   box-sizing: border-box;
 }
@@ -250,7 +283,7 @@
 .lp-contactSection2__submit.lp-cta.lp-cta--more .lp-cta__layer{
   width: 100%;
   max-width: 100%;
-  height: var(--lp-contactSection2-submit-h);
+  height: var(--lp-contactSection2-submit-h, 44px);
   border-top-left-radius: 24px;
   background: var(--lp-about-title);
   box-sizing: border-box;
