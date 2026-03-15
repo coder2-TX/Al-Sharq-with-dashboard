@@ -5,6 +5,8 @@ namespace App\Filament\Resources\ContactPageAdditionalInfoSections;
 use App\Filament\Resources\ContactPageAdditionalInfoSections\Pages;
 use App\Models\ContactPageAdditionalInfoSection;
 use BackedEnum;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -108,7 +110,10 @@ class ContactPageAdditionalInfoSectionResource extends Resource
                     ->formatStateUsing(fn (?array $state): string => count($state ?? []) . ' عناصر'),
             ])
             ->recordUrl(fn (ContactPageAdditionalInfoSection $record): string => static::getUrl('edit', ['record' => $record]))
-            ->recordActions([])
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
+            ])
             ->toolbarActions([]);
     }
 
