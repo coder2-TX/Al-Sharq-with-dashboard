@@ -22,7 +22,7 @@ class SectorsPageMainSectionResource extends Resource
 
     protected static ?string $navigationLabel = 'صفحة القطاعات - الجزء الرئيسي';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'الموقع';
+    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
 
     protected static ?string $modelLabel = 'صفحة القطاعات - الجزء الرئيسي';
 
