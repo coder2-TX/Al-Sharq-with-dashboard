@@ -1,5 +1,11 @@
 @php
     $sectorsPageMedicalSectorSection = \App\Models\SectorsPageMedicalSectorSection::query()->first();
+
+    $medicalPageHref = route('site.en.sectors.medical.page');
+
+    $milkFoodHref = \Illuminate\Support\Facades\Route::has('site.en.sectors.milk_food')
+        ? route('site.en.sectors.milk_food')
+        : route('site.en.contact');
 @endphp
 
 <section class="lp-section lp-sectors lp-sectorsDetailCards" id="medical-sector-cards" aria-label="Medical sector details">
@@ -14,7 +20,7 @@
               src="{{ $sectorsPageMedicalSectorSection?->medicines_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalSectorSection->medicines_image) : asset('assets/images/sectors/sector-details/medical/4.jpeg') }}"
               alt="Medicines Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Medicines Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $medicalPageHref }}" aria-label="Go to the Medicines Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -28,7 +34,7 @@
               src="{{ $sectorsPageMedicalSectorSection?->medical_supplies_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalSectorSection->medical_supplies_image) : asset('assets/images/1.jpg') }}"
               alt="Medical Supplies Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Medical Supplies Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $medicalPageHref }}" aria-label="Go to the Medical Supplies Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -42,7 +48,7 @@
               src="{{ $sectorsPageMedicalSectorSection?->milk_food_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalSectorSection->milk_food_image) : asset('assets/images/sectors/sector-details/medical/2.jpeg') }}"
               alt="Infant Formula and Food Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Infant Formula and Food Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $milkFoodHref }}" aria-label="Go to the Infant Formula and Food Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
