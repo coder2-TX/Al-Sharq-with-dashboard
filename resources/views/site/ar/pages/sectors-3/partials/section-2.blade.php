@@ -1,3 +1,7 @@
+@php
+    $sectorsPageMainSection = \App\Models\SectorsPageMainSection::query()->first();
+@endphp
+
 <section class="lp-section lp-sectors" id="sectors-3-section-2" aria-label="قطاعات شركة الشرق">
   <div class="lp-sectors__inner">
 
@@ -6,7 +10,10 @@
         <div class="lp-sectors__track">
 
           <article class="lp-sectorCard" aria-label="القطاع الطبي">
-            <img src="{{ asset('assets/images/section/1.png') }}" alt="القطاع الطبي">
+            <img
+              src="{{ $sectorsPageMainSection?->medical_sector_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMainSection->medical_sector_image) : asset('assets/images/section/1.png') }}"
+              alt="القطاع الطبي"
+            >
             <a
               class="lp-iconBtn lp-sectorCard__btn"
               href="{{ route('site.ar.sectors.medical') }}"
@@ -21,7 +28,10 @@
           </article>
 
           <article class="lp-sectorCard" aria-label="القطاع التجاري">
-            <img src="{{ asset('assets/images/section/2.jpeg') }}" alt="القطاع التجاري">
+            <img
+              src="{{ $sectorsPageMainSection?->commercial_sector_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMainSection->commercial_sector_image) : asset('assets/images/section/2.jpeg') }}"
+              alt="القطاع التجاري"
+            >
             <a
               class="lp-iconBtn lp-sectorCard__btn"
               href="{{ route('site.ar.sectors.commercial') }}"
