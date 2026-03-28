@@ -6,8 +6,8 @@
         <div class="lp-sectors__track lp-sectors__track--three">
 
           <article class="lp-sectorCard" aria-label="قطاع الأدوية">
-            <img src="../../../../assets/images/sectors/sector-details/medical/4.jpeg" alt="قطاع الأدوية">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="../../sector-pages/medical/index.html" aria-label="الانتقال إلى صفحة قطاع الأدوية">
+            <img src="{{ asset('assets/images/sectors/sector-details/medical/4.jpeg') }}" alt="قطاع الأدوية">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.medical.page') }}" aria-label="الانتقال إلى صفحة قطاع الأدوية">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -17,8 +17,8 @@
           </article>
 
           <article class="lp-sectorCard" aria-label="قطاع المستلزمات الطبية">
-            <img src="../../../../assets/images/1.jpg" alt="قطاع المستلزمات الطبية">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="../../sector-pages/medical/index.html" aria-label="الانتقال إلى صفحة قطاع المستلزمات الطبية">
+            <img src="{{ asset('assets/images/1.jpg') }}" alt="قطاع المستلزمات الطبية">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.medical.page') }}" aria-label="الانتقال إلى صفحة قطاع المستلزمات الطبية">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -27,9 +27,9 @@
             <div class="lp-sectorCard__name">قطاع المستلزمات الطبية</div>
           </article>
 
-          <article class="lp-sectorCard" aria-label="القطاع الطبي">
-            <img src="../../../../assets/images/sectors/sector-details/medical/2.jpeg" alt="القطاع الطبي">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="../../sector-pages/milk-food/index.html" aria-label="الانتقال إلى صفحة قطاع حليب الأطفال والأغذية">
+          <article class="lp-sectorCard" aria-label="قطاع الحليب وغذاء الأطفال">
+            <img src="{{ asset('assets/images/sectors/sector-details/medical/2.jpeg') }}" alt="قطاع الحليب وغذاء الأطفال">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.milk_food') }}" aria-label="الانتقال إلى صفحة قطاع حليب الأطفال والأغذية">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>

@@ -26,7 +26,18 @@
             $isHomeRoute = request()->routeIs('site.ar.home');
             $isAboutRoute = request()->routeIs('site.ar.about');
             $isNewsRoute = request()->routeIs('site.ar.news');
-            $isSectorRoute = request()->routeIs('site.ar.sectors*') || request()->routeIs('site.ar.sector*');
+            $isSectorRoute = request()->routeIs('site.ar.sectors*');
+
+            $isMedicalGroupRoute =
+                request()->routeIs('site.ar.sectors.medical') ||
+                request()->routeIs('site.ar.sectors.medical.page') ||
+                request()->routeIs('site.ar.sectors.milk_food') ||
+                request()->routeIs('site.ar.sectors.medical.pharmacovigilance');
+
+            $isCommercialGroupRoute =
+                request()->routeIs('site.ar.sectors.commercial') ||
+                request()->routeIs('site.ar.sectors.advertising') ||
+                request()->routeIs('site.ar.sectors.communications');
         @endphp
 
         <div class="lp-drawer__top">
@@ -59,40 +70,73 @@
                 الاخبار
             </a>
 
-            <details class="lp-drawer__group">
-                <summary class="lp-drawer__link lp-drawer__link--toggle {{ $isSectorRoute ? 'is-active' : '' }}">
+            <details class="lp-drawer__group" @if($isSectorRoute) open @endif>
+                <summary
+                    class="lp-drawer__link lp-drawer__link--toggle {{ $isSectorRoute ? 'is-active' : '' }}"
+                    data-nav-href="{{ route('site.ar.sectors') }}"
+                >
                     <span>القطاعات</span>
-                    <span class="lp-drawer__chevron" aria-hidden="true">
-                        <i class="fa-solid fa-chevron-down"></i>
+
+                    <span class="lp-drawer__chevron" aria-hidden="true" data-toggle-only>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true" data-toggle-only></i>
                     </span>
                 </summary>
 
                 <div class="lp-drawer__subNav" aria-label="أقسام القطاعات">
-                    <details class="lp-drawer__subGroup">
-                        <summary class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle">
+                    <details class="lp-drawer__subGroup" @if($isMedicalGroupRoute) open @endif>
+                        <summary
+                            class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle"
+                            data-nav-href="{{ route('site.ar.sectors.medical') }}"
+                        >
                             <span>القطاع الطبي</span>
-                            <span class="lp-drawer__subChevron" aria-hidden="true">
-                                <i class="fa-solid fa-chevron-down"></i>
+
+                            <span class="lp-drawer__subChevron" aria-hidden="true" data-toggle-only>
+                                <i class="fa-solid fa-chevron-down" data-toggle-only></i>
                             </span>
                         </summary>
 
                         <div class="lp-drawer__subItems">
-                            <button class="lp-drawer__subLink" type="button">قطاع حليب الأطفال والأغذية</button>
+                            <a
+                                class="lp-drawer__subLink {{ request()->routeIs('site.ar.sectors.milk_food') ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.milk_food') }}"
+                                @if(request()->routeIs('site.ar.sectors.milk_food')) aria-current="page" @endif
+                            >
+                                قطاع حليب الأطفال والأغذية
+                            </a>
                         </div>
                     </details>
 
-                    <details class="lp-drawer__subGroup">
-                        <summary class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle">
+                    <details class="lp-drawer__subGroup" @if($isCommercialGroupRoute) open @endif>
+                        <summary
+                            class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle"
+                            data-nav-href="{{ route('site.ar.sectors.commercial') }}"
+                        >
                             <span>القطاع التجاري</span>
-                            <span class="lp-drawer__subChevron" aria-hidden="true">
-                                <i class="fa-solid fa-chevron-down"></i>
+
+                            <span class="lp-drawer__subChevron" aria-hidden="true" data-toggle-only>
+                                <i class="fa-solid fa-chevron-down" data-toggle-only></i>
                             </span>
                         </summary>
 
                         <div class="lp-drawer__subItems">
                             <button class="lp-drawer__subLink" type="button">قطاع زيوت المحركات</button>
-                            <button class="lp-drawer__subLink" type="button">قطاع الدعاية والإعلان</button>
-                            <button class="lp-drawer__subLink" type="button">قطاع الإتصالات</button>
+
+                            <a
+                                class="lp-drawer__subLink {{ request()->routeIs('site.ar.sectors.advertising') ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.advertising') }}"
+                                @if(request()->routeIs('site.ar.sectors.advertising')) aria-current="page" @endif
+                            >
+                                قطاع الدعاية والإعلان
+                            </a>
+
+                            <a
+                                class="lp-drawer__subLink {{ request()->routeIs('site.ar.sectors.communications') ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.communications') }}"
+                                @if(request()->routeIs('site.ar.sectors.communications')) aria-current="page" @endif
+                            >
+                                قطاع الإتصالات
+                            </a>
+
                             <button class="lp-drawer__subLink" type="button">قطاع التدريب</button>
                         </div>
                     </details>
@@ -110,3 +154,27 @@
         </div>
     </aside>
 </div>
+
+<script>
+(function () {
+    if (window.__lpDrawerSummaryNavBound) return;
+    window.__lpDrawerSummaryNavBound = true;
+
+    document.addEventListener('click', function (e) {
+        const summary = e.target.closest('summary[data-nav-href]');
+        if (!summary) return;
+
+        if (e.target.closest('[data-toggle-only]')) {
+            return;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const href = summary.getAttribute('data-nav-href');
+        if (href) {
+            window.location.href = href;
+        }
+    });
+})();
+</script>

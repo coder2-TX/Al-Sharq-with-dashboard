@@ -6,8 +6,12 @@
         <div class="lp-sectors__track">
 
           <article class="lp-sectorCard" aria-label="القطاع الطبي">
-            <img src="../../assets/images/section/1.png" alt="القطاع الطبي">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="sector-details/medical/index.html" aria-label="الانتقال إلى صفحة القطاع الطبي">
+            <img src="{{ asset('assets/images/section/1.png') }}" alt="القطاع الطبي">
+            <a
+              class="lp-iconBtn lp-sectorCard__btn"
+              href="{{ route('site.ar.sectors.medical') }}"
+              aria-label="الانتقال إلى صفحة القطاع الطبي"
+            >
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -17,8 +21,12 @@
           </article>
 
           <article class="lp-sectorCard" aria-label="القطاع التجاري">
-            <img src="../../assets/images/section/2.jpeg" alt="القطاع التجاري">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="sector-details/commercial/index.html" aria-label="الانتقال إلى صفحة القطاع التجاري">
+            <img src="{{ asset('assets/images/section/2.jpeg') }}" alt="القطاع التجاري">
+            <a
+              class="lp-iconBtn lp-sectorCard__btn"
+              href="{{ route('site.ar.sectors.commercial') }}"
+              aria-label="الانتقال إلى صفحة القطاع التجاري"
+            >
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>

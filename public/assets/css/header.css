@@ -550,7 +550,22 @@ html[dir="rtl"] .lp-drawer__subLink{
 html[dir="ltr"] .lp-drawer__subLink{
   text-align: left;
 }
+.lp-drawer__subLink,
+.lp-drawer__subLink:link,
+.lp-drawer__subLink:visited,
+.lp-drawer__subLink:hover,
+.lp-drawer__subLink:focus-visible,
+.lp-drawer__subLink:active{
+  text-decoration: none;
+  color: var(--lp-about-title);
+}
 
+.lp-drawer__link a,
+.lp-drawer__subSectionTitle a,
+.lp-drawer__subItems a{
+  text-decoration: none;
+  color: inherit;
+}
 .lp-drawer__cta{
   margin-top: auto;
   padding-top: 24px;

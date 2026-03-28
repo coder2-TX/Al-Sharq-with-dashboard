@@ -11,7 +11,11 @@
             الإبلاغ عن الأعراض الجانبية للأدوية
           </p>
 
-          <a class="lp-cta lp-cta--iso" href="pharmacovigilance/index.html" aria-label="الانتقال إلى صفحة التيقظ الدوائي">
+          <a
+            class="lp-cta lp-cta--iso"
+            href="{{ route('site.ar.sectors.medical.pharmacovigilance') }}"
+            aria-label="الانتقال إلى صفحة التيقظ الدوائي"
+          >
             <span class="lp-cta__stroke" aria-hidden="true"></span>
             <span class="lp-cta__layer" aria-hidden="true">
               <span class="lp-cta__text">التيقظ الدوائي</span>

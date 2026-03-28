@@ -7,32 +7,28 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <link rel="stylesheet" href="../../assets/css/style.css" />
-  <link rel="stylesheet" href="../../assets/css/header.css" />
-  <link rel="stylesheet" href="../../assets/css/footer.css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}" />
 
-  <link rel="stylesheet" href="../../assets/css/pages/sectors-3/section-1.css" />
-  <link rel="stylesheet" href="../../assets/css/sectors.css" />
-  <link rel="stylesheet" href="../../assets/css/pages/sectors-3/section-2.css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/section-1.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/sectors.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/section-2.css') }}" />
 
-  <script src="../../assets/js/header.js" defer></script>
+  <script src="{{ asset('assets/js/header.js') }}" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-  <script src="../../assets/js/hero.js" defer></script>
-  <script src="../../assets/js/sectors.js" defer></script>
-  <script src="../../assets/js/app.js" defer></script>
+  <script src="{{ asset('assets/js/hero.js') }}" defer></script>
+  <script src="{{ asset('assets/js/sectors.js') }}" defer></script>
+  <script src="{{ asset('assets/js/app.js') }}" defer></script>
 </head>
 
 <body
   class="lp-page--sectors3"
   data-show-brand="true"
-  data-brand-src="../../assets/images/header/Brand_Mark.png"
-  data-brand-href="../../index.html#home"
+  data-brand-src="{{ asset('assets/images/header/Brand_Mark.png') }}"
+  data-brand-href="{{ route('site.ar.home') }}"
 >
-  <div
-    id="header-slot"
-    data-partial="../../partials/header.html"
-    data-after="lpInitHeader"
-  ></div>
+  @include('site.ar.partials.header')
 
   <main id="sectors3-page">
     <section class="lp-section lp-sectorsHero2" id="sectors-hero-2" aria-label="الصورة الرئيسية للقطاعات">
@@ -43,7 +39,7 @@
         playsinline
         preload="auto"
       >
-        <source src="../../assets/videos/sector/main.mp4" type="video/mp4" />
+        <source src="{{ asset('assets/videos/sector/main.mp4') }}" type="video/mp4" />
       </video>
 
       <div class="lp-sectorsHero2__graphics" aria-hidden="true">
@@ -69,13 +65,28 @@
       </div>
     </section>
 
-    <div id="sectors3-s2-slot" data-partial="partials/section-2.html" data-after="lpInitSectors"></div>
+    @include('site.ar.pages.sectors-3.partials.section-2')
   </main>
 
-  <div
-    id="footer-slot"
-    data-partial="../../partials/footer.html"
-    data-after="lpInitHeroLines"
-  ></div>
+  @include('site.ar.partials.footer')
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof window.lpInitHeader === 'function' && !window.__lpHeaderInited) {
+        window.__lpHeaderInited = true;
+        window.lpInitHeader();
+      }
+
+      if (typeof window.lpInitHeroLines === 'function' && !window.__lpHeroLinesInited) {
+        window.__lpHeroLinesInited = true;
+        window.lpInitHeroLines();
+      }
+
+      if (typeof window.lpInitSectors === 'function' && !window.__lpSectorsInited) {
+        window.__lpSectorsInited = true;
+        window.lpInitSectors();
+      }
+    });
+  </script>
 </body>
 </html>
