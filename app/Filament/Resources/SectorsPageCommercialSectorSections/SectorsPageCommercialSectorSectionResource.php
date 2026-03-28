@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class SectorsPageCommercialSectorSectionResource extends Resource
@@ -33,16 +34,27 @@ class SectorsPageCommercialSectorSectionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('صور بطاقات القطاع التجاري')
+            Section::make('محتوى صفحة القطاع التجاري')
                 ->columnSpanFull()
                 ->schema([
+                    FileUpload::make('hero_video')
+                        ->label('الفيديو الرئيسي')
+                        ->disk('public')
+                        ->directory('site/sectors/commercial/video')
+                        ->visibility('public')
+                        ->acceptedFileTypes([
+                            'video/mp4',
+                            'video/webm',
+                            'video/ogg',
+                        ])
+                        ->columnSpanFull(),
+
                     FileUpload::make('cars_image')
                         ->label('صورة قطاع السيارات')
                         ->image()
                         ->disk('public')
                         ->directory('site/sectors/commercial')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
 
                     FileUpload::make('communications_image')
@@ -51,7 +63,6 @@ class SectorsPageCommercialSectorSectionResource extends Resource
                         ->disk('public')
                         ->directory('site/sectors/commercial')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
 
                     FileUpload::make('advertising_image')
@@ -60,7 +71,6 @@ class SectorsPageCommercialSectorSectionResource extends Resource
                         ->disk('public')
                         ->directory('site/sectors/commercial')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
 
                     FileUpload::make('paints_image')
@@ -69,7 +79,6 @@ class SectorsPageCommercialSectorSectionResource extends Resource
                         ->disk('public')
                         ->directory('site/sectors/commercial')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
 
                     FileUpload::make('vocational_training_image')
@@ -78,7 +87,6 @@ class SectorsPageCommercialSectorSectionResource extends Resource
                         ->disk('public')
                         ->directory('site/sectors/commercial')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
                 ]),
         ]);
@@ -88,6 +96,11 @@ class SectorsPageCommercialSectorSectionResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('hero_video')
+                    ->label('الفيديو الرئيسي')
+                    ->formatStateUsing(fn (?string $state): string => $state ? 'موجود' : 'الافتراضي')
+                    ->badge(),
+
                 ImageColumn::make('cars_image')
                     ->label('السيارات')
                     ->disk('public'),

@@ -10,6 +10,7 @@ class SectorsPageMainSection extends Model
     use HasFactory;
 
     protected $fillable = [
+        'hero_video',
         'medical_sector_image',
         'commercial_sector_image',
     ];

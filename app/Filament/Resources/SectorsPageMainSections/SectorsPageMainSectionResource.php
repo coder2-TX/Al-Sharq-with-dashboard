@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class SectorsPageMainSectionResource extends Resource
@@ -28,21 +29,32 @@ class SectorsPageMainSectionResource extends Resource
 
     protected static ?string $pluralModelLabel = 'صفحة القطاعات - الجزء الرئيسي';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('صور القطاعات')
+            Section::make('محتوى صفحة القطاعات')
                 ->columnSpanFull()
                 ->schema([
+                    FileUpload::make('hero_video')
+                        ->label('الفيديو الرئيسي')
+                        ->disk('public')
+                        ->directory('site/sectors/page-main/video')
+                        ->visibility('public')
+                        ->acceptedFileTypes([
+                            'video/mp4',
+                            'video/webm',
+                            'video/ogg',
+                        ])
+                        ->columnSpanFull(),
+
                     FileUpload::make('medical_sector_image')
                         ->label('صورة القطاع الطبي')
                         ->image()
                         ->disk('public')
                         ->directory('site/sectors/page-main')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
 
                     FileUpload::make('commercial_sector_image')
@@ -51,7 +63,6 @@ class SectorsPageMainSectionResource extends Resource
                         ->disk('public')
                         ->directory('site/sectors/page-main')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
                 ]),
         ]);
@@ -61,6 +72,11 @@ class SectorsPageMainSectionResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('hero_video')
+                    ->label('الفيديو الرئيسي')
+                    ->formatStateUsing(fn (?string $state): string => $state ? 'موجود' : 'الافتراضي')
+                    ->badge(),
+
                 ImageColumn::make('medical_sector_image')
                     ->label('صورة القطاع الطبي')
                     ->disk('public'),

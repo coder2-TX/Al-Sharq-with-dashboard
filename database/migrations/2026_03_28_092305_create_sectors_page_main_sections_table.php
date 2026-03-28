@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('sectors_page_main_sections', function (Blueprint $table) {
             $table->id();
+            $table->string('hero_video')->nullable();
             $table->string('medical_sector_image')->nullable();
             $table->string('commercial_sector_image')->nullable();
             $table->timestamps();

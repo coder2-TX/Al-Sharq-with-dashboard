@@ -1,3 +1,11 @@
+@php
+    $sectorsPageCommercialSectorSection = \App\Models\SectorsPageCommercialSectorSection::query()->first();
+
+    $commercialSectorHeroVideo = $sectorsPageCommercialSectorSection?->hero_video
+        ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->hero_video)
+        : asset('assets/videos/sector/main.mp4');
+@endphp
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -39,7 +47,7 @@
         loop
         preload="auto"
       >
-        <source src="{{ asset('assets/videos/sector/main.mp4') }}" type="video/mp4" />
+        <source src="{{ $commercialSectorHeroVideo }}" type="video/mp4" />
       </video>
 
       <div class="lp-sectorsHero2__graphics" aria-hidden="true">

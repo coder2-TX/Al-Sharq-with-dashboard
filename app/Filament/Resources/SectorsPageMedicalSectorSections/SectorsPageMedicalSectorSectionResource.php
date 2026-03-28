@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class SectorsPageMedicalSectorSectionResource extends Resource
@@ -28,21 +29,32 @@ class SectorsPageMedicalSectorSectionResource extends Resource
 
     protected static ?string $pluralModelLabel = 'صفحة القطاعات - القطاع الطبي';
 
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('صور بطاقات القطاع الطبي')
+            Section::make('محتوى صفحة القطاع الطبي')
                 ->columnSpanFull()
                 ->schema([
+                    FileUpload::make('hero_video')
+                        ->label('الفيديو الرئيسي')
+                        ->disk('public')
+                        ->directory('site/sectors/medical/video')
+                        ->visibility('public')
+                        ->acceptedFileTypes([
+                            'video/mp4',
+                            'video/webm',
+                            'video/ogg',
+                        ])
+                        ->columnSpanFull(),
+
                     FileUpload::make('medicines_image')
                         ->label('صورة قطاع الأدوية')
                         ->image()
                         ->disk('public')
                         ->directory('site/sectors/medical')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
 
                     FileUpload::make('medical_supplies_image')
@@ -51,7 +63,6 @@ class SectorsPageMedicalSectorSectionResource extends Resource
                         ->disk('public')
                         ->directory('site/sectors/medical')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
 
                     FileUpload::make('milk_food_image')
@@ -60,7 +71,6 @@ class SectorsPageMedicalSectorSectionResource extends Resource
                         ->disk('public')
                         ->directory('site/sectors/medical')
                         ->visibility('public')
-                        ->required()
                         ->columnSpanFull(),
                 ]),
         ]);
@@ -70,6 +80,11 @@ class SectorsPageMedicalSectorSectionResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('hero_video')
+                    ->label('الفيديو الرئيسي')
+                    ->formatStateUsing(fn (?string $state): string => $state ? 'موجود' : 'الافتراضي')
+                    ->badge(),
+
                 ImageColumn::make('medicines_image')
                     ->label('الأدوية')
                     ->disk('public'),
