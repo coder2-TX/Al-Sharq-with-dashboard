@@ -27,6 +27,24 @@
             $isAboutRoute = request()->routeIs('site.en.about');
             $isNewsRoute = request()->routeIs('site.en.news');
             $isSectorRoute = request()->routeIs('site.en.sectors*') || request()->routeIs('site.en.sector*');
+
+            $isMedicalGroupRoute =
+                request()->routeIs('site.en.sectors.medical') ||
+                request()->routeIs('site.en.sectors.medical.page') ||
+                request()->routeIs('site.en.sectors.milk_food') ||
+                request()->routeIs('site.en.sectors.medical.pharmacovigilance');
+
+            $isCommercialGroupRoute =
+                request()->routeIs('site.en.sectors.commercial') ||
+                request()->routeIs('site.en.sectors.advertising') ||
+                request()->routeIs('site.en.sectors.communications');
+
+            $hasEnSectorsRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors');
+            $hasEnMedicalSectorRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.medical');
+            $hasEnCommercialSectorRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.commercial');
+            $hasEnMilkFoodRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.milk_food');
+            $hasEnAdvertisingRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.advertising');
+            $hasEnCommunicationsRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.communications');
         @endphp
 
         <div class="lp-drawer__top">
@@ -59,40 +77,85 @@
                 News
             </a>
 
-            <details class="lp-drawer__group">
-                <summary class="lp-drawer__link lp-drawer__link--toggle {{ $isSectorRoute ? 'is-active' : '' }}">
+            <details class="lp-drawer__group" @if($isSectorRoute) open @endif>
+                <summary
+                    class="lp-drawer__link lp-drawer__link--toggle {{ $isSectorRoute ? 'is-active' : '' }}"
+                    @if($hasEnSectorsRoute) data-nav-href="{{ route('site.en.sectors') }}" @endif
+                >
                     <span>Sectors</span>
-                    <span class="lp-drawer__chevron" aria-hidden="true">
-                        <i class="fa-solid fa-chevron-down"></i>
+
+                    <span class="lp-drawer__chevron" aria-hidden="true" data-toggle-only>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true" data-toggle-only></i>
                     </span>
                 </summary>
 
                 <div class="lp-drawer__subNav" aria-label="Sector categories">
-                    <details class="lp-drawer__subGroup">
-                        <summary class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle">
+                    <details class="lp-drawer__subGroup" @if($isMedicalGroupRoute) open @endif>
+                        <summary
+                            class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle"
+                            @if($hasEnMedicalSectorRoute) data-nav-href="{{ route('site.en.sectors.medical') }}" @endif
+                        >
                             <span>Medical Sector</span>
-                            <span class="lp-drawer__subChevron" aria-hidden="true">
-                                <i class="fa-solid fa-chevron-down"></i>
+
+                            <span class="lp-drawer__subChevron" aria-hidden="true" data-toggle-only>
+                                <i class="fa-solid fa-chevron-down" data-toggle-only></i>
                             </span>
                         </summary>
 
                         <div class="lp-drawer__subItems">
-                            <button class="lp-drawer__subLink" type="button">Infant Formula & Food Sector</button>
+                            @if($hasEnMilkFoodRoute)
+                                <a
+                                    class="lp-drawer__subLink {{ request()->routeIs('site.en.sectors.milk_food') ? 'is-active' : '' }}"
+                                    href="{{ route('site.en.sectors.milk_food') }}"
+                                    @if(request()->routeIs('site.en.sectors.milk_food')) aria-current="page" @endif
+                                >
+                                    Infant Formula &amp; Food Sector
+                                </a>
+                            @else
+                                <button class="lp-drawer__subLink" type="button">Infant Formula &amp; Food Sector</button>
+                            @endif
                         </div>
                     </details>
 
-                    <details class="lp-drawer__subGroup">
-                        <summary class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle">
+                    <details class="lp-drawer__subGroup" @if($isCommercialGroupRoute) open @endif>
+                        <summary
+                            class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle"
+                            @if($hasEnCommercialSectorRoute) data-nav-href="{{ route('site.en.sectors.commercial') }}" @endif
+                        >
                             <span>Commercial Sector</span>
-                            <span class="lp-drawer__subChevron" aria-hidden="true">
-                                <i class="fa-solid fa-chevron-down"></i>
+
+                            <span class="lp-drawer__subChevron" aria-hidden="true" data-toggle-only>
+                                <i class="fa-solid fa-chevron-down" data-toggle-only></i>
                             </span>
                         </summary>
 
                         <div class="lp-drawer__subItems">
                             <button class="lp-drawer__subLink" type="button">Motor Oils Sector</button>
-                            <button class="lp-drawer__subLink" type="button">Advertising Sector</button>
-                            <button class="lp-drawer__subLink" type="button">Telecommunications Sector</button>
+
+                            @if($hasEnAdvertisingRoute)
+                                <a
+                                    class="lp-drawer__subLink {{ request()->routeIs('site.en.sectors.advertising') ? 'is-active' : '' }}"
+                                    href="{{ route('site.en.sectors.advertising') }}"
+                                    @if(request()->routeIs('site.en.sectors.advertising')) aria-current="page" @endif
+                                >
+                                    Advertising Sector
+                                </a>
+                            @else
+                                <button class="lp-drawer__subLink" type="button">Advertising Sector</button>
+                            @endif
+
+                            @if($hasEnCommunicationsRoute)
+                                <a
+                                    class="lp-drawer__subLink {{ request()->routeIs('site.en.sectors.communications') ? 'is-active' : '' }}"
+                                    href="{{ route('site.en.sectors.communications') }}"
+                                    @if(request()->routeIs('site.en.sectors.communications')) aria-current="page" @endif
+                                >
+                                    Telecommunications Sector
+                                </a>
+                            @else
+                                <button class="lp-drawer__subLink" type="button">Telecommunications Sector</button>
+                            @endif
+
                             <button class="lp-drawer__subLink" type="button">Training Sector</button>
                         </div>
                     </details>
@@ -110,3 +173,27 @@
         </div>
     </aside>
 </div>
+
+<script>
+(function () {
+    if (window.__lpDrawerSummaryNavBound) return;
+    window.__lpDrawerSummaryNavBound = true;
+
+    document.addEventListener('click', function (e) {
+        const summary = e.target.closest('summary[data-nav-href]');
+        if (!summary) return;
+
+        if (e.target.closest('[data-toggle-only]')) {
+            return;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const href = summary.getAttribute('data-nav-href');
+        if (href) {
+            window.location.href = href;
+        }
+    });
+})();
+</script>

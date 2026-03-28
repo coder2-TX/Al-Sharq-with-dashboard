@@ -23,5 +23,8 @@ Route::prefix('en')->name('site.en.')->group(function () {
     Route::view('/contact', 'site.en.pages.contact.index')->name('contact');
     Route::view('/news', 'site.en.pages.news.index')->name('news');
     Route::view('/news/details', 'site.en.pages.news.details')->name('news.details');
+    Route::view('/sectors', 'site.en.pages.sectors-3.index')->name('sectors');
+    Route::view('/sectors/medical', 'site.en.pages.sectors-3.sector-details.medical.index')->name('sectors.medical');
+    Route::view('/sectors/commercial', 'site.en.pages.sectors-3.sector-details.commercial.index')->name('sectors.commercial');
     Route::view('/iso', 'site.en.pages.iso.index')->name('iso');
 });
