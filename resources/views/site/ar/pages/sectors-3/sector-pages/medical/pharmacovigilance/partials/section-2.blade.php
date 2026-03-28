@@ -58,7 +58,7 @@
 
         <div class="lp-pharmaSection2__content">
           <div class="lp-pharmaSection2__textWrap">
-            <h2 class="lp-pharmaSection2__title">التيقظ الدوائي</h2>
+            <h2 class="lp-pharmaSection2__title">التيقض الدوائي</h2>
 
             <p class="lp-pharmaSection2__text">
               كشركة محترفة وواحدة من الشركات التي تضم قسم PV والمستهلك في

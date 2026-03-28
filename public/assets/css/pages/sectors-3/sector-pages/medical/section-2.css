@@ -1,4 +1,4 @@
-/* assets/css/pages/sectors-2/sector-pages/medical/section-2.css */
+/* assets/css/pages/sectors-3/sector-pages/medical/section-2.css */
 
 .lp-medicalS2{
   background: #ffffff;
@@ -28,34 +28,126 @@
   color: #111;
   font-size: var(--lp-subtitle-size);
   line-height: 2;
-
+  font-weight: 400;
   text-align: justify;
   text-justify: inter-word;
   word-spacing: .06em;
-
   text-align-last: start;
+  font-synthesis: weight style;
 }
 
 html[dir="rtl"] .lp-medicalS2__text{
   text-align-last: right;
 }
 
-.lp-medicalS2__list{
-  margin: 14px 0 0;
-  width: 100%;
-  max-width: none;
-  display: block;
-  padding: 0;
-  padding-inline-start: 1.2em;
+html[dir="ltr"] .lp-medicalS2__text{
+  text-align-last: left;
+}
 
-  color: #111;
-  font-size: var(--lp-subtitle-size);
-  line-height: 2;
+.lp-medicalS2__text > :first-child{
+  margin-top: 0;
+}
+
+.lp-medicalS2__text > :last-child{
+  margin-bottom: 0;
+}
+
+.lp-medicalS2__text p,
+.lp-medicalS2__text div,
+.lp-medicalS2__text blockquote,
+.lp-medicalS2__text ul,
+.lp-medicalS2__text ol{
+  margin: 0 0 14px;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+.lp-medicalS2__text ul,
+.lp-medicalS2__text ol{
+  padding-inline-start: 1.35em;
+}
+
+.lp-medicalS2__text li{
+  margin-bottom: .35em;
   text-align: start;
 }
 
-.lp-medicalS2__list li{
-  margin: 0;
+.lp-medicalS2__text h2,
+.lp-medicalS2__text h3{
+  color: inherit;
+  line-height: 1.45;
+  margin: 0 0 .55em;
+  font-weight: 800;
+}
+
+.lp-medicalS2__text h2{
+  font-size: clamp(22px, 2.3vw, 32px);
+}
+
+.lp-medicalS2__text h3{
+  font-size: clamp(19px, 2vw, 28px);
+}
+
+.lp-medicalS2__text strong,
+.lp-medicalS2__text b{
+  font-weight: 900 !important;
+}
+
+.lp-medicalS2__text em,
+.lp-medicalS2__text i{
+  font-style: italic !important;
+}
+
+.lp-medicalS2__text u{
+  text-decoration: underline !important;
+}
+
+.lp-medicalS2__text s,
+.lp-medicalS2__text strike{
+  text-decoration: line-through !important;
+}
+
+.lp-medicalS2__text a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .16em;
+  font-weight: 700;
+}
+
+.lp-medicalS2__text blockquote{
+  border: 0;
+  padding: 0;
+  opacity: 1;
+}
+
+/* RichEditor text colors */
+.lp-medicalS2 .color,
+.lp-medicalS2 span.color,
+.lp-medicalS2 [data-color].color,
+.lp-medicalS2 [data-color][style*="--color"]{
+  color: var(--color) !important;
+}
+
+.lp-medicalS2 strong .color,
+.lp-medicalS2 b .color,
+.lp-medicalS2 em .color,
+.lp-medicalS2 i .color,
+.lp-medicalS2 u .color,
+.lp-medicalS2 s .color,
+.lp-medicalS2 strike .color{
+  color: var(--color) !important;
+}
+
+/* English digits wrapper from DisplayTextFormatter */
+.lp-medicalS2 .lp-enDigits{
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 @media (max-width: 640px){
