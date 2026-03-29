@@ -11,16 +11,28 @@
 <section class="lp-section lp-aboutS1" id="about" aria-label="About the company">
   <div class="lp-aboutS1__inner">
     <header class="lp-aboutS1__head">
-      <h1 class="lp-sectors__title lp-aboutS1__title">
+      <h1
+        class="lp-sectors__title lp-aboutS1__title lp-latinTextFix"
+        dir="ltr"
+        lang="en"
+      >
         About <span class="lp-sectors__titleAccent">Al Sharq</span>
       </h1>
 
-      <div class="lp-aboutS1__subTitle">
+      <div
+        class="lp-aboutS1__subTitle lp-latinTextFix"
+        dir="ltr"
+        lang="en"
+      >
         {!! $subtitleEn !!}
       </div>
     </header>
 
-    <div class="lp-aboutS1__text">
+    <div
+      class="lp-aboutS1__text lp-latinTextFix"
+      dir="ltr"
+      lang="en"
+    >
       {!! $articleEn !!}
     </div>
   </div>

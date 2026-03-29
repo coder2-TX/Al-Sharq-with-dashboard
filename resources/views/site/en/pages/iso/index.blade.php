@@ -44,7 +44,7 @@
   >
     @include('site.en.partials.header')
 
-    <main id="iso-page">
+    <main id="iso-page" class="lp-enPageTextFix">
       <section
         class="lp-section lp-isoIntro"
         id="iso-intro"

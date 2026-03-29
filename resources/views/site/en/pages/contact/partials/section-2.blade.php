@@ -13,7 +13,7 @@
     <div class="lp-contactSection2__card">
       <div class="lp-contactSection2__layout">
         <aside class="lp-contactSection2__branches" aria-label="Our branches">
-          <div class="lp-contactSection2__branchesHead">Branches</div>
+          <div class="lp-contactSection2__branchesHead">Our Branches</div>
 
           <div class="lp-contactSection2__branchesBody">
             @forelse($contactPageBranches as $branch)

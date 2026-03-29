@@ -31,7 +31,7 @@
 >
   @include('site.en.partials.header')
 
-  <main id="about-page">
+  <main id="about-page" class="lp-enPageTextFix">
     @include('site.en.pages.about.partials.section-1')
     @include('site.en.pages.about.partials.section-2')
     @include('site.en.pages.about.partials.section-3')

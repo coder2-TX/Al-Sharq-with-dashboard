@@ -228,3 +228,13 @@ html[dir="rtl"] .lp-aboutS1__text{
 .lp-aboutS1 strike .color{
   color: var(--color) !important;
 }
+
+/* Force English/LTR text rendering for titles, subtitles, and DB/default HTML content */
+.lp-aboutS1 .lp-latinTextFix,
+.lp-aboutS1 .lp-latinTextFix *{
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant-ligatures: none;
+  text-transform: none;
+}

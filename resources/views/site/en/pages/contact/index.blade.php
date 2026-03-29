@@ -55,7 +55,7 @@
   >
     @include('site.en.partials.header')
 
-    <main id="contact-page">
+    <main id="contact-page" class="lp-enPageTextFix">
       <section
         class="lp-section lp-contactIntro"
         id="contact-intro"

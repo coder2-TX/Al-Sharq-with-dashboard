@@ -30,6 +30,7 @@
 
 :root{
   --lp-font: "GE SS TV", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --lp-font-latin: Arial, Helvetica, sans-serif;
 
   --lp-accent: #00BFF2;
   --lp-stroke: #e5e5e5;
@@ -252,4 +253,33 @@ html[dir="ltr"]{
   outline: 2px solid rgba(255,255,255,.35);
   outline-offset: 6px;
   border-radius: 16px;
+}
+
+html[lang="en"]{
+  --lp-font: var(--lp-font-latin);
+}
+
+.lp-enPageTextFix{
+  direction: ltr;
+  font-family: var(--lp-font);
+}
+
+.lp-enPageTextFix :where(
+  h1, h2, h3, h4, h5, h6,
+  p, div, span, a, li, blockquote,
+  strong, b, em, u, s, strike,
+  label, small
+){
+  font-family: inherit;
+  unicode-bidi: isolate;
+  font-variant-ligatures: none;
+  text-transform: none;
+}
+
+.lp-enPageTextFix .lp-enDigits{
+  font-family: var(--lp-font-latin);
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
 }

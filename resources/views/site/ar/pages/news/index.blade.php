@@ -23,7 +23,7 @@
     data-brand-src="{{ asset('assets/images/header/Brand_Mark.png') }}">
     @include('site.ar.partials.header')
 
-    <main id="news-page">
+    <main id="news-page" >
         @include('site.ar.pages.news.partials.section-1')
     </main>
 
