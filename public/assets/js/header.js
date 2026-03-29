@@ -279,3 +279,131 @@
     });
   };
 })();
+
+
+(function () {
+  function normalizeDigits(value) {
+    return String(value).replace(/[٠-٩۰-۹٫٬]/g, function (char) {
+      const map = {
+        '٠': '0', '١': '1', '٢': '2', '٣': '3', '٤': '4',
+        '٥': '5', '٦': '6', '٧': '7', '٨': '8', '٩': '9',
+        '۰': '0', '۱': '1', '۲': '2', '۳': '3', '۴': '4',
+        '۵': '5', '۶': '6', '۷': '7', '۸': '8', '۹': '9',
+        '٫': '.', '٬': ','
+      };
+
+      return map[char] ?? char;
+    });
+  }
+
+  function shouldSkipTextNode(node) {
+    if (!node || !node.nodeValue || !node.nodeValue.trim()) {
+      return true;
+    }
+
+    const parent = node.parentElement;
+    if (!parent) {
+      return true;
+    }
+
+    if (
+      parent.closest(
+        'script, style, noscript, textarea, input, select, option, pre, code, svg, .lp-no-auto-latin, .lp-autoLatin, .lp-autoLatinDigits, .lp-enDigits'
+      )
+    ) {
+      return true;
+    }
+
+    return !/[A-Za-z0-9٠-٩۰-۹]/.test(node.nodeValue);
+  }
+
+  function wrapMixedTextNode(node) {
+    const original = node.nodeValue;
+    const normalized = normalizeDigits(original);
+
+    const pattern = /([A-Za-z][A-Za-z0-9&@+._\-/:()%]*|\d[\d.,:/\-]*)/g;
+
+    let lastIndex = 0;
+    let hasMatch = false;
+    const fragment = document.createDocumentFragment();
+
+    normalized.replace(pattern, function (match, _group, offset) {
+      hasMatch = true;
+
+      if (offset > lastIndex) {
+        fragment.appendChild(document.createTextNode(normalized.slice(lastIndex, offset)));
+      }
+
+      const span = document.createElement('span');
+      const isDigitsOnly = /^\d[\d.,:/\-]*$/.test(match);
+
+      span.className = isDigitsOnly ? 'lp-autoLatinDigits' : 'lp-autoLatin';
+      span.setAttribute('dir', 'ltr');
+      span.setAttribute('lang', 'en');
+      span.textContent = match;
+
+      fragment.appendChild(span);
+      lastIndex = offset + match.length;
+
+      return match;
+    });
+
+    if (!hasMatch) {
+      if (normalized !== original) {
+        node.nodeValue = normalized;
+      }
+      return;
+    }
+
+    if (lastIndex < normalized.length) {
+      fragment.appendChild(document.createTextNode(normalized.slice(lastIndex)));
+    }
+
+    node.parentNode.replaceChild(fragment, node);
+  }
+
+  function processRoot(root) {
+    if (!root) {
+      return;
+    }
+
+    const walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          return shouldSkipTextNode(node)
+            ? NodeFilter.FILTER_REJECT
+            : NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    const nodes = [];
+    let current;
+
+    while ((current = walker.nextNode())) {
+      nodes.push(current);
+    }
+
+    nodes.forEach(wrapMixedTextNode);
+  }
+
+  function initAutoLatinFix() {
+    const html = document.documentElement;
+
+    if (!html || html.getAttribute('dir') !== 'rtl') {
+      return;
+    }
+
+    const roots = document.querySelectorAll('main');
+
+    roots.forEach(processRoot);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAutoLatinFix);
+  } else {
+    initAutoLatinFix();
+  }
+})();

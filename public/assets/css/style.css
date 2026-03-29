@@ -283,3 +283,23 @@ html[lang="en"]{
   font-variant-numeric: lining-nums;
   font-feature-settings: "lnum" 1;
 }
+
+/* Global fix for English fragments inside Arabic/RTL content */
+.lp-autoLatin,
+.lp-autoLatinDigits{
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant-ligatures: none;
+  text-transform: none;
+}
+
+.lp-autoLatin{
+  display: inline;
+}
+
+.lp-autoLatinDigits{
+  display: inline-block;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+}
