@@ -1,0 +1,117 @@
+<?php
+
+namespace App\Filament\Resources\SectorsPageCommunicationsPartners;
+
+use App\Filament\Resources\SectorsPageCommunicationsPartners\Pages;
+use App\Models\SectorsPageCommunicationsPartner;
+use BackedEnum;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor\TextColor;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+
+class SectorsPageCommunicationsPartnerResource extends Resource
+{
+    protected static ?string $model = SectorsPageCommunicationsPartner::class;
+
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
+
+    protected static ?string $navigationLabel = 'صفحة القطاعات - شركاء قطاع الاتصالات';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+
+    protected static ?string $modelLabel = 'شريك قطاع الاتصالات';
+
+    protected static ?string $pluralModelLabel = 'شركاء قطاع الاتصالات';
+
+    protected static ?int $navigationSort = 8;
+
+    public static function form(Schema $schema): Schema
+    {
+        return $schema->components([
+            Section::make('بيانات الشريك')
+                ->columnSpanFull()
+                ->schema([
+                    TextInput::make('sort_order')
+                        ->label('الترتيب')
+                        ->numeric()
+                        ->default(0)
+                        ->required()
+                        ->columnSpanFull(),
+
+                    FileUpload::make('partner_image')
+                        ->label('صورة الشريك')
+                        ->image()
+                        ->disk('public')
+                        ->directory('site/sectors/communications/partners')
+                        ->visibility('public')
+                        ->required()
+                        ->columnSpanFull(),
+
+                    TextInput::make('partner_name')
+                        ->label('اسم الشريك')
+                        ->required()
+                        ->maxLength(255)
+                        ->columnSpanFull(),
+
+                    Textarea::make('description_ar')
+                        ->label('الوصف العربي')
+                        ->rows(6)
+                        ->columnSpanFull(),
+
+                    Textarea::make('description_en')
+                        ->label('الوصف الإنجليزي')
+                        ->rows(6)
+                        ->columnSpanFull(),
+                ]),
+        ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->defaultSort('sort_order')
+            ->columns([
+                TextColumn::make('sort_order')
+                    ->label('الترتيب'),
+
+                ImageColumn::make('partner_image')
+                    ->label('الصورة')
+                    ->disk('public'),
+
+                TextColumn::make('partner_name')
+                    ->label('الاسم')
+                    ->limit(50),
+
+                TextColumn::make('description_ar')
+                    ->label('الوصف العربي')
+                    ->limit(50),
+
+                TextColumn::make('description_en')
+                    ->label('الوصف الإنجليزي')
+                    ->limit(50),
+            ])
+            ->recordUrl(fn (SectorsPageCommunicationsPartner $record): string => static::getUrl('edit', ['record' => $record]))
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
+            ]);
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListSectorsPageCommunicationsPartners::route('/'),
+            'create' => Pages\CreateSectorsPageCommunicationsPartner::route('/create'),
+            'edit' => Pages\EditSectorsPageCommunicationsPartner::route('/{record}/edit'),
+        ];
+    }
+}
