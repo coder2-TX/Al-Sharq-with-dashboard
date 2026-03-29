@@ -28,7 +28,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->communications_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->communications_image) : asset('assets/images/sectors/sector-details/commercial/3.png') }}"
               alt="Telecommunications Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Telecommunications Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.sectors.communications') }}" aria-label="Go to the Telecommunications Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
