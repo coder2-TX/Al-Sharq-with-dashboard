@@ -2,10 +2,7 @@
     $sectorsPageMedicalSectorSection = \App\Models\SectorsPageMedicalSectorSection::query()->first();
 
     $medicalPageHref = route('site.en.sectors.medical.page');
-
-    $milkFoodHref = \Illuminate\Support\Facades\Route::has('site.en.sectors.milk_food')
-        ? route('site.en.sectors.milk_food')
-        : route('site.en.contact');
+    $milkFoodHref = route('site.en.sectors.milk_food');
 @endphp
 
 <section class="lp-section lp-sectors lp-sectorsDetailCards" id="medical-sector-cards" aria-label="Medical sector details">

@@ -27,6 +27,7 @@ Route::prefix('en')->name('site.en.')->group(function () {
     Route::view('/sectors/medical', 'site.en.pages.sectors-3.sector-details.medical.index')->name('sectors.medical');
     Route::view('/sectors/commercial', 'site.en.pages.sectors-3.sector-details.commercial.index')->name('sectors.commercial');
     Route::view('/sectors/medical-sector', 'site.en.pages.sectors-3.sector-pages.medical.index')->name('sectors.medical.page');
+    Route::view('/sectors/milk-food', 'site.en.pages.sectors-3.sector-pages.milk-food.index')->name('sectors.milk_food');
     Route::view('/sectors/medical/pharmacovigilance', 'site.en.pages.sectors-3.sector-pages.medical.pharmacovigilance.index')->name('sectors.medical.pharmacovigilance');
     Route::view('/iso', 'site.en.pages.iso.index')->name('iso');
 });
