@@ -42,7 +42,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->advertising_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->advertising_image) : asset('assets/images/sectors/sector-details/commercial/2.png') }}"
               alt="Advertising Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Advertising Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.sectors.advertising') }}" aria-label="Go to the Advertising Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
