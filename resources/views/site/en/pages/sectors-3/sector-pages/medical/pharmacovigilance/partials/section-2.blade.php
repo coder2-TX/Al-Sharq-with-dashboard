@@ -1,3 +1,59 @@
+@php
+    $pharmacovigilancePage = \App\Models\SectorsPageMedicalPharmacovigilancePage::query()->first();
+
+    $fallbackArticleEn = <<<'HTML'
+<p class="lp-pharmaSection2__text">
+  As a professional company and one of the companies that includes a PV department and the consumer in its organizational structure, we are committed to carrying out these activities for patient safety.
+</p>
+
+<p class="lp-pharmaSection2__text">
+  To report any adverse effects, product complaints, or information related to our products, please contact us through the email addresses and phone numbers
+  <span
+    class="lp-pharmaSection2__textInline lp-pharmaSection2__textInline--ltr"
+    dir="ltr"
+    lang="en"
+    style="unicode-bidi:isolate; font-family: Arial, Helvetica, sans-serif;"
+  >
+    pv@ata-yemen.com
+  </span>
+  <br>
+  <span
+    class="lp-pharmaSection2__textInline lp-pharmaSection2__textInline--ltr"
+    dir="ltr"
+    lang="en"
+    style="unicode-bidi:isolate; font-family: Arial, Helvetica, sans-serif;"
+  >
+    00967 1 444455
+  </span>
+  <span
+    class="lp-pharmaSection2__textInline lp-pharmaSection2__textInline--ltr"
+    dir="ltr"
+    lang="en"
+    style="unicode-bidi:isolate; font-family: Arial, Helvetica, sans-serif;"
+  >
+    00967 1 444454
+  </span>
+</p>
+
+<p class="lp-pharmaSection2__text">
+  The pharmacovigilance system aims to ensure the safe use of medicines through continuous monitoring of their adverse effects and evaluation of the benefit-risk ratio of these products.
+</p>
+HTML;
+
+    $articleEn = \App\Support\Text\DisplayTextFormatter::fromRichEditor($pharmacovigilancePage?->article_en);
+    if ($articleEn === '') {
+        $articleEn = $fallbackArticleEn;
+    }
+
+    $reportEmails = \App\Support\Text\DisplayTextFormatter::fromPlainText(
+        $pharmacovigilancePage?->report_emails ?: "abeer.sami@ata-yemen.com\npv@ata-yemen.com\nranda.mahmoud@ata-yemen.com"
+    );
+
+    $reportPhones = \App\Support\Text\DisplayTextFormatter::fromPlainText(
+        $pharmacovigilancePage?->report_phones ?: "00967 775805888\n00967 773593139"
+    );
+@endphp
+
 <section
   class="lp-section lp-pharmaSection2"
   id="pharma-section-2"
@@ -29,10 +85,9 @@
                 class="lp-pharmaSection2__infoText lp-pharmaSection2__infoText--ltr"
                 dir="ltr"
                 lang="en"
+                style="unicode-bidi:isolate; font-family: Arial, Helvetica, sans-serif;"
               >
-                abeer.sami@ata-yemen.com<br>
-                pv@ata-yemen.com<br>
-                randa.mahmoud@ata-yemen.com
+                {!! $reportEmails !!}
               </div>
             </div>
 
@@ -47,9 +102,9 @@
                 class="lp-pharmaSection2__infoText lp-pharmaSection2__infoText--ltr"
                 dir="ltr"
                 lang="en"
+                style="unicode-bidi:isolate; font-family: Arial, Helvetica, sans-serif;"
               >
-                00967 775805888<br>
-                00967 773593139
+                {!! $reportPhones !!}
               </div>
             </div>
 
@@ -60,43 +115,9 @@
           <div class="lp-pharmaSection2__textWrap">
             <h2 class="lp-pharmaSection2__title">Pharmacovigilance</h2>
 
-            <p class="lp-pharmaSection2__text">
-              As a professional company and one of the companies that includes a PV department
-              within its organizational structure, we are committed to carrying out these activities
-              for patient safety.
-            </p>
-
-            <p class="lp-pharmaSection2__text">
-              To report any adverse effects, product complaints, or information related to our products,
-              please contact us through the following email addresses and phone numbers
-              <span
-                class="lp-pharmaSection2__textInline lp-pharmaSection2__textInline--ltr"
-                dir="ltr"
-                lang="en"
-              >
-                pv@ata-yemen.com
-              </span>
-              <br>
-              <span
-                class="lp-pharmaSection2__textInline lp-pharmaSection2__textInline--ltr"
-                dir="ltr"
-                lang="en"
-              >
-                00967 1 444455
-              </span>
-              <span
-                class="lp-pharmaSection2__textInline lp-pharmaSection2__textInline--ltr"
-                dir="ltr"
-                lang="en"
-              >
-                00967 1 444454
-              </span>
-            </p>
-
-            <p class="lp-pharmaSection2__text">
-              The pharmacovigilance system aims to ensure the safe use of medicines through continuous
-              monitoring of adverse effects and evaluation of the benefit-risk ratio of these products.
-            </p>
+            <div class="lp-pharmaSection2__article">
+              {!! $articleEn !!}
+            </div>
           </div>
         </div>
 

@@ -1,3 +1,11 @@
+@php
+    $pharmacovigilancePage = \App\Models\SectorsPageMedicalPharmacovigilancePage::query()->first();
+
+    $heroImage = $pharmacovigilancePage?->hero_image
+        ? \Illuminate\Support\Facades\Storage::url($pharmacovigilancePage->hero_image)
+        : asset('assets/images/section/1.png');
+@endphp
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -32,8 +40,23 @@
 
   <main id="medical-pharmacovigilance-page">
 
-    <section class="lp-section lp-medicalPharmaS1" id="medical-pharmacovigilance-hero" aria-label="الإبلاغ عن الأعراض الجانبية للأدوية">
-      <div class="lp-medicalPharmaS1__graphics" aria-hidden="true">
+    <section
+      class="lp-section lp-medicalPharmaS1"
+      id="medical-pharmacovigilance-hero"
+      aria-label="الإبلاغ عن الأعراض الجانبية للأدوية"
+      style="position: relative; overflow: hidden; isolation: isolate;"
+    >
+      <div
+        aria-hidden="true"
+        style="position:absolute; inset:0; background-image:url('{{ $heroImage }}'); background-size:cover; background-position:center; background-repeat:no-repeat; z-index:0;"
+      ></div>
+
+      <div
+        aria-hidden="true"
+        style="position:absolute; inset:0; background:rgba(0,0,0,.35); z-index:1;"
+      ></div>
+
+      <div class="lp-medicalPharmaS1__graphics" aria-hidden="true" style="position:relative; z-index:2;">
         <svg class="lp-lines lp-lines--topStart" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
           <line class="lp-line lp-line--w10" x1="620" y1="44" x2="200" y2="44"></line>
           <line class="lp-line lp-line--w4" x1="620" y1="72" x2="230" y2="72"></line>
@@ -47,7 +70,7 @@
         </svg>
       </div>
 
-      <div class="lp-medicalPharmaS1__content">
+      <div class="lp-medicalPharmaS1__content" style="position:relative; z-index:2;">
         <div class="lp-medicalPharmaS1__contentRow">
           <div class="lp-medicalPharmaS1__text">
             <h1 class="lp-medicalPharmaS1__title lp-sectors__title">

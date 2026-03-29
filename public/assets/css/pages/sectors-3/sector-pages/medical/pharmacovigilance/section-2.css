@@ -137,25 +137,117 @@
   font-weight: 800;
 }
 
-.lp-pharmaSection2__text{
-  margin: 0;
+.lp-pharmaSection2__article{
   color: #111;
   font-size: clamp(16px, 1.2vw, 19px);
   line-height: 2;
   font-weight: 400;
+  font-synthesis: weight style;
 }
 
-.lp-pharmaSection2__textInline{
-  display: inline-block;
+.lp-pharmaSection2__article > :first-child{
+  margin-top: 0;
 }
 
-.lp-pharmaSection2__textInline--ltr{
+.lp-pharmaSection2__article > :last-child{
+  margin-bottom: 0;
+}
+
+.lp-pharmaSection2__article p,
+.lp-pharmaSection2__article div,
+.lp-pharmaSection2__article blockquote,
+.lp-pharmaSection2__article ul,
+.lp-pharmaSection2__article ol{
+  margin: 0 0 14px;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+.lp-pharmaSection2__article ul,
+.lp-pharmaSection2__article ol{
+  padding-inline-start: 1.35em;
+}
+
+.lp-pharmaSection2__article li{
+  margin-bottom: .35em;
+  text-align: start;
+}
+
+.lp-pharmaSection2__article h2,
+.lp-pharmaSection2__article h3{
+  color: inherit;
+  line-height: 1.45;
+  margin: 0 0 .55em;
+  font-weight: 800;
+}
+
+.lp-pharmaSection2__article h2{
+  font-size: clamp(22px, 2.3vw, 32px);
+}
+
+.lp-pharmaSection2__article h3{
+  font-size: clamp(19px, 2vw, 28px);
+}
+
+.lp-pharmaSection2__article strong,
+.lp-pharmaSection2__article b{
+  font-weight: 900 !important;
+}
+
+.lp-pharmaSection2__article em,
+.lp-pharmaSection2__article i{
+  font-style: italic !important;
+}
+
+.lp-pharmaSection2__article u{
+  text-decoration: underline !important;
+}
+
+.lp-pharmaSection2__article s,
+.lp-pharmaSection2__article strike{
+  text-decoration: line-through !important;
+}
+
+.lp-pharmaSection2__article a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .16em;
+  font-weight: 700;
+}
+
+.lp-pharmaSection2__article blockquote{
+  border: 0;
+  padding: 0;
+  opacity: 1;
+}
+
+.lp-pharmaSection2 .color,
+.lp-pharmaSection2 span.color,
+.lp-pharmaSection2 [data-color].color,
+.lp-pharmaSection2 [data-color][style*="--color"]{
+  color: var(--color) !important;
+}
+
+.lp-pharmaSection2 strong .color,
+.lp-pharmaSection2 b .color,
+.lp-pharmaSection2 em .color,
+.lp-pharmaSection2 i .color,
+.lp-pharmaSection2 u .color,
+.lp-pharmaSection2 s .color,
+.lp-pharmaSection2 strike .color{
+  color: var(--color) !important;
+}
+
+.lp-pharmaSection2 .lp-enDigits{
   direction: ltr;
-  unicode-bidi: embed;
-  text-align: left;
+  unicode-bidi: isolate;
+  display: inline-block;
+  white-space: nowrap;
   font-family: Arial, Tahoma, sans-serif;
-  font-variant-numeric: lining-nums;
-  font-feature-settings: "lnum" 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 @media (max-width: 1100px){
@@ -225,7 +317,7 @@
     font-size: clamp(20px, 5vw, 26px);
   }
 
-  .lp-pharmaSection2__text{
+  .lp-pharmaSection2__article{
     font-size: 14px;
     line-height: 1.9;
   }
