@@ -49,13 +49,12 @@
   margin-top: 60px;
 }
 
-/* Splide tweaks */
 .lp-partners .splide__track{
   overflow: visible !important;
 }
 
 .lp-partners .splide__list{
-  gap: 60px !important; /*  كان 1px — زوّدنا المسافة شوي */
+  gap: 60px !important; 
 }
 
 .lp-partners .splide__slide{
@@ -70,8 +69,8 @@
 }
 
 .lp-partners img.lp-partners__image{
-  height: 65px !important; /*  كان 100px — صغّرناها شوي */
-  width: 350px !important; /*  كان 460px — صغّرنا العرض شوي */
+  height: 65px !important; 
+  width: 350px !important; 
   max-width: none !important;
   object-fit: contain !important;
   display: block !important;
@@ -83,7 +82,6 @@
   opacity: 0.98;
 }
 
-/* fallback قبل تهيئة Splide */
 #lp-partners-logos:not(.is-initialized){
   visibility: visible !important;
 }
@@ -103,7 +101,7 @@
 
 @media (max-width: 768px){
   .lp-partners .splide__list{
-    gap: 40px !important; /*  كان 1px */
+    gap: 40px !important; 
   }
 
   .lp-partners img.lp-partners__image{
@@ -114,18 +112,18 @@
 
 @media (max-width: 576px){
   .lp-partners .splide__list{
-    gap: 20px !important; /*  كان 1px */
+    gap: 20px !important; 
   }
 
   .lp-partners img.lp-partners__image{
-    height: 42px !important; /*  كان 80px */
+    height: 42px !important; 
     width: min(280px, 62vw) !important;
   }
 }
 
 @media (max-width: 480px){
   .lp-partners img.lp-partners__image{
-    height: 54px !important; /*  كان 70px */
+    height: 54px !important; 
     width: min(280px, 54vw) !important;
   }
 }

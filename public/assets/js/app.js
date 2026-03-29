@@ -96,7 +96,6 @@
   const boot = async () => {
     const partialNodes = Array.from(document.querySelectorAll("[data-partial]"));
 
-    // الوضع القديم: static HTML + partial loader
     if (partialNodes.length) {
       for (const el of partialNodes) {
         try {
@@ -113,7 +112,6 @@
       return;
     }
 
-    // الوضع الجديد: Laravel Blade
     initBladePage();
   };
 

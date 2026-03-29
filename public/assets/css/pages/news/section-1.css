@@ -16,7 +16,6 @@
   margin-bottom: 18px;
 }
 
-/* Grid */
 .lp-news__grid{
   --col-gap: 14px;
   --row-gap: clamp(26px, 3vw, 44px);
@@ -29,9 +28,6 @@
   margin-top: 14px;
 }
 
-/* =========================
-   Card (ONE white card)
-   ========================= */
 .lp-newsCard{
   display: flex;
   flex-direction: column;
@@ -44,7 +40,6 @@
   box-shadow: 0 12px 30px rgba(0,0,0,.08);
 }
 
-/* Use about-title color in shadow/border when supported */
 @supports (color: color-mix(in srgb, #000 10%, transparent)){
   .lp-newsCard{
     border-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
@@ -54,7 +49,6 @@
   }
 }
 
-/* Image area (inside card) */
 .lp-newsCard__media{
   display: block;
   overflow: hidden;
@@ -74,12 +68,10 @@
   will-change: transform;
 }
 
-/* Body padding inside the card */
 .lp-newsCard__body{
   padding: clamp(12px, 1.6vw, 18px) clamp(14px, 1.9vw, 20px) clamp(14px, 2vw, 22px);
 }
 
-/* Meta (date row) */
 .lp-newsCard__meta{
   margin-top: 0;
   display: flex;
@@ -105,7 +97,6 @@
   opacity: .95;
 }
 
-/* Title (news text) */
 .lp-newsCard__title{
   margin-top: 6px;
   display: block;
@@ -124,7 +115,6 @@
   overflow: hidden;
 }
 
-/* Hover / Focus: scale image + title turns accent */
 .lp-newsCard:hover .lp-newsCard__img,
 .lp-newsCard:focus-within .lp-newsCard__img{
   transform: scale(1.045);
@@ -135,7 +125,6 @@
   color: var(--lp-accent);
 }
 
-/* Pagination */
 .lp-pagination{
   margin-top: 26px;
   display: flex;
@@ -174,7 +163,6 @@
   transform: translateY(-1px);
 }
 
-/*  الزر المفعل */
 .lp-pageBtn[aria-current="page"]{
   background: var(--lp-about-title);
   border-color: var(--lp-about-title);
@@ -182,7 +170,6 @@
   transform: none;
 }
 
-/*  Hover/Focus: يصير نفس لون المفعل (أزرق) */
 .lp-pageBtn:not([aria-disabled="true"]):not([aria-current="page"]):hover,
 .lp-pageBtn:not([aria-disabled="true"]):not([aria-current="page"]):focus-visible{
   background: var(--lp-about-title);
@@ -196,7 +183,6 @@
   pointer-events: none;
 }
 
-/* Tablet */
 @media (max-width: 980px){
   .lp-news__grid{
     grid-template-columns: repeat(2, 1fr);
@@ -204,7 +190,6 @@
   }
 }
 
-/* Phone */
 @media (max-width: 520px){
   .lp-news__grid{
     grid-template-columns: 1fr;
@@ -212,7 +197,6 @@
   }
 }
 
-/* Small phones */
 @media (max-width: 390px){
   .lp-news__grid{
     --media-ratio: 1 / 1;

@@ -1,59 +1,39 @@
 /* assets/css/footer.css */
 
 .lp-footer{
-  /*  خلفية الفوتر المطلوبة */
   --lp-footer-bg: #e5e5e5;
-
-  /*  خلي الخلفية على العنصر نفسه عشان ما يظهر الأسود */
   background: transparent;
-
-  /*  لون النصوص */
   color: var(--lp-about-title);
-
-  /*  انحناء كبير وواضح (زي فكرة kiwi) */
   --lp-footer-radius: clamp(140px, 18vw, 240px);
 
   border-top-right-radius: 0;
   border-top-left-radius: var(--lp-footer-radius);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-
   position: relative;
-
-  /*  إعدادات الستروك (نفس فكرة kiwi) */
-  --lp-footer-stroke-show: 220px;      /* مقدار الجزء الظاهر من الستروك */
-  --lp-footer-stroke-thickness: 2px;   /* سماكة الستروك (بارز) */
-  --lp-footer-stroke-y: -12px;         /* رفع الستروك لفوق عشان يبان */
+  --lp-footer-stroke-show: 220px;      
+  --lp-footer-stroke-thickness: 2px;   
+  --lp-footer-stroke-y: -12px;        
   --lp-footer-stroke-x: 0px;
-
-  /*  لازم يكون visible عشان الستروك يطلع لفوق */
   overflow-y: visible;
-  overflow-x: hidden; /* fallback */
-  overflow-x: clip;   /* أفضل لو مدعوم */
+  overflow-x: hidden; 
+  overflow-x: clip;  
 
   padding-top: clamp(44px, 5vw, 70px);
   padding-bottom: 0;
 }
 
-/*  الستروك الخارجي */
 .lp-footer::before{
   content: "";
   position: absolute;
   inset: 0;
-
   transform: translate3d(-18px, -18px, 0);
-
-  /*  كل الستروك صار --lp-about-title */
   border: var(--lp-footer-stroke-thickness) solid var(--lp-about-title);
-
   border-top-right-radius: 0;
   border-top-left-radius: var(--lp-footer-radius);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-
-  /*  نعرض فقط جزء من الستروك من الأعلى */
   clip-path: inset(0 0 calc(100% - var(--lp-footer-stroke-show)) 0);
-
   pointer-events: none;
   z-index: 0;
 }
@@ -75,22 +55,16 @@
   pointer-events: none;
 }
 
-/* =========================
-    Footer moving lines (copied from hero)
-   اللون صار --lp-about-title + شفافية
-========================= */
-
 .lp-footer__graphics{
   position: absolute;
   inset: 0;
-  z-index: 2; /* فوق الخلفية */
+  z-index: 2; 
   pointer-events: none;
 
   color: var(--lp-about-title);
   opacity: .35;
 }
 
-/* نخلي إعدادات الـ SVG داخل الفوتر محددة (عشان ما تتأثر بقواعد الهيرو) */
 .lp-footer .lp-lines{
   position: absolute;
   width: min(760px, calc(92vw - (var(--lp-lines-edge-pad) * 2)));
@@ -124,13 +98,10 @@
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-
-  /*  نخلي المحتوى فوق الخطوط */
   position: relative;
   z-index: 3;
 }
 
-/*  أعمدة متساوية + Gap واحد ثابت */
 .lp-footer__grid{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -140,18 +111,13 @@
   justify-items: start;
 }
 
-/*  محاذاة عامة */
 .lp-footer__col{
   text-align: start;
 }
 
-/* في RTL: "start" = يمين */
 html[dir="rtl"] .lp-footer__grid{ justify-items: start; }
 html[dir="rtl"] .lp-footer__col{ text-align: right; }
 
-/* =========================
-   Column 1: Brand (Logo + Social)
-========================= */
 
 .lp-footer__col--brand{
   display: flex;
@@ -174,8 +140,6 @@ html[dir="rtl"] .lp-footer__col--brand{
   height: clamp(88px, 6vw, 118px);
   width: auto;
   display: block;
-
-  /*  لا نخلي اللوجو أبيض */
   filter: none;
 }
 
@@ -197,7 +161,6 @@ html[dir="rtl"] .lp-footer__social--compact{
   justify-content: flex-end;
 }
 
-/* (لو موجود عندك) */
 .lp-footer__socialLabel{
   color: var(--lp-about-title);
   font-weight: 800;
@@ -205,12 +168,10 @@ html[dir="rtl"] .lp-footer__social--compact{
   line-height: 1.2;
 }
 
-/*  ستروك حاويات السوشيال صار --lp-about-title */
 .lp-footer .lp-socialIcon__stroke{
   border-color: var(--lp-about-title);
 }
 
-/* أيقونات صغيرة + انحناء 20 */
 .lp-socialIcon.lp-socialIcon--sm{
   width: 56px;
   height: 56px;
@@ -236,16 +197,11 @@ html[dir="rtl"] .lp-footer__social--compact{
   font-size: 18px;
 }
 
-/* =========================
-   Column 2: Quick links + Text
-========================= */
-
 .lp-footer__col--nav{
   display: flex;
   flex-direction: column;
 }
 
-/* روابط سريعة: سطر واحد بدون نزول */
 .lp-footer__linksRow{
   display: flex;
   flex-wrap: nowrap;
@@ -305,21 +261,12 @@ html[dir="rtl"] .lp-footer__linksRow{
   font-weight: 650;
   font-size: 14px;
   line-height: 1.95;
-
-  /*  خلي النص يمتد بعرض العمود كامل */
   max-width: none;
   width: 100%;
-
-  /*  يخلي السطور تنتهي مع بعض */
   text-align: justify;
   text-justify: inter-word;
-
-  /*  يساعد العربي يضبط نهاية السطور (زي “تطويل” خفيف بالكلمات) */
   word-spacing: .06em;
-
-  /*  آخر سطر يرجع طبيعي (مهم مع justify) */
   text-align-last: start;
-
   opacity: .92;
 }
 
@@ -327,15 +274,10 @@ html[dir="rtl"] .lp-footer__brandDesc{
   text-align-last: right;
 }
 
-/* =========================
-   Column 3: Contact
-========================= */
-
 .lp-footer__col--contact{
   display: flex;
   flex-direction: column;
 
-  /* المسافة الخاصة بين عمود 2 و 3 */
   padding-inline-start: 88px;
 }
 
@@ -379,26 +321,20 @@ html[dir="rtl"] .lp-footer__brandDesc{
   text-decoration-color: var(--lp-about-title);
 }
 
-/* Bottom */
 .lp-footer__bottom{
   margin-top: clamp(22px, 3vw, 32px);
   padding-block: 16px;
-
-  /*  خط الفصل صار --lp-about-title */
   border-top: 1px solid var(--lp-about-title);
-
   color: var(--lp-about-title);
   font-weight: 800;
   font-size: 14px;
   text-align: center;
-
   opacity: .92;
 }
 
 /* Responsive */
 @media (max-width: 980px){
   .lp-footer{
-    /* في الموبايل الانحناء يقل شوي */
     --lp-footer-radius: clamp(110px, 22vw, 180px);
     --lp-footer-stroke-show: 200px;
   }
@@ -416,12 +352,10 @@ html[dir="rtl"] .lp-footer__brandDesc{
   }
 
   .lp-footer__brandDesc{
-    /*  خليها 100% حتى بالموبايل */
     max-width: none;
     width: 100%;
   }
 
-  /* نفس فكرة الهيرو للموبايل */
   .lp-footer .lp-lines{
     width: min(640px, calc(96vw - (var(--lp-lines-edge-pad) * 2)));
   }

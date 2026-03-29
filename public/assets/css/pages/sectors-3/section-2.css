@@ -3,7 +3,6 @@ body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__inner{
   padding-bottom: clamp(46px, 6vw, 92px);
 }
 
-/* نلغي الخطوط القديمة من اللفافة */
 body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__sliderWrap{
   position: relative;
   margin-top: 0;
@@ -15,7 +14,6 @@ body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__sliderWrap::after{
   content: none;
 }
 
-/* نخلي التراك بحجم الكاردات نفسها */
 body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track{
   position: relative;
   width: fit-content;
@@ -23,7 +21,6 @@ body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track{
   padding: 10px 0;
 }
 
-/* الخطين بجانب الكاردات مباشرة */
 body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::before,
 body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::after{
   content: "";
@@ -51,7 +48,6 @@ body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__slider{
   z-index: 2;
 }
 
-/* شاشات اللابتوب: نقلل طول الخطوط */
 @media (max-width: 1366px){
   body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::before,
   body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::after{
@@ -59,7 +55,6 @@ body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__slider{
   }
 }
 
-/* الآيباد والهاتف: نخفي الخطوط */
 @media (max-width: 1024px){
   body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::before,
   body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::after{

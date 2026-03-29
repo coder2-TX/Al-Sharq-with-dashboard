@@ -4,19 +4,16 @@
 
   let inited = false;
 
-  //  Retry if header partial isn't in DOM yet
   let retryCount = 0;
-  const MAX_RETRIES = 30; // 30 * 50ms = 1.5s max
+  const MAX_RETRIES = 30; 
   const RETRY_DELAY = 50;
 
   window.lpInitHeader = function lpInitHeader() {
-    //  Don't lock init until header exists
     if (inited) return;
 
     const drawer = document.getElementById("lpDrawer");
     const menuBtn = document.getElementById("lpMenuBtn");
 
-    // if called too early (before partial injected), retry
     if (!drawer || !menuBtn) {
       if (retryCount < MAX_RETRIES) {
         retryCount++;
@@ -25,14 +22,12 @@
       return;
     }
 
-    //  Now it's safe to lock init
     inited = true;
 
     const panel = drawer.querySelector(".lp-drawer__panel");
     const icon = menuBtn.querySelector("i");
     if (!panel) return;
 
-    //  Optional Brand Mark (per-page)
     const brand = document.getElementById("lpHeaderBrand");
     const brandImg = document.getElementById("lpHeaderBrandImg");
     const headerSlot = document.getElementById("header-slot");
@@ -73,7 +68,6 @@
         ? document.body.dataset[key]
         : undefined;
 
-    //  showBrand: page decision first
     let showBrand = false;
 
     if (hasAttr(headerSlot, "data-show-brand")) {
@@ -104,7 +98,6 @@
         : undefined) ||
       "";
 
-    //  Prepare brand once (even pages that don't show it at top will need it on scroll)
     let brandPrepared = false;
 
     const prepareBrand = () => {
@@ -135,17 +128,14 @@
       }
     };
 
-    //  Header shadow + Brand visibility on scroll
     const headerEl = document.getElementById("lpHeader");
 
     const updateHeaderOnScroll = () => {
       const y = window.scrollY || window.pageYOffset || 0;
       const scrolled = y > 6;
 
-      // class controls shadow + white header in CSS (now for all pages)
       document.body.classList.toggle("lp-header-scrolled", scrolled);
 
-      //  brand is visible if (page wants it) OR (scrolled)
       const shouldShowBrand = !!showBrand || scrolled;
 
       if (brand) {

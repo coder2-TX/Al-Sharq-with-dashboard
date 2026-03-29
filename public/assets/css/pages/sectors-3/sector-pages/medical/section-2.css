@@ -122,7 +122,6 @@ html[dir="ltr"] .lp-medicalS2__text{
   opacity: 1;
 }
 
-/* RichEditor text colors */
 .lp-medicalS2 .color,
 .lp-medicalS2 span.color,
 .lp-medicalS2 [data-color].color,
@@ -140,7 +139,6 @@ html[dir="ltr"] .lp-medicalS2__text{
   color: var(--color) !important;
 }
 
-/* English digits wrapper from DisplayTextFormatter */
 .lp-medicalS2 .lp-enDigits{
   direction: ltr;
   unicode-bidi: isolate;

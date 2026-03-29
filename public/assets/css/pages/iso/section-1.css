@@ -19,9 +19,7 @@
   align-items: center;
 }
 
-/* =========================
-   ISO intro moving lines
-========================= */
+
 .lp-isoIntro__graphics {
   position: absolute;
   inset: 0;

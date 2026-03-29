@@ -1,7 +1,6 @@
 (() => {
   "use strict";
 
-  // تخزين العناصر التي تمت تهيئتها بالفعل
   const animated = new WeakSet();
 
   window.lpInitHeroLines = function lpInitHeroLines(container = document) {
@@ -31,7 +30,6 @@
       { stagger = 0.22, duration = 1.2, segRatio = 0.32, dir = -1 } = {},
     ) => {
       els.forEach((el, i) => {
-        //  لا نعيد تهيئة نفس الخط مرتين
         if (animated.has(el)) return;
         animated.add(el);
 
@@ -81,7 +79,6 @@
       });
     };
 
-    // تهيئة جميع الخطوط داخل الحاوية المحددة
     container.querySelectorAll(".lp-lines--topStart").forEach((svg) => {
       const lines = Array.from(svg.querySelectorAll(".lp-line"));
       if (lines.length)
@@ -105,7 +102,6 @@
     });
   };
 
-  // تهيئة أولية للصفحة
   const boot = () => {
     const tryInit = () => {
       if (window.gsap && typeof window.lpInitHeroLines === "function") {

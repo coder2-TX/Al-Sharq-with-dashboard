@@ -5,7 +5,6 @@
     const el = document.querySelector("#lp-partners-logos");
     if (!el) return false;
 
-    // منع التهيئة المكررة (مهم لأن partials تنحمل بعدين)
     if (el.dataset.splideInit === "1") return true;
     el.dataset.splideInit = "1";
 
@@ -35,8 +34,6 @@
       },
     });
 
-    // حسب توثيق Splide AutoScroll عند استخدام CDN:
-    // mount(window.splide.Extensions)
     const extensions =
       window.splide && window.splide.Extensions ? window.splide.Extensions : {};
 
@@ -46,7 +43,6 @@
 
   window.lpInitPartners = lpInitPartners;
 
-  // لو الصفحة بدون partial loader (اختياري)
   document.addEventListener("DOMContentLoaded", () => {
     lpInitPartners();
   });

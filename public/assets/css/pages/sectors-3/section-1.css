@@ -9,7 +9,6 @@
   flex: 1 0 auto;
 }
 
-/* نفس فكرة صفحة التواصل: هيدر أبيض */
 .lp-page--sectors3 .lp-header{
   background: rgba(255,255,255,.96);
   backdrop-filter: blur(8px);
@@ -40,7 +39,6 @@
   pointer-events: none;
 }
 
-/* طبقة خفيفة فقط لتحافظ على وضوح الخطوط */
 .lp-sectorsHero2::before{
   content: "";
   position: absolute;
@@ -64,7 +62,6 @@ html[dir="ltr"] .lp-sectorsHero2::before{
   );
 }
 
-/* نفس منطق خطوط الهيرو */
 .lp-sectorsHero2__graphics{
   position: absolute;
   inset: 0;
@@ -101,7 +98,6 @@ html[dir="ltr"] .lp-sectorsHero2::before{
 .lp-sectorsHero2 .lp-lines .lp-line--w4 { stroke-width: 4; }
 .lp-sectorsHero2 .lp-lines .lp-line--w1 { stroke-width: 1; }
 
-/* طبقة داخلية فقط لحجز نفس ارتفاع الهيرو */
 .lp-sectorsHero2__inner{
   position: relative;
   z-index: 3;
