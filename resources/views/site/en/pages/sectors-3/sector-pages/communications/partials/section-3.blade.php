@@ -53,23 +53,33 @@
       <div class="lp-communicationsS3__viewport" data-slider-viewport aria-live="polite">
         @foreach ($partners as $partner)
           @php
+              $partnerName = trim((string) ($partner->partner_name ?? 'Our Partner'));
+
               $partnerImage = !empty($partner->partner_image)
                   ? \Illuminate\Support\Facades\Storage::url($partner->partner_image)
                   : asset('assets/images/parteners/6.png');
 
               $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText($partner->description_en);
+
+              $partnerUrl = route('site.en.communications.partner-products', [
+                  'name' => $partnerName,
+              ]);
           @endphp
 
           <article class="lp-communicationsS3__slide {{ $loop->first ? 'is-active' : '' }}" data-slide aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
             <div class="lp-communicationsS3__row">
-              <div class="lp-communicationsS3__media">
+              <a
+                class="lp-communicationsS3__media lp-communicationsS3__mediaLink"
+                href="{{ $partnerUrl }}"
+                aria-label="Open {{ $partnerName }} products"
+              >
                 <img
                   src="{{ $partnerImage }}"
-                  alt="{{ $partner->partner_name }}"
+                  alt="{{ $partnerName }}"
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
+              </a>
 
               <div class="lp-communicationsS3__content">
                 <h3
@@ -77,7 +87,7 @@
                   dir="ltr"
                   lang="en"
                 >
-                  {{ $partner->partner_name }}
+                  {{ $partnerName }}
                 </h3>
 
                 <div

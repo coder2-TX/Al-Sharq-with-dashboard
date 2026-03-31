@@ -56,14 +56,25 @@
 
           <article class="lp-communicationsS3__slide {{ $loop->first ? 'is-active' : '' }}" data-slide aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
             <div class="lp-communicationsS3__row">
-              <div class="lp-communicationsS3__media">
+              @php
+                  $partnerName = trim((string) ($partner->partner_name ?? 'شريكنا'));
+                  $partnerUrl = route('site.ar.communications.partner-products', [
+                      'name' => $partnerName,
+                  ]);
+              @endphp
+
+              <a
+                class="lp-communicationsS3__media lp-communicationsS3__mediaLink"
+                href="{{ $partnerUrl }}"
+                aria-label="فتح منتجات {{ $partnerName }}"
+              >
                 <img
                   src="{{ $partnerImage }}"
-                  alt="{{ $partner->partner_name }}"
+                  alt="{{ $partnerName }}"
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
+              </a>
 
               <div class="lp-communicationsS3__content">
                 <h3 class="lp-communicationsS3__partnerName">{{ $partner->partner_name }}</h3>

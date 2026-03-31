@@ -125,6 +125,20 @@ html[dir="ltr"] .lp-communicationsS3__slide{
   justify-content: center;
 }
 
+.lp-communicationsS3__mediaLink{
+  text-decoration: none;
+}
+
+.lp-communicationsS3__mediaLink img{
+  transition: transform .28s ease, filter .28s ease;
+}
+
+.lp-communicationsS3__mediaLink:hover img,
+.lp-communicationsS3__mediaLink:focus-visible img{
+  transform: scale(1.04);
+  filter: saturate(1.04);
+}
+
 .lp-communicationsS3__media img{
   width: 100%;
   max-width: 300px;
