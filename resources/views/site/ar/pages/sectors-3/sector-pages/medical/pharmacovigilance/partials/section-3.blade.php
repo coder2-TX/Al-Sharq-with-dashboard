@@ -124,7 +124,7 @@
       const message = String(formData.get('message') || '').trim();
 
       const lines = [
-        'بلاغ جديد من صفحة التيقظ الدوائي',
+        'بلاغ جديد من صفحة التيقض الدوائي',
         fullName ? 'الاسم الكامل: ' + fullName : '',
         email ? 'البريد الإلكتروني: ' + email : '',
         phone ? 'رقم التلفون: ' + phone : '',

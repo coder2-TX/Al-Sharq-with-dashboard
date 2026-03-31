@@ -21,13 +21,13 @@ class SectorsPageMedicalSectorSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-photo';
 
-    protected static ?string $navigationLabel = 'صفحة القطاعات - القطاع الطبي';
+    protected static ?string $navigationLabel = 'القطاع الطبي';
 
     protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
 
-    protected static ?string $modelLabel = 'صفحة القطاعات - القطاع الطبي';
+    protected static ?string $modelLabel = 'القطاع الطبي';
 
-    protected static ?string $pluralModelLabel = 'صفحة القطاعات - القطاع الطبي';
+    protected static ?string $pluralModelLabel = 'القطاع الطبي';
 
     protected static ?int $navigationSort = 2;
 

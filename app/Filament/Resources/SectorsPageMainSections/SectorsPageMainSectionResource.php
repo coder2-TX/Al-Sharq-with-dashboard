@@ -21,13 +21,13 @@ class SectorsPageMainSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-photo';
 
-    protected static ?string $navigationLabel = 'صفحة القطاعات - الجزء الرئيسي';
+    protected static ?string $navigationLabel = 'الجزء الرئيسي';
 
     protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
 
-    protected static ?string $modelLabel = 'صفحة القطاعات - الجزء الرئيسي';
+    protected static ?string $modelLabel = 'الجزء الرئيسي';
 
-    protected static ?string $pluralModelLabel = 'صفحة القطاعات - الجزء الرئيسي';
+    protected static ?string $pluralModelLabel =  'الجزء الرئيسي';
 
     protected static ?int $navigationSort = 1;
 

@@ -24,13 +24,13 @@ class SectorsPageMilkFoodPageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'صفحة القطاعات - صفحة قطاع حليب الأطفال والأغذية';
+    protected static ?string $navigationLabel = 'صفحة قطاع حليب الأطفال والأغذية';
 
     protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
 
-    protected static ?string $modelLabel = 'صفحة القطاعات - صفحة قطاع حليب الأطفال والأغذية';
+    protected static ?string $modelLabel = 'صفحة قطاع حليب الأطفال والأغذية';
 
-    protected static ?string $pluralModelLabel = 'صفحة القطاعات - صفحة قطاع حليب الأطفال والأغذية';
+    protected static ?string $pluralModelLabel = 'صفحة قطاع حليب الأطفال والأغذية';
 
     protected static ?int $navigationSort = 6;
 

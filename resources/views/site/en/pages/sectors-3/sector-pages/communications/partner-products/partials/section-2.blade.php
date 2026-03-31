@@ -119,15 +119,15 @@
         Products of <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
       </h2>
 
-      <p class="lp-partnerProducts__subtitle">
-        @if($usingFallbackProducts)
+      @if($usingFallbackProducts)
+        <p class="lp-partnerProducts__subtitle">
           These are temporary default items prepared only for previewing the design. Once the layout is approved, we can connect the products dynamically from the dashboard based on the selected partner.
-        @elseif($productsPaginator->total() === 0)
+        </p>
+      @elseif($productsPaginator->total() === 0)
+        <p class="lp-partnerProducts__subtitle">
           There are no products added for this partner yet.
-        @else
-          Browse the products linked to this partner as added from the dashboard.
-        @endif
-      </p>
+        </p>
+      @endif
     </header>
 
     <div class="lp-partnerProducts__grid" aria-label="Products list">

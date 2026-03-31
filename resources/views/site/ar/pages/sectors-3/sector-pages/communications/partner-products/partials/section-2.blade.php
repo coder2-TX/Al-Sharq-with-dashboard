@@ -119,15 +119,15 @@
         منتجات <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
       </h2>
 
-      <p class="lp-partnerProducts__subtitle">
-        @if($usingFallbackProducts)
+      @if($usingFallbackProducts)
+        <p class="lp-partnerProducts__subtitle">
           هذه بيانات افتراضية مؤقتة لعرض التصميم فقط، وبعد اعتماد الشكل النهائي سنربط المنتجات مباشرة من لوحة التحكم حسب الشريك المحدد.
-        @elseif($productsPaginator->total() === 0)
+        </p>
+      @elseif($productsPaginator->total() === 0)
+        <p class="lp-partnerProducts__subtitle">
           لا توجد منتجات مضافة لهذا الشريك حالياً من لوحة التحكم.
-        @else
-          استعرض مجموعة المنتجات المرتبطة بهذا الشريك كما تمت إضافتها من لوحة التحكم.
-        @endif
-      </p>
+        </p>
+      @endif
     </header>
 
     <div class="lp-partnerProducts__grid" aria-label="قائمة المنتجات">

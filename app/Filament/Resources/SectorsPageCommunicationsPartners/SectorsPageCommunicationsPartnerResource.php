@@ -24,7 +24,7 @@ class SectorsPageCommunicationsPartnerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationLabel = 'صفحة القطاعات - شركاء قطاع الاتصالات';
+    protected static ?string $navigationLabel = 'شركاء قطاع الاتصالات';
 
     protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
 
