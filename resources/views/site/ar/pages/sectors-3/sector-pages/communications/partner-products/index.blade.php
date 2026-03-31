@@ -1,11 +1,24 @@
 @php
-    $partnerName = trim((string) request()->query('name', 'ITA POWER'));
+    $partnerId = (int) request()->query('partner_id', 0);
+    $partnerNameFromQuery = trim((string) request()->query('name', ''));
 
-    if ($partnerName === '') {
-        $partnerName = 'ITA POWER';
+    $partner = null;
+
+    if ($partnerId > 0) {
+        $partner = \App\Models\SectorsPageCommunicationsPartner::query()->find($partnerId);
     }
 
-    $partnerHeroImage = asset('assets/images/sectors/sector-details/commercial/9.png');
+    if (!$partner && $partnerNameFromQuery !== '') {
+        $partner = \App\Models\SectorsPageCommunicationsPartner::query()
+            ->where('partner_name', $partnerNameFromQuery)
+            ->first();
+    }
+
+    $partnerName = trim((string) ($partner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'ITA POWER')));
+
+    $partnerHeroImage = !empty($partner?->products_hero_image)
+        ? \Illuminate\Support\Facades\Storage::url($partner->products_hero_image)
+        : asset('assets/images/sectors/sector-details/commercial/9.png');
 @endphp
 
 <!doctype html>

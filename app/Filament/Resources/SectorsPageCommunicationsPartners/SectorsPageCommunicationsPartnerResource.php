@@ -47,14 +47,22 @@ class SectorsPageCommunicationsPartnerResource extends Resource
                         ->required()
                         ->columnSpanFull(),
 
-                    FileUpload::make('partner_image')
-                        ->label('صورة الشريك')
-                        ->image()
-                        ->disk('public')
-                        ->directory('site/sectors/communications/partners')
-                        ->visibility('public')
-                        ->required()
-                        ->columnSpanFull(),
+            FileUpload::make('partner_image')
+                ->label('صورة الشريك')
+                ->image()
+                ->disk('public')
+                ->directory('site/sectors/communications/partners')
+                ->visibility('public')
+                ->required()
+                ->columnSpanFull(),
+
+            FileUpload::make('products_hero_image')
+                ->label('صورة أول سكشن لصفحة منتجات الشريك')
+                ->image()
+                ->disk('public')
+                ->directory('site/sectors/communications/partners/products-hero')
+                ->visibility('public')
+                ->columnSpanFull(),
 
                     TextInput::make('partner_name')
                         ->label('اسم الشريك')
@@ -84,7 +92,11 @@ class SectorsPageCommunicationsPartnerResource extends Resource
                     ->label('الترتيب'),
 
                 ImageColumn::make('partner_image')
-                    ->label('الصورة')
+                    ->label('صورة الشريك')
+                    ->disk('public'),
+
+                ImageColumn::make('products_hero_image')
+                    ->label('صورة الهيرو')
                     ->disk('public'),
 
                 TextColumn::make('partner_name')

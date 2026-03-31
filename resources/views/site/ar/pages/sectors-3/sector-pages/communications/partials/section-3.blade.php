@@ -7,6 +7,7 @@
     if ($partners->isEmpty()) {
         $partners = collect([
             (object) [
+                'id' => 0,
                 'partner_image' => null,
                 'partner_name' => 'ITA POWER',
                 'description_ar' => "شركة إيطالية رائدة تأسست على يد فريق خبرة يفوق 20 عاماً في مجال الطاقة وتقنيات تكنولوجيا المعلومات مقرها في ميلانو، مع مركز دعم وتصنيع في دبي لتغطية منطقة أوروبا والشرق الأوسط وأفريقيا",
@@ -47,22 +48,22 @@
       <div class="lp-communicationsS3__viewport" data-slider-viewport aria-live="polite">
         @foreach ($partners as $partner)
           @php
+              $partnerName = trim((string) ($partner->partner_name ?? 'شريكنا'));
+
               $partnerImage = !empty($partner->partner_image)
                   ? \Illuminate\Support\Facades\Storage::url($partner->partner_image)
                   : asset('assets/images/parteners/6.png');
 
-              $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText($partner->description_ar);
+              $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText((string) ($partner->description_ar ?? ''));
+
+              $partnerUrl = route('site.ar.communications.partner-products', [
+                  'partner_id' => $partner->id ?? null,
+                  'name' => $partnerName,
+              ]);
           @endphp
 
           <article class="lp-communicationsS3__slide {{ $loop->first ? 'is-active' : '' }}" data-slide aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
             <div class="lp-communicationsS3__row">
-              @php
-                  $partnerName = trim((string) ($partner->partner_name ?? 'شريكنا'));
-                  $partnerUrl = route('site.ar.communications.partner-products', [
-                      'name' => $partnerName,
-                  ]);
-              @endphp
-
               <a
                 class="lp-communicationsS3__media lp-communicationsS3__mediaLink"
                 href="{{ $partnerUrl }}"
@@ -77,7 +78,7 @@
               </a>
 
               <div class="lp-communicationsS3__content">
-                <h3 class="lp-communicationsS3__partnerName">{{ $partner->partner_name }}</h3>
+                <h3 class="lp-communicationsS3__partnerName">{{ $partnerName }}</h3>
                 <div class="lp-communicationsS3__text">
                   {!! $partnerDescription !!}
                 </div>

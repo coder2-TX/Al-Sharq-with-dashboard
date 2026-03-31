@@ -7,6 +7,7 @@
     if ($partners->isEmpty()) {
         $partners = collect([
             (object) [
+                'id' => 0,
                 'partner_image' => null,
                 'partner_name' => 'ITA POWER',
                 'description_en' => "A leading Italian company established by a team with more than 20 years of experience in the fields of energy and information technology. Headquartered in Milan, it also has a support and manufacturing center in Dubai to serve Europe, the Middle East, and Africa.",
@@ -59,9 +60,10 @@
                   ? \Illuminate\Support\Facades\Storage::url($partner->partner_image)
                   : asset('assets/images/parteners/6.png');
 
-              $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText($partner->description_en);
+              $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText((string) ($partner->description_en ?? ''));
 
               $partnerUrl = route('site.en.communications.partner-products', [
+                  'partner_id' => $partner->id ?? null,
                   'name' => $partnerName,
               ]);
           @endphp
