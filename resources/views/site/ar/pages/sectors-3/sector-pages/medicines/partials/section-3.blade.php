@@ -1,7 +1,7 @@
 <section class="lp-section lp-iso lp-medicalIso" aria-label="الإبلاغ عن الأعراض الجانبية للأدوية">
   <div class="lp-iso__inner">
 
-    <div class="lp-isoCard" role="group" aria-label="التيقض الدوائي">
+    <div class="lp-isoCard" role="group" aria-label="التيقظ الدوائي">
       <span class="lp-isoCard__stroke" aria-hidden="true"></span>
 
       <div class="lp-isoCard__layer">
@@ -13,12 +13,12 @@
 
           <a
             class="lp-cta lp-cta--iso"
-            href="{{ route('site.ar.sectors.medical.pharmacovigilance') }}"
-            aria-label="الانتقال إلى صفحة التيقض الدوائي"
+            href="{{ route('site.ar.sectors.medicines.pharmacovigilance') }}"
+            aria-label="الانتقال إلى صفحة التيقظ الدوائي"
           >
             <span class="lp-cta__stroke" aria-hidden="true"></span>
             <span class="lp-cta__layer" aria-hidden="true">
-              <span class="lp-cta__text">التيقض الدوائي</span>
+              <span class="lp-cta__text">التيقظ الدوائي</span>
             </span>
           </a>
 

@@ -1,0 +1,79 @@
+@php
+    $partnerId = (int) request()->query('partner_id', 1);
+    $partnerNameFromQuery = trim((string) request()->query('name', ''));
+
+    $partners = collect([
+        ['id' => 1, 'partner_name' => 'PharmaNova'],
+        ['id' => 2, 'partner_name' => 'VitaCure'],
+        ['id' => 3, 'partner_name' => 'MediCore'],
+        ['id' => 4, 'partner_name' => 'BioThera'],
+        ['id' => 5, 'partner_name' => 'Healix'],
+        ['id' => 6, 'partner_name' => 'CareMeds'],
+    ]);
+
+    $resolvedPartner = $partners->firstWhere('id', $partnerId);
+
+    if (!$resolvedPartner && $partnerNameFromQuery !== '') {
+        $resolvedPartner = $partners->first(function ($item) use ($partnerNameFromQuery) {
+            return $item['partner_name'] === $partnerNameFromQuery;
+        });
+    }
+
+    $partnerName = $resolvedPartner['partner_name'] ?? ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'PharmaNova');
+    $partnerHeroImage = asset('assets/images/sectors/sector-details/medical/4.jpeg');
+@endphp
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>منتجات {{ $partnerName }} | شركة الشرق</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/sectors.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/iso.css') }}" />
+
+  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/medical/section-1.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/communications/partner-products/section-2.css') }}" />
+
+  <script src="{{ asset('assets/js/header.js') }}" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="{{ asset('assets/js/hero.js') }}" defer></script>
+  <script src="{{ asset('assets/js/app.js') }}" defer></script>
+</head>
+
+<body
+  class="lp-page--medicalSector"
+  data-show-brand="true"
+  data-brand-src="{{ asset('assets/images/header/Brand_Mark.png') }}"
+  data-brand-href="{{ route('site.ar.home') }}"
+>
+  @include('site.ar.partials.header')
+
+  <main id="medicines-partner-products-page">
+    @include('site.ar.pages.sectors-3.sector-pages.medicines.partner-products.partials.section-1')
+    @include('site.ar.pages.sectors-3.sector-pages.medicines.partner-products.partials.section-2')
+  </main>
+
+  @include('site.ar.partials.footer')
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof window.lpInitHeader === 'function' && !window.__lpHeaderInited) {
+        window.__lpHeaderInited = true;
+        window.lpInitHeader();
+      }
+
+      if (typeof window.lpInitHeroLines === 'function' && !window.__lpHeroLinesInited) {
+        window.__lpHeroLinesInited = true;
+        window.lpInitHeroLines();
+      }
+    });
+  </script>
+</body>
+</html>

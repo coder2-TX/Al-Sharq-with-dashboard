@@ -14,7 +14,7 @@
               src="{{ $sectorsPageMedicalSectorSection?->medicines_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalSectorSection->medicines_image) : asset('assets/images/sectors/sector-details/medical/4.jpeg') }}"
               alt="قطاع الأدوية"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.medical.page') }}" aria-label="الانتقال إلى صفحة قطاع الأدوية">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.medicines') }}" aria-label="الانتقال إلى صفحة قطاع الأدوية">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -28,7 +28,7 @@
               src="{{ $sectorsPageMedicalSectorSection?->medical_supplies_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalSectorSection->medical_supplies_image) : asset('assets/images/1.jpg') }}"
               alt="قطاع المستلزمات الطبية"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.medical.page') }}" aria-label="الانتقال إلى صفحة قطاع المستلزمات الطبية">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.medical_supplies') }}" aria-label="الانتقال إلى صفحة قطاع المستلزمات الطبية">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>

@@ -1,9 +1,9 @@
 @php
-    $sectorsPageMedicalPage = \App\Models\SectorsPageMedicalPage::query()->first();
+    $sectorSection = \App\Models\SectorsPageMedicalSectorSection::query()->first();
 
-    $medicalPageHeroImage = $sectorsPageMedicalPage?->hero_image
-        ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalPage->hero_image)
-        : asset('assets/images/section/1.png');
+    $heroImage = $sectorSection?->medical_supplies_image
+        ? \Illuminate\Support\Facades\Storage::url($sectorSection->medical_supplies_image)
+        : asset('assets/images/1.jpg');
 @endphp
 
 <!doctype html>
@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>القطاع الطبي | شركة الشرق</title>
+  <title>قطاع المستلزمات الطبية | شركة الشرق</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -23,11 +23,12 @@
 
   <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/medical/section-1.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/medical/section-2.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/medical/section-3.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/communications/section-3.css') }}" />
 
   <script src="{{ asset('assets/js/header.js') }}" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="{{ asset('assets/js/hero.js') }}" defer></script>
+  <script src="{{ asset('assets/js/communications-section-3-slider.js') }}" defer></script>
   <script src="{{ asset('assets/js/app.js') }}" defer></script>
 </head>
 
@@ -39,17 +40,17 @@
 >
   @include('site.ar.partials.header')
 
-  <main id="medical-sector-page">
+  <main id="medical-supplies-sector-page">
 
     <section
       class="lp-section lp-medicalS1"
-      id="medical-hero"
-      aria-label="القطاع الطبي"
+      id="medical-supplies-hero"
+      aria-label="قطاع المستلزمات الطبية"
       style="position: relative; overflow: hidden; isolation: isolate;"
     >
       <div
         aria-hidden="true"
-        style="position:absolute; inset:0; background-image:url('{{ $medicalPageHeroImage }}'); background-size:cover; background-position:center; background-repeat:no-repeat; z-index:0;"
+        style="position:absolute; inset:0; background-image:url('{{ $heroImage }}'); background-size:cover; background-position:center; background-repeat:no-repeat; z-index:0;"
       ></div>
 
       <div
@@ -76,7 +77,7 @@
           <div class="lp-medicalS1__text">
             <h1 class="lp-medicalS1__title lp-sectors__title">
               <span class="lp-medicalS1__titleLine">
-                القطاع <span class="lp-medicalS1__accentWord">الطبي</span>
+                قطاع <span class="lp-medicalS1__accentWord">المستلزمات الطبية</span>
               </span>
             </h1>
           </div>
@@ -84,8 +85,8 @@
       </div>
     </section>
 
-    @include('site.ar.pages.sectors-3.sector-pages.medical.partials.section-2')
-    @include('site.ar.pages.sectors-3.sector-pages.medical.partials.section-3')
+    @include('site.ar.pages.sectors-3.sector-pages.medical-supplies.partials.section-2')
+    @include('site.ar.pages.sectors-3.sector-pages.medical-supplies.partials.section-3')
 
   </main>
 
