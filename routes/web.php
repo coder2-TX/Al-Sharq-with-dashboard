@@ -31,6 +31,15 @@ Route::view('/advertising/partner-products', 'site.ar.pages.sectors-3.sector-pag
 Route::view('/sectors/communications', 'site.ar.pages.sectors-3.sector-pages.communications.index')->name('site.ar.sectors.communications');
 Route::view('/communications/partner-products', 'site.ar.pages.sectors-3.sector-pages.communications.partner-products.index')->name('site.ar.communications.partner-products');
 
+Route::view('/sectors/cars', 'site.ar.pages.sectors-3.sector-pages.cars.index')->name('site.ar.sectors.cars');
+Route::view('/cars/partner-products', 'site.ar.pages.sectors-3.sector-pages.cars.partner-products.index')->name('site.ar.cars.partner-products');
+
+Route::view('/sectors/paints', 'site.ar.pages.sectors-3.sector-pages.paints.index')->name('site.ar.sectors.paints');
+Route::view('/paints/partner-products', 'site.ar.pages.sectors-3.sector-pages.paints.partner-products.index')->name('site.ar.paints.partner-products');
+
+Route::view('/sectors/vocational-training', 'site.ar.pages.sectors-3.sector-pages.vocational-training.index')->name('site.ar.sectors.vocational_training');
+Route::view('/vocational-training/partner-products', 'site.ar.pages.sectors-3.sector-pages.vocational-training.partner-products.index')->name('site.ar.vocational_training.partner-products');
+
 Route::view('/iso', 'site.ar.pages.iso.index')->name('site.ar.iso');
 
 Route::prefix('en')->name('site.en.')->group(function () {

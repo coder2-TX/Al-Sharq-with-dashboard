@@ -14,7 +14,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->cars_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->cars_image) : asset('assets/images/sectors/sector-details/commercial/7.jpeg') }}"
               alt="قطاع السيارات"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.contact') }}" aria-label="تواصل بخصوص قطاع السيارات">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.cars') }}" aria-label="الانتقال إلى صفحة قطاع السيارات">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -56,7 +56,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->paints_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->paints_image) : asset('assets/images/sectors/sector-details/commercial/1.png') }}"
               alt="قطاع الدهانات"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.contact') }}" aria-label="تواصل بخصوص قطاع الدهانات">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.paints') }}" aria-label="الانتقال إلى صفحة قطاع الدهانات">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -70,7 +70,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->vocational_training_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->vocational_training_image) : asset('assets/images/sectors/sector-details/commercial/8.jpeg') }}"
               alt="قطاع التدريب المهني"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.contact') }}" aria-label="تواصل بخصوص قطاع التدريب المهني">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.vocational_training') }}" aria-label="الانتقال إلى صفحة قطاع التدريب المهني">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
