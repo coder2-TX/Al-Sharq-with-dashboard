@@ -13,7 +13,9 @@ Route::view('/sectors/medical', 'site.ar.pages.sectors-3.sector-details.medical.
 Route::view('/sectors/commercial', 'site.ar.pages.sectors-3.sector-details.commercial.index')->name('site.ar.sectors.commercial');
 Route::view('/sectors/medical-sector', 'site.ar.pages.sectors-3.sector-pages.medical.index')->name('site.ar.sectors.medical.page');
 Route::view('/sectors/milk-food', 'site.ar.pages.sectors-3.sector-pages.milk-food.index')->name('site.ar.sectors.milk_food');
+Route::view('/milk-food/partner-products', 'site.ar.pages.sectors-3.sector-pages.milk-food.partner-products.index')->name('site.ar.milk-food.partner-products');
 Route::view('/sectors/advertising', 'site.ar.pages.sectors-3.sector-pages.advertising.index')->name('site.ar.sectors.advertising');
+Route::view('/advertising/partner-products', 'site.ar.pages.sectors-3.sector-pages.advertising.partner-products.index')->name('site.ar.advertising.partner-products');
 Route::view('/sectors/communications', 'site.ar.pages.sectors-3.sector-pages.communications.index')->name('site.ar.sectors.communications');
 Route::view('/communications/partner-products', 'site.ar.pages.sectors-3.sector-pages.communications.partner-products.index')->name('site.ar.communications.partner-products');
 Route::view('/sectors/medical/pharmacovigilance', 'site.ar.pages.sectors-3.sector-pages.medical.pharmacovigilance.index')->name('site.ar.sectors.medical.pharmacovigilance');
@@ -32,7 +34,9 @@ Route::prefix('en')->name('site.en.')->group(function () {
     Route::view('/sectors/commercial', 'site.en.pages.sectors-3.sector-details.commercial.index')->name('sectors.commercial');
     Route::view('/sectors/medical-sector', 'site.en.pages.sectors-3.sector-pages.medical.index')->name('sectors.medical.page');
     Route::view('/sectors/milk-food', 'site.en.pages.sectors-3.sector-pages.milk-food.index')->name('sectors.milk_food');
+    Route::view('/milk-food/partner-products', 'site.en.pages.sectors-3.sector-pages.milk-food.partner-products.index')->name('milk-food.partner-products');
     Route::view('/sectors/advertising', 'site.en.pages.sectors-3.sector-pages.advertising.index')->name('sectors.advertising');
+    Route::view('/advertising/partner-products', 'site.en.pages.sectors-3.sector-pages.advertising.partner-products.index')->name('advertising.partner-products');
     Route::view('/sectors/communications', 'site.en.pages.sectors-3.sector-pages.communications.index')->name('sectors.communications');
     Route::view('/communications/partner-products', 'site.en.pages.sectors-3.sector-pages.communications.partner-products.index')->name('communications.partner-products');
     Route::view('/sectors/medical/pharmacovigilance', 'site.en.pages.sectors-3.sector-pages.medical.pharmacovigilance.index')->name('sectors.medical.pharmacovigilance');

@@ -23,11 +23,12 @@
 
   <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/medical/section-1.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/advertising/section-2.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/advertising/section-3.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/communications/section-3.css') }}" />
 
   <script src="{{ asset('assets/js/header.js') }}" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="{{ asset('assets/js/hero.js') }}" defer></script>
+  <script src="{{ asset('assets/js/communications-section-3-slider.js') }}" defer></script>
   <script src="{{ asset('assets/js/app.js') }}" defer></script>
 </head>
 
@@ -85,6 +86,7 @@
     </section>
 
     @include('site.ar.pages.sectors-3.sector-pages.advertising.partials.section-2')
+    @include('site.ar.pages.sectors-3.sector-pages.advertising.partials.section-3')
 
   </main>
 
