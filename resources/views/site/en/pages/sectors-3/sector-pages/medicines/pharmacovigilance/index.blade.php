@@ -30,11 +30,11 @@
 >
   @include('site.en.partials.header')
 
-  <main id="medical-pharmacovigilance-page">
+  <main id="medicines-pharmacovigilance-page">
 
-    @include('site.en.pages.sectors-3.sector-pages.medical.pharmacovigilance.partials.section-1')
-    @include('site.en.pages.sectors-3.sector-pages.medical.pharmacovigilance.partials.section-2')
-    @include('site.en.pages.sectors-3.sector-pages.medical.pharmacovigilance.partials.section-3')
+    @include('site.en.pages.sectors-3.sector-pages.medicines.pharmacovigilance.partials.section-1')
+    @include('site.en.pages.sectors-3.sector-pages.medicines.pharmacovigilance.partials.section-2')
+    @include('site.en.pages.sectors-3.sector-pages.medicines.pharmacovigilance.partials.section-3')
 
   </main>
 

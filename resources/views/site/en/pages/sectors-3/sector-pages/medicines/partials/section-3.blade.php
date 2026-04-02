@@ -13,7 +13,7 @@
 
           <a
             class="lp-cta lp-cta--iso"
-            href="{{ route('site.en.sectors.medical.pharmacovigilance') }}"
+            href="{{ route('site.en.sectors.medicines.pharmacovigilance') }}"
             aria-label="Go to the Pharmacovigilance page"
           >
             <span class="lp-cta__stroke" aria-hidden="true"></span>

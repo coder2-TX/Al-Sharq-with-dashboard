@@ -1,7 +1,8 @@
 @php
     $sectorsPageMedicalSectorSection = \App\Models\SectorsPageMedicalSectorSection::query()->first();
 
-    $medicalPageHref = route('site.en.sectors.medical.page');
+    $medicinesHref = route('site.en.sectors.medicines');
+    $medicalSuppliesHref = route('site.en.sectors.medical_supplies');
     $milkFoodHref = route('site.en.sectors.milk_food');
 @endphp
 
@@ -17,7 +18,7 @@
               src="{{ $sectorsPageMedicalSectorSection?->medicines_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalSectorSection->medicines_image) : asset('assets/images/sectors/sector-details/medical/4.jpeg') }}"
               alt="Medicines Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $medicalPageHref }}" aria-label="Go to the Medicines Sector page">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $medicinesHref }}" aria-label="Go to the Medicines Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -31,7 +32,7 @@
               src="{{ $sectorsPageMedicalSectorSection?->medical_supplies_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageMedicalSectorSection->medical_supplies_image) : asset('assets/images/1.jpg') }}"
               alt="Medical Supplies Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $medicalPageHref }}" aria-label="Go to the Medical Supplies Sector page">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $medicalSuppliesHref }}" aria-label="Go to the Medical Supplies Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
