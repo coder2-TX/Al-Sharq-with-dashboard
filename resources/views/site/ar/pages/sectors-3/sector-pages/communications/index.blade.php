@@ -3,7 +3,7 @@
 
     $communicationsHeroImage = $communicationsPage?->hero_image
         ? \Illuminate\Support\Facades\Storage::url($communicationsPage->hero_image)
-        : asset('assets/images/section/1.png');
+        : asset('assets/images/section/8.png');
 @endphp
 
 <!doctype html>

@@ -17,9 +17,20 @@
     }
 
     $partnerName = trim((string) ($resolvedPartner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'ITA POWER')));
+    $partnerNameHasLatin = preg_match('/[A-Za-z]/', $partnerName) === 1;
+
+    $normalizedPartnerName = strtoupper((string) preg_replace('/\s+/', ' ', $partnerName));
+    $isItaPower = $normalizedPartnerName === 'ITA POWER';
+
+    $assetFromPublic = static function (string $path): string {
+        $normalized = trim(str_replace('\\', '/', $path), '/');
+        $segments = array_map('rawurlencode', explode('/', $normalized));
+        return asset(implode('/', $segments));
+    };
 
     $productsPaginator = null;
     $usingFallbackProducts = false;
+    $fallbackMode = null;
 
     if ($resolvedPartner) {
         $productsPaginator = \App\Models\SectorsPageCommunicationsPartnerProduct::query()
@@ -30,8 +41,168 @@
             ->withQueryString();
     }
 
-    if (!$resolvedPartner) {
+    $shouldUseItaPowerFallback = $isItaPower && (!$resolvedPartner || ($productsPaginator && $productsPaginator->total() === 0));
+
+    if ($shouldUseItaPowerFallback) {
         $usingFallbackProducts = true;
+        $fallbackMode = 'ita_power';
+
+        $defaultProducts = collect([
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 opened.png'),
+                'name' => 'Ermes T 100-600 - Opened',
+                'description' => 'منتج افتراضي من سلسلة ITA POWER لعرض تصميم صفحة المنتجات بصورة واضحة ومباشرة.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front.png'),
+                'name' => 'Ermes T 100-600 - Front',
+                'description' => 'وحدة افتراضية ضمن منتجات ITA POWER تم إضافتها لعرض جميع الصور المتوفرة أمام العميل.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front-sideR.png'),
+                'name' => 'Ermes T 100-600 - Front Side R',
+                'description' => 'صورة افتراضية لمنتج من ITA POWER تُستخدم مؤقتاً حتى يتم إدخال البيانات الفعلية من لوحة التحكم.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front-side.png'),
+                'name' => 'Ermes T 100-600 - Front Side',
+                'description' => 'عنصر افتراضي لعرض المنتج ضمن شبكة المنتجات مع إمكانية استبداله لاحقاً بالبيانات الحقيقية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes interno con batterie.png'),
+                'name' => 'Ermes Interno Con Batterie',
+                'description' => 'صورة افتراضية ضمن منتجات ITA POWER تعرض نموذجاً إضافياً ضمن نفس السلسلة التقنية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes gruppo.jpg'),
+                'name' => 'Ermes Gruppo',
+                'description' => 'منتج افتراضي لإظهار تنوع صور الشريك داخل صفحة المنتجات حتى قبل الربط الديناميكي الكامل.',
+            ],
+
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/14.2.jpg'),
+                'name' => 'Smart Rack 14.2',
+                'description' => 'نموذج افتراضي من سلسلة Smart Rack تم إدراجه لعرض الصور المتوفرة الخاصة بالشريك.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/14.1.jpg'),
+                'name' => 'Smart Rack 14.1',
+                'description' => 'وصف افتراضي بسيط لمنتج من ITA POWER يمكن استبداله لاحقاً من قاعدة البيانات.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.4.jpg'),
+                'name' => 'Smart Rack 13.4',
+                'description' => 'عنصر مؤقت لعرض شكل المنتج وصورته داخل الواجهة حتى يتم إضافة البيانات النهائية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.3.jpg'),
+                'name' => 'Smart Rack 13.3',
+                'description' => 'بطاقة افتراضية مخصصة لعرض منتج من سلسلة Smart Rack ضمن شبكة المنتجات الحالية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.2.jpg'),
+                'name' => 'Smart Rack 13.2',
+                'description' => 'منتج افتراضي ضمن العرض الأولي للشريك ITA POWER ليظهر للعميل جميع الصور المتاحة.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.4.jpg'),
+                'name' => 'Smart Rack 12.4',
+                'description' => 'بيان افتراضي تجريبي تم وضعه لإظهار الصورة ضمن بطاقات المنتجات بشكل مرتب.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.2.jpg'),
+                'name' => 'Smart Rack 12.2',
+                'description' => 'صورة افتراضية ضمن محتوى ITA POWER لعرض النماذج المختلفة مؤقتاً لحين التحديث من الداشبورد.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.1.jpg'),
+                'name' => 'Smart Rack 12.1',
+                'description' => 'هذا المنتج يستخدم كعنصر عرض مبدئي ليوضح تنوع صور ومنتجات الشريك للعميل.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.4.jpg'),
+                'name' => 'Smart Rack 11.4',
+                'description' => 'وصف تجريبي مرن يمكن تغييره لاحقاً بسهولة بمجرد ربط بيانات المنتجات الحقيقية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.3.jpg'),
+                'name' => 'Smart Rack 11.3',
+                'description' => 'عنصر افتراضي من صور Smart Rack لتمثيل منتج مستقل داخل صفحة الشريك.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.2.jpg'),
+                'name' => 'Smart Rack 11.2',
+                'description' => 'بطاقة منتج مؤقتة تم إعدادها فقط لعرض الصورة والتصميم على العميل بشكل واضح.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.1.jpg'),
+                'name' => 'Smart Rack 11.1',
+                'description' => 'منتج افتراضي من ITA POWER يهدف إلى استعراض كامل الصور المتوفرة في هذه المرحلة.',
+            ],
+
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/10.1.jpg'),
+                'name' => 'Smart Plus 10.1',
+                'description' => 'وحدة افتراضية ضمن سلسلة Smart Plus تم إضافتها لتجهيز محتوى العرض أمام العميل.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.5.jpg'),
+                'name' => 'Smart Plus 8.5',
+                'description' => 'وصف افتراضي مبسط لمنتج ضمن ITA POWER مع إمكانية تغييره لاحقاً حسب البيانات الفعلية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.3.jpg'),
+                'name' => 'Smart Plus 8.3',
+                'description' => 'تمثيل افتراضي لصورة منتج من سلسلة Smart Plus ضمن شبكة المنتجات الحالية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.2.jpg'),
+                'name' => 'Smart Plus 8.2',
+                'description' => 'صورة منتج افتراضية أضيفت لعرض كامل محتوى ITA POWER قبل استكمال الربط مع قاعدة البيانات.',
+            ],
+
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.6.jpg'),
+                'name' => 'Lite 4.6',
+                'description' => 'نموذج افتراضي من سلسلة Lite لعرض صور المنتجات المتعددة الخاصة بالشريك داخل الصفحة.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.5.jpg'),
+                'name' => 'Lite 4.5',
+                'description' => 'بطاقة مؤقتة ضمن سلسلة Lite تم تجهيزها لعرض التصميم والمنتجات بشكل مكتمل.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.2.jpg'),
+                'name' => 'Lite 4.2',
+                'description' => 'منتج افتراضي بسيط مخصص للاستعراض فقط، ويمكن لاحقاً استبداله ببيانات حقيقية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/3.3.jpg'),
+                'name' => 'Lite 3.3',
+                'description' => 'عنصر عرض تجريبي ضمن مجموعة Lite لتمكين العميل من مشاهدة كل الصور الحالية.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/3.2.jpg'),
+                'name' => 'Lite 3.2',
+                'description' => 'صورة افتراضية أخيرة ضمن سلسلة Lite لإكمال عرض جميع صور ITA POWER في هذه الصفحة.',
+            ],
+        ]);
+
+        $currentPage = max((int) request()->query('page', 1), 1);
+
+        $productsPaginator = new \Illuminate\Pagination\LengthAwarePaginator(
+            $defaultProducts->forPage($currentPage, $perPage)->values(),
+            $defaultProducts->count(),
+            $perPage,
+            $currentPage,
+            [
+                'path' => url()->current(),
+                'query' => request()->except('page'),
+            ]
+        );
+    } elseif (!$resolvedPartner) {
+        $usingFallbackProducts = true;
+        $fallbackMode = 'generic';
 
         $defaultProducts = collect([
             [
@@ -116,10 +287,21 @@
 
     <header class="lp-partnerProducts__head">
       <h2 class="lp-sectors__title lp-partnerProducts__title">
-        منتجات <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
+        منتجات
+        <span class="lp-sectors__titleAccent">
+          @if($partnerNameHasLatin)
+            <span class="lp-autoLatin" dir="ltr" lang="en">{{ $partnerName }}</span>
+          @else
+            {{ $partnerName }}
+          @endif
+        </span>
       </h2>
 
-      @if($usingFallbackProducts)
+      @if($usingFallbackProducts && $fallbackMode === 'ita_power')
+        <p class="lp-partnerProducts__subtitle">
+          هذه منتجات افتراضية مخصصة لشريك ITA POWER، وستُستبدل تلقائياً بمنتجات لوحة التحكم بمجرد إضافتها لهذا الشريك.
+        </p>
+      @elseif($usingFallbackProducts)
         <p class="lp-partnerProducts__subtitle">
           هذه بيانات افتراضية مؤقتة لعرض التصميم فقط، وبعد اعتماد الشكل النهائي سنربط المنتجات مباشرة من لوحة التحكم حسب الشريك المحدد.
         </p>
@@ -133,18 +315,29 @@
     <div class="lp-partnerProducts__grid" aria-label="قائمة المنتجات">
       @if($usingFallbackProducts)
         @foreach ($productsPaginator as $product)
-          <article class="lp-partnerProducts__card" aria-label="{{ $product['name'] }}">
+          @php
+              $productName = (string) $product['name'];
+              $productNameHasLatin = preg_match('/[A-Za-z]/', $productName) === 1;
+          @endphp
+
+          <article class="lp-partnerProducts__card" aria-label="{{ $productName }}">
             <div class="lp-partnerProducts__media">
               <img
                 src="{{ $product['image'] }}"
-                alt="{{ $product['name'] }}"
+                alt="{{ $productName }}"
                 loading="lazy"
                 decoding="async"
               />
             </div>
 
             <div class="lp-partnerProducts__body">
-              <h3 class="lp-partnerProducts__name">{{ $product['name'] }}</h3>
+              <h3 class="lp-partnerProducts__name">
+                @if($productNameHasLatin)
+                  <span class="lp-autoLatin" dir="ltr" lang="en">{{ $productName }}</span>
+                @else
+                  {{ $productName }}
+                @endif
+              </h3>
               <p class="lp-partnerProducts__desc">{{ $product['description'] }}</p>
             </div>
           </article>
@@ -158,6 +351,7 @@
 
               $productName = trim((string) ($product->name_ar ?? 'منتج'));
               $productDescription = trim((string) ($product->description_ar ?? ''));
+              $productNameHasLatin = preg_match('/[A-Za-z]/', $productName) === 1;
           @endphp
 
           <article class="lp-partnerProducts__card" aria-label="{{ $productName }}">
@@ -171,7 +365,13 @@
             </div>
 
             <div class="lp-partnerProducts__body">
-              <h3 class="lp-partnerProducts__name">{{ $productName }}</h3>
+              <h3 class="lp-partnerProducts__name">
+                @if($productNameHasLatin)
+                  <span class="lp-autoLatin" dir="ltr" lang="en">{{ $productName }}</span>
+                @else
+                  {{ $productName }}
+                @endif
+              </h3>
               <p class="lp-partnerProducts__desc">{{ $productDescription }}</p>
             </div>
           </article>

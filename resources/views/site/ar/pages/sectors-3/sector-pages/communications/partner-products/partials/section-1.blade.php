@@ -34,7 +34,13 @@
         <h1 class="lp-medicalS1__title lp-sectors__title">
           <span class="lp-medicalS1__titleLine">منتجات</span>
           <span class="lp-medicalS1__titleLine">
-            <span class="lp-medicalS1__accentWord">{{ $partnerName }}</span>
+            <span class="lp-medicalS1__accentWord">
+              @if(preg_match('/[A-Za-z]/', $partnerName))
+                <span class="lp-autoLatin" dir="ltr" lang="en">{{ $partnerName }}</span>
+              @else
+                {{ $partnerName }}
+              @endif
+            </span>
           </span>
         </h1>
       </div>

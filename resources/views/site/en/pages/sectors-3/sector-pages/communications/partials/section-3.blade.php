@@ -7,10 +7,46 @@
     if ($partners->isEmpty()) {
         $partners = collect([
             (object) [
-                'id' => 0,
+                'id' => 1,
                 'partner_image' => null,
+                'default_image' => 'assets/images/parteners/6.png',
                 'partner_name' => 'ITA POWER',
-                'description_en' => "A leading Italian company established by a team with more than 20 years of experience in the fields of energy and information technology. Headquartered in Milan, it also has a support and manufacturing center in Dubai to serve Europe, the Middle East, and Africa.",
+                'description_en' => 'A leading Italian company established by a team with more than 20 years of experience in the fields of energy and information technology. Headquartered in Milan, it also has a support and manufacturing center in Dubai to serve Europe, the Middle East, and Africa.',
+            ],
+            (object) [
+                'id' => 2,
+                'partner_image' => null,
+                'default_image' => 'assets/images/parteners/16.png',
+                'partner_name' => 'XONTEL',
+                'description_en' => 'A leading Arab brand in smart communication technologies, established in 2004 in Kuwait by specialized engineers. It is a registered trademark in the European Union and holds certifications such as IEEE, FCC, CE, and SASO.',
+            ],
+            (object) [
+                'id' => 3,
+                'partner_image' => null,
+                'default_image' => 'assets/images/parteners/4.png',
+                'partner_name' => 'Ruijie & Reyee',
+                'description_en' => 'One of the world’s leading companies in network infrastructure, founded in 2003 and serving more than 90 countries through advanced technologies and a global research and development team.',
+            ],
+            (object) [
+                'id' => 4,
+                'partner_image' => null,
+                'default_image' => 'assets/images/parteners/8.png',
+                'partner_name' => 'INSPUR',
+                'description_en' => 'A global provider of advanced digital infrastructure solutions, delivering high-efficiency technologies in servers, data centers, and smart platforms that help organizations build reliable and scalable communication and operational systems.',
+            ],
+            (object) [
+                'id' => 5,
+                'partner_image' => null,
+                'default_image' => 'assets/images/parteners/5.png',
+                'partner_name' => 'HUAWEI',
+                'description_en' => 'A leading technology partner in communication and smart networking solutions, offering an integrated ecosystem that includes network infrastructure, enterprise solutions, and modern connectivity systems, with a strong focus on reliability, performance, and technological sustainability.',
+            ],
+            (object) [
+                'id' => 6,
+                'partner_image' => null,
+                'default_image' => 'assets/images/parteners/3.png',
+                'partner_name' => 'ENSMART',
+                'description_en' => 'A company specialized in smart energy solutions and systems that support technical infrastructure, providing reliable technologies for energy management, electrical protection, and operational continuity to enhance the efficiency and stability of communication networks across different operating environments.',
             ],
         ]);
     }
@@ -19,7 +55,7 @@
 <section
   class="lp-section lp-communicationsS3"
   id="communications-partners"
-  aria-label="Our Parteners"
+  aria-label="Our Partners"
   data-slider
   data-autoplay="5000"
 >
@@ -30,7 +66,7 @@
         dir="ltr"
         lang="en"
       >
-        Our Parteners
+        Our Partners
       </h2>
 
       <button
@@ -58,9 +94,13 @@
 
               $partnerImage = !empty($partner->partner_image)
                   ? \Illuminate\Support\Facades\Storage::url($partner->partner_image)
-                  : asset('assets/images/parteners/6.png');
+                  : (!empty($partner->default_image)
+                      ? asset($partner->default_image)
+                      : asset('assets/images/parteners/6.png'));
 
-              $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText((string) ($partner->description_en ?? ''));
+              $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText(
+                  (string) ($partner->description_en ?? '')
+              );
 
               $partnerUrl = route('site.en.communications.partner-products', [
                   'partner_id' => $partner->id ?? null,

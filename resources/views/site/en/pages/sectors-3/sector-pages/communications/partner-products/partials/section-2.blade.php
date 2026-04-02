@@ -18,8 +18,18 @@
 
     $partnerName = trim((string) ($resolvedPartner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'ITA POWER')));
 
+    $normalizedPartnerName = strtoupper((string) preg_replace('/\s+/', ' ', $partnerName));
+    $isItaPower = $normalizedPartnerName === 'ITA POWER';
+
+    $assetFromPublic = static function (string $path): string {
+        $normalized = trim(str_replace('\\', '/', $path), '/');
+        $segments = array_map('rawurlencode', explode('/', $normalized));
+        return asset(implode('/', $segments));
+    };
+
     $productsPaginator = null;
     $usingFallbackProducts = false;
+    $fallbackMode = null;
 
     if ($resolvedPartner) {
         $productsPaginator = \App\Models\SectorsPageCommunicationsPartnerProduct::query()
@@ -30,8 +40,168 @@
             ->withQueryString();
     }
 
-    if (!$resolvedPartner) {
+    $shouldUseItaPowerFallback = $isItaPower && (!$resolvedPartner || ($productsPaginator && $productsPaginator->total() === 0));
+
+    if ($shouldUseItaPowerFallback) {
         $usingFallbackProducts = true;
+        $fallbackMode = 'ita_power';
+
+        $defaultProducts = collect([
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 opened.png'),
+                'name' => 'Ermes T 100-600 - Opened',
+                'description' => 'A default ITA POWER product prepared to present the available product visuals clearly on the page.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front.png'),
+                'name' => 'Ermes T 100-600 - Front',
+                'description' => 'A placeholder product card created to display the current product image until dashboard data is added.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front-sideR.png'),
+                'name' => 'Ermes T 100-600 - Front Side R',
+                'description' => 'A temporary preview item from ITA POWER used to showcase the available visuals to the client.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front-side.png'),
+                'name' => 'Ermes T 100-600 - Front Side',
+                'description' => 'A default product entry prepared for visual presentation and easy replacement later from the dashboard.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes interno con batterie.png'),
+                'name' => 'Ermes Interno Con Batterie',
+                'description' => 'A temporary ITA POWER product item used to present another available product image in the layout.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes gruppo.jpg'),
+                'name' => 'Ermes Gruppo',
+                'description' => 'A default showcase product added to help display the full range of currently available partner visuals.',
+            ],
+
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/14.2.jpg'),
+                'name' => 'Smart Rack 14.2',
+                'description' => 'A placeholder item from the Smart Rack series added to display available ITA POWER product images.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/14.1.jpg'),
+                'name' => 'Smart Rack 14.1',
+                'description' => 'A simple default description prepared to preview this product image on the partner products page.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.4.jpg'),
+                'name' => 'Smart Rack 13.4',
+                'description' => 'A temporary Smart Rack product card created to show the client all currently available images.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.3.jpg'),
+                'name' => 'Smart Rack 13.3',
+                'description' => 'A visual-only default product entry that can later be replaced by real dashboard content.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.2.jpg'),
+                'name' => 'Smart Rack 13.2',
+                'description' => 'A preview item from the Smart Rack line added to complete the temporary ITA POWER showcase.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.4.jpg'),
+                'name' => 'Smart Rack 12.4',
+                'description' => 'A default showcase product prepared to present this image within the current partner layout.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.2.jpg'),
+                'name' => 'Smart Rack 12.2',
+                'description' => 'A temporary visual entry used to display another Smart Rack model until dynamic data is connected.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.1.jpg'),
+                'name' => 'Smart Rack 12.1',
+                'description' => 'A placeholder card included to keep the client-facing gallery full and visually consistent.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.4.jpg'),
+                'name' => 'Smart Rack 11.4',
+                'description' => 'A temporary default item from ITA POWER that helps present all available Smart Rack images.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.3.jpg'),
+                'name' => 'Smart Rack 11.3',
+                'description' => 'A simple placeholder product card prepared for preview and later replacement from real data.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.2.jpg'),
+                'name' => 'Smart Rack 11.2',
+                'description' => 'A default presentation item added to make sure the current visual set appears fully to the client.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.1.jpg'),
+                'name' => 'Smart Rack 11.1',
+                'description' => 'A temporary ITA POWER showcase product used only to display the image in the page design.',
+            ],
+
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/10.1.jpg'),
+                'name' => 'Smart Plus 10.1',
+                'description' => 'A default product from the Smart Plus range created for client preview and layout presentation.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.5.jpg'),
+                'name' => 'Smart Plus 8.5',
+                'description' => 'A placeholder Smart Plus item prepared to show the available partner product visuals more completely.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.3.jpg'),
+                'name' => 'Smart Plus 8.3',
+                'description' => 'A temporary product entry added only to display this image until actual product records are entered.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.2.jpg'),
+                'name' => 'Smart Plus 8.2',
+                'description' => 'A visual-only fallback item from ITA POWER used to enrich the partner products presentation.',
+            ],
+
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.6.jpg'),
+                'name' => 'Lite 4.6',
+                'description' => 'A default Lite series product prepared to display the current available image within the page design.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.5.jpg'),
+                'name' => 'Lite 4.5',
+                'description' => 'A simple placeholder card used to present this Lite model to the client during the preview stage.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.2.jpg'),
+                'name' => 'Lite 4.2',
+                'description' => 'A temporary fallback product added to keep the ITA POWER gallery complete and visually balanced.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/3.3.jpg'),
+                'name' => 'Lite 3.3',
+                'description' => 'A preview-only Lite product card that can later be replaced by real dashboard-driven content.',
+            ],
+            [
+                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/3.2.jpg'),
+                'name' => 'Lite 3.2',
+                'description' => 'A final default Lite item added to ensure that all currently available ITA POWER images are shown.',
+            ],
+        ]);
+
+        $currentPage = max((int) request()->query('page', 1), 1);
+
+        $productsPaginator = new \Illuminate\Pagination\LengthAwarePaginator(
+            $defaultProducts->forPage($currentPage, $perPage)->values(),
+            $defaultProducts->count(),
+            $perPage,
+            $currentPage,
+            [
+                'path' => url()->current(),
+                'query' => request()->except('page'),
+            ]
+        );
+    } elseif (!$resolvedPartner) {
+        $usingFallbackProducts = true;
+        $fallbackMode = 'generic';
 
         $defaultProducts = collect([
             [
@@ -119,7 +289,11 @@
         Products of <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
       </h2>
 
-      @if($usingFallbackProducts)
+      @if($usingFallbackProducts && $fallbackMode === 'ita_power')
+        <p class="lp-partnerProducts__subtitle">
+          These are default products prepared specifically for ITA POWER. They will be replaced automatically by dashboard products as soon as items are added for this partner.
+        </p>
+      @elseif($usingFallbackProducts)
         <p class="lp-partnerProducts__subtitle">
           These are temporary default items prepared only for previewing the design. Once the layout is approved, we can connect the products dynamically from the dashboard based on the selected partner.
         </p>
