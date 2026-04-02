@@ -110,18 +110,14 @@
 
           <article class="lp-communicationsS3__slide {{ $loop->first ? 'is-active' : '' }}" data-slide aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
             <div class="lp-communicationsS3__row">
-              <a
-                class="lp-communicationsS3__media lp-communicationsS3__mediaLink"
-                href="{{ $partnerUrl }}"
-                aria-label="Open {{ $partnerName }} products"
-              >
+              <div class="lp-communicationsS3__media">
                 <img
                   src="{{ $partnerImage }}"
                   alt="{{ $partnerName }}"
                   loading="lazy"
                   decoding="async"
                 />
-              </a>
+              </div>
 
               <div class="lp-communicationsS3__content">
                 <h3
@@ -138,6 +134,19 @@
                   lang="en"
                 >
                   {!! $partnerDescription !!}
+                </div>
+
+                <div class="lp-communicationsS3__actions">
+                  <a
+                    class="lp-cta lp-cta--partner"
+                    href="{{ $partnerUrl }}"
+                    aria-label="View {{ $partnerName }} products"
+                  >
+                    <span class="lp-cta__stroke" aria-hidden="true"></span>
+                    <span class="lp-cta__layer" aria-hidden="true">
+                      <span class="lp-cta__text">View Products</span>
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
