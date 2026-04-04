@@ -1,42 +1,49 @@
 @php
-    $partners = collect([
-        (object) [
-            'id' => 1,
-            'partner_image' => asset('assets/images/parteners/6.png'),
-            'partner_name' => 'JOTUN',
-            'description_ar' => 'علامة عالمية معروفة في الدهانات والحلول الوقائية، تقدم منتجات متنوعة للمشاريع السكنية والتجارية والصناعية.',
-        ],
-        (object) [
-            'id' => 2,
-            'partner_image' => asset('assets/images/parteners/16.png'),
-            'partner_name' => 'Hempel',
-            'description_ar' => 'شركة متخصصة في الطلاءات الواقية والدهانات عالية الأداء، وتخدم قطاعات البناء والبنية التحتية والصناعة.',
-        ],
-        (object) [
-            'id' => 3,
-            'partner_image' => asset('assets/images/parteners/4.png'),
-            'partner_name' => 'National Paints',
-            'description_ar' => 'توفر حلولاً متنوعة في الدهانات والزخارف والتشطيبات، مع خيارات مناسبة للاستخدامات الداخلية والخارجية.',
-        ],
-        (object) [
-            'id' => 4,
-            'partner_image' => asset('assets/images/parteners/8.png'),
-            'partner_name' => 'SIKA',
-            'description_ar' => 'مزود معروف في مواد البناء والحماية والعزل، ويقدم منتجات مكملة مهمة لقطاع الدهانات والتشطيبات.',
-        ],
-        (object) [
-            'id' => 5,
-            'partner_image' => asset('assets/images/parteners/5.png'),
-            'partner_name' => 'KAPCI',
-            'description_ar' => 'علامة متخصصة في دهانات السيارات والطلاءات الصناعية، مع حلول مناسبة لورش الصيانة والتشطيب المهني.',
-        ],
-        (object) [
-            'id' => 6,
-            'partner_image' => asset('assets/images/parteners/3.png'),
-            'partner_name' => 'MIDO',
-            'description_ar' => 'توفر مجموعة عملية من الدهانات ومنتجات المعاجين والتشطيبات بما يخدم احتياجات المشاريع المختلفة.',
-        ],
-    ]);
+    $partners = \App\Models\SectorsPagePaintsPartner::query()
+        ->orderBy('sort_order')
+        ->orderBy('id')
+        ->get();
+
+    if ($partners->isEmpty()) {
+        $partners = collect([
+            (object) [
+                'id' => 1,
+                'partner_image' => asset('assets/images/parteners/6.png'),
+                'partner_name' => 'JOTUN',
+                'description_ar' => 'علامة عالمية معروفة في الدهانات والحلول الوقائية، تقدم منتجات متنوعة للمشاريع السكنية والتجارية والصناعية.',
+            ],
+            (object) [
+                'id' => 2,
+                'partner_image' => asset('assets/images/parteners/16.png'),
+                'partner_name' => 'Hempel',
+                'description_ar' => 'شركة متخصصة في الطلاءات الواقية والدهانات عالية الأداء، وتخدم قطاعات البناء والبنية التحتية والصناعة.',
+            ],
+            (object) [
+                'id' => 3,
+                'partner_image' => asset('assets/images/parteners/4.png'),
+                'partner_name' => 'National Paints',
+                'description_ar' => 'توفر حلولاً متنوعة في الدهانات والزخارف والتشطيبات، مع خيارات مناسبة للاستخدامات الداخلية والخارجية.',
+            ],
+            (object) [
+                'id' => 4,
+                'partner_image' => asset('assets/images/parteners/8.png'),
+                'partner_name' => 'SIKA',
+                'description_ar' => 'مزود معروف في مواد البناء والحماية والعزل، ويقدم منتجات مكملة مهمة لقطاع الدهانات والتشطيبات.',
+            ],
+            (object) [
+                'id' => 5,
+                'partner_image' => asset('assets/images/parteners/5.png'),
+                'partner_name' => 'KAPCI',
+                'description_ar' => 'علامة متخصصة في دهانات السيارات والطلاءات الصناعية، مع حلول مناسبة لورش الصيانة والتشطيب المهني.',
+            ],
+            (object) [
+                'id' => 6,
+                'partner_image' => asset('assets/images/parteners/3.png'),
+                'partner_name' => 'MIDO',
+                'description_ar' => 'توفر مجموعة عملية من الدهانات ومنتجات المعاجين والتشطيبات بما يخدم احتياجات المشاريع المختلفة.',
+            ],
+        ]);
+    }
 @endphp
 
 <section
@@ -73,6 +80,12 @@
           @php
               $partnerName = trim((string) ($partner->partner_name ?? 'شريكنا'));
 
+              $partnerImage = !empty($partner->partner_image)
+                  ? (\Illuminate\Support\Str::startsWith((string) $partner->partner_image, ['http://', 'https://'])
+                      ? $partner->partner_image
+                      : \Illuminate\Support\Facades\Storage::url($partner->partner_image))
+                  : asset('assets/images/parteners/6.png');
+
               $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText(
                   (string) ($partner->description_ar ?? '')
               );
@@ -87,7 +100,7 @@
             <div class="lp-communicationsS3__row">
               <div class="lp-communicationsS3__media">
                 <img
-                  src="{{ $partner->partner_image }}"
+                  src="{{ $partnerImage }}"
                   alt="{{ $partnerName }}"
                   loading="lazy"
                   decoding="async"
