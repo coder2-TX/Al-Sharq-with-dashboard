@@ -1,8 +1,8 @@
 @php
-    $sectorSection = \App\Models\SectorsPageMedicalSectorSection::query()->first();
+    $page = \App\Models\SectorsPageMedicalSuppliesPage::query()->first();
 
-    $heroImage = $sectorSection?->medical_supplies_image
-        ? \Illuminate\Support\Facades\Storage::url($sectorSection->medical_supplies_image)
+    $heroImage = $page?->hero_image
+        ? \Illuminate\Support\Facades\Storage::url($page->hero_image)
         : asset('assets/images/1.jpg');
 @endphp
 
@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Medical Supplies Sector | Al Sharq Company</title>
+  <title>Medical Supplies Sector | Orient Company</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -45,7 +45,7 @@
     <section
       class="lp-section lp-medicalS1"
       id="medical-supplies-hero"
-      aria-label="Medical supplies sector"
+      aria-label="Medical Supplies Sector"
       style="position: relative; overflow: hidden; isolation: isolate;"
     >
       <div
@@ -60,15 +60,15 @@
 
       <div class="lp-medicalS1__graphics" aria-hidden="true" style="position:relative; z-index:2;">
         <svg class="lp-lines lp-lines--topStart" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
-          <line class="lp-line lp-line--w10" x1="620" y1="44" x2="200" y2="44"></line>
-          <line class="lp-line lp-line--w4" x1="620" y1="72" x2="230" y2="72"></line>
-          <line class="lp-line lp-line--w1" x1="620" y1="100" x2="300" y2="100"></line>
+          <line class="lp-line lp-line--w10" x1="620" y1="44"  x2="200" y2="44"></line>
+          <line class="lp-line lp-line--w4"  x1="620" y1="72"  x2="230" y2="72"></line>
+          <line class="lp-line lp-line--w1"  x1="620" y1="100" x2="300" y2="100"></line>
         </svg>
 
         <svg class="lp-lines lp-lines--bottomEnd" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
           <line class="lp-line lp-line--w10" x1="0" y1="100" x2="420" y2="100"></line>
-          <line class="lp-line lp-line--w4" x1="0" y1="72" x2="410" y2="72"></line>
-          <line class="lp-line lp-line--w1" x1="0" y1="44" x2="340" y2="44"></line>
+          <line class="lp-line lp-line--w4"  x1="0" y1="72"  x2="410" y2="72"></line>
+          <line class="lp-line lp-line--w1"  x1="0" y1="44"  x2="340" y2="44"></line>
         </svg>
       </div>
 
@@ -77,7 +77,7 @@
           <div class="lp-medicalS1__text">
             <h1 class="lp-medicalS1__title lp-sectors__title">
               <span class="lp-medicalS1__titleLine">
-                Medical Supplies <span class="lp-medicalS1__accentWord">Sector</span>
+                Medical <span class="lp-medicalS1__accentWord">Supplies</span> Sector
               </span>
             </h1>
           </div>

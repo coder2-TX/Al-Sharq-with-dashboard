@@ -1,5 +1,7 @@
 @php
-    $articleAr = <<<'HTML'
+    $page = \App\Models\SectorsPageMedicalSuppliesPage::query()->first();
+
+    $articleAr = $page?->article_ar ?: <<<'HTML'
 <p>
 يختص قطاع المستلزمات الطبية بتوفير الاحتياجات الأساسية والتشغيلية للمرافق الصحية والعيادات والمختبرات، عبر مجموعة واسعة من المنتجات التي تدعم جودة العمل اليومي وسلامة الإجراءات الطبية.
 </p>

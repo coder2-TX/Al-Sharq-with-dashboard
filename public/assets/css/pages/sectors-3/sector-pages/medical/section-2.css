@@ -34,6 +34,7 @@
   word-spacing: .06em;
   text-align-last: start;
   font-synthesis: weight style;
+  overflow-wrap: anywhere;
 }
 
 html[dir="rtl"] .lp-medicalS2__text{
@@ -56,11 +57,20 @@ html[dir="ltr"] .lp-medicalS2__text{
 .lp-medicalS2__text div,
 .lp-medicalS2__text blockquote,
 .lp-medicalS2__text ul,
-.lp-medicalS2__text ol{
+.lp-medicalS2__text ol,
+.lp-medicalS2__text h2,
+.lp-medicalS2__text h3{
   margin: 0 0 14px;
   color: inherit;
   font-size: inherit;
   line-height: inherit;
+}
+
+.lp-medicalS2__text p,
+.lp-medicalS2__text div,
+.lp-medicalS2__text blockquote,
+.lp-medicalS2__text ul,
+.lp-medicalS2__text ol{
   font-weight: inherit;
 }
 
@@ -71,14 +81,13 @@ html[dir="ltr"] .lp-medicalS2__text{
 
 .lp-medicalS2__text li{
   margin-bottom: .35em;
-  text-align: start;
+  text-align: inherit;
 }
 
 .lp-medicalS2__text h2,
 .lp-medicalS2__text h3{
   color: inherit;
   line-height: 1.45;
-  margin: 0 0 .55em;
   font-weight: 800;
 }
 
@@ -137,6 +146,55 @@ html[dir="ltr"] .lp-medicalS2__text{
 .lp-medicalS2 s .color,
 .lp-medicalS2 strike .color{
   color: var(--color) !important;
+}
+
+.lp-medicalS2__text [style*="color:"]{
+  color: inherit;
+}
+
+.lp-medicalS2__text span[style*="color:"]{
+  color: unset !important;
+}
+
+.lp-medicalS2__text [style*="text-align: left"],
+.lp-medicalS2__text [style*="text-align:left"],
+.lp-medicalS2__text .text-left{
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
+.lp-medicalS2__text [style*="text-align: right"],
+.lp-medicalS2__text [style*="text-align:right"],
+.lp-medicalS2__text .text-right{
+  text-align: right !important;
+  text-align-last: right !important;
+}
+
+.lp-medicalS2__text [style*="text-align: center"],
+.lp-medicalS2__text [style*="text-align:center"],
+.lp-medicalS2__text .text-center{
+  text-align: center !important;
+  text-align-last: auto !important;
+}
+
+.lp-medicalS2__text [style*="text-align: justify"],
+.lp-medicalS2__text [style*="text-align:justify"],
+.lp-medicalS2__text .text-justify{
+  text-align: justify !important;
+}
+
+.lp-medicalS2__text [style*="text-align: start"],
+.lp-medicalS2__text [style*="text-align:start"],
+.lp-medicalS2__text .text-start{
+  text-align: start !important;
+  text-align-last: start !important;
+}
+
+.lp-medicalS2__text [style*="text-align: end"],
+.lp-medicalS2__text [style*="text-align:end"],
+.lp-medicalS2__text .text-end{
+  text-align: end !important;
+  text-align-last: end !important;
 }
 
 .lp-medicalS2 .lp-enDigits{
