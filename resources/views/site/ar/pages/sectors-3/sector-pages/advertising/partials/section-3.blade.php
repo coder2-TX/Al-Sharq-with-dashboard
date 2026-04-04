@@ -1,5 +1,5 @@
 @php
-    $partners = \App\Models\SectorsPageCommunicationsPartner::query()
+    $partners = \App\Models\SectorsPageAdvertisingPartner::query()
         ->orderBy('sort_order')
         ->orderBy('id')
         ->get();
@@ -10,43 +10,43 @@
                 'id' => 1,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/6.png',
-                'partner_name' => 'ITA POWER',
-                'description_ar' => 'شركة إيطالية رائدة تأسست على يد فريق خبرة يفوق 20 عاماً في مجال الطاقة وتقنيات تكنولوجيا المعلومات مقرها في ميلانو، مع مركز دعم وتصنيع في دبي لتغطية منطقة أوروبا والشرق الأوسط وأفريقيا',
+                'partner_name' => 'BrandSpark',
+                'description_ar' => 'شريك إعلاني افتراضي تمت إضافته مؤقتاً لعرض السلايدر وصفحة المنتجات حتى يتم إدخال بيانات الشركاء الحقيقيين من لوحة التحكم.',
             ],
             (object) [
                 'id' => 2,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/16.png',
-                'partner_name' => 'XONTEL',
-                'description_ar' => 'الأولى عربياً في تقنيات الاتصالات الذكية، تأسست عام 2004 في الكويت بأيدي مهندسين مختصين وهي علامة تجارية مسجلة في الاتحاد الأوروبي، حاصلة على شهادات IEEE، FCC، CE، SASO',
+                'partner_name' => 'MediaFlow',
+                'description_ar' => 'عنصر تجريبي لعرض شكل سكشن الشركاء وآلية الانتقال إلى صفحة منتجات الشريك ضمن قطاع الإعلانات.',
             ],
             (object) [
                 'id' => 3,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/4.png',
-                'partner_name' => 'Ruijie & Reyee',
-                'description_ar' => 'إحدى الشركات الرائدة عالمياً في البنية التحتية للشبكات، والتي تأسست عام 2003 وتخدم أكثر من 90 دولة عبر تقنيات متقدمة وفريق بحث وتطوير عالمي',
+                'partner_name' => 'Vision Ads',
+                'description_ar' => 'محتوى افتراضي يوضح شكل صورة الشريك والوصف وزر عرض المنتجات قبل إضافة بيانات فعلية من الداشبورد.',
             ],
             (object) [
                 'id' => 4,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/8.png',
-                'partner_name' => 'INSPUR',
-                'description_ar' => 'مزود عالمي لحلول البنية الرقمية المتقدمة، يقدم تقنيات عالية الكفاءة في الخوادم ومراكز البيانات والمنصات الذكية، بما يدعم المؤسسات في بناء أنظمة اتصال وتشغيل موثوقة وقابلة للتوسع.',
+                'partner_name' => 'Creative Hub',
+                'description_ar' => 'شريك افتراضي آخر للتأكد من أن سلايدر الشركاء يعمل بشكل مستقل تماماً لقطاع الإعلانات.',
             ],
             (object) [
                 'id' => 5,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/5.png',
-                'partner_name' => 'HUAWEI',
-                'description_ar' => 'شريك تقني رائد في حلول الاتصالات والشبكات الذكية، يوفر منظومة متكاملة تشمل البنية التحتية للشبكات والحلول المؤسسية وأنظمة الربط الحديثة، مع تركيز على الاعتمادية والأداء والاستدامة التقنية.',
+                'partner_name' => 'Impact Media',
+                'description_ar' => 'بيانات تجريبية مؤقتة لعرض التصميم العام لشركاء قطاع الإعلانات بنفس طريقة القطاعات الأخرى.',
             ],
             (object) [
                 'id' => 6,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/3.png',
-                'partner_name' => 'ENSMART',
-                'description_ar' => 'شركة متخصصة في حلول الطاقة الذكية والأنظمة الداعمة للبنية التقنية، تقدم تقنيات موثوقة لإدارة الطاقة والحماية الكهربائية واستمرارية التشغيل، بما يعزز كفاءة شبكات الاتصالات واستقرارها في مختلف البيئات التشغيلية.',
+                'partner_name' => 'PromoWorks',
+                'description_ar' => 'عنصر افتراضي أخير للتأكد من اكتمال الربط المستقل لهذا السكشن بعيداً عن قطاع الاتصالات.',
             ],
         ]);
     }

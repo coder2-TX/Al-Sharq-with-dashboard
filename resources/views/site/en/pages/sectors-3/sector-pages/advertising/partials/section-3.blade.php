@@ -1,5 +1,5 @@
 @php
-    $partners = \App\Models\SectorsPageCommunicationsPartner::query()
+    $partners = \App\Models\SectorsPageAdvertisingPartner::query()
         ->orderBy('sort_order')
         ->orderBy('id')
         ->get();
@@ -10,43 +10,43 @@
                 'id' => 1,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/6.png',
-                'partner_name' => 'ITA POWER',
-                'description_en' => 'A leading Italian company established by a team with more than 20 years of experience in the fields of energy and information technology. Headquartered in Milan, it also has a support and manufacturing center in Dubai to serve Europe, the Middle East, and Africa.',
+                'partner_name' => 'BrandSpark',
+                'description_en' => 'A sample advertising partner added temporarily to preview the partner slider and the products page flow until real dashboard content is entered.',
             ],
             (object) [
                 'id' => 2,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/16.png',
-                'partner_name' => 'XONTEL',
-                'description_en' => 'A leading Arab brand in smart communication technologies, established in 2004 in Kuwait by specialized engineers. It is a registered trademark in the European Union and holds certifications such as IEEE, FCC, CE, and SASO.',
+                'partner_name' => 'MediaFlow',
+                'description_en' => 'A placeholder advertising and media partner used to present the section structure before actual records are created from the dashboard.',
             ],
             (object) [
                 'id' => 3,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/4.png',
-                'partner_name' => 'Ruijie & Reyee',
-                'description_en' => 'One of the world’s leading companies in network infrastructure, founded in 2003 and serving more than 90 countries through advanced technologies and a global research and development team.',
+                'partner_name' => 'Vision Ads',
+                'description_en' => 'A temporary sample partner that demonstrates how the partner image, description, and products button will work in the advertising sector.',
             ],
             (object) [
                 'id' => 4,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/8.png',
-                'partner_name' => 'INSPUR',
-                'description_en' => 'A global provider of advanced digital infrastructure solutions, delivering high-efficiency technologies in servers, data centers, and smart platforms that help organizations build reliable and scalable communication and operational systems.',
+                'partner_name' => 'Creative Hub',
+                'description_en' => 'Demo content used to preview the independent advertising partner slider before the final dashboard content is added.',
             ],
             (object) [
                 'id' => 5,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/5.png',
-                'partner_name' => 'HUAWEI',
-                'description_en' => 'A leading technology partner in communication and smart networking solutions, offering an integrated ecosystem that includes network infrastructure, enterprise solutions, and modern connectivity systems, with a strong focus on reliability, performance, and technological sustainability.',
+                'partner_name' => 'Impact Media',
+                'description_en' => 'A sample record prepared only for visual testing of the advertising section and the partner products page.',
             ],
             (object) [
                 'id' => 6,
                 'partner_image' => null,
                 'default_image' => 'assets/images/parteners/3.png',
-                'partner_name' => 'ENSMART',
-                'description_en' => 'A company specialized in smart energy solutions and systems that support technical infrastructure, providing reliable technologies for energy management, electrical protection, and operational continuity to enhance the efficiency and stability of communication networks across different operating environments.',
+                'partner_name' => 'PromoWorks',
+                'description_en' => 'A final placeholder partner ensuring that the slider works completely with the advertising data source instead of communications.',
             ],
         ]);
     }
