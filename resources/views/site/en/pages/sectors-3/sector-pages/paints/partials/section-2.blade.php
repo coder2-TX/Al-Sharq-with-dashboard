@@ -1,5 +1,7 @@
 @php
-    $articleEn = <<<'HTML'
+    $page = \App\Models\SectorsPagePaintsPage::query()->first();
+
+    $articleEn = $page?->article_en ?: <<<'HTML'
 <p>
 Our Paints Sector offers a diverse portfolio of solutions for residential, commercial, and industrial projects. This includes interior and exterior paints, protective coatings, finishing materials, wall care products, and complementary solutions designed to deliver dependable visual and functional results.
 </p>
