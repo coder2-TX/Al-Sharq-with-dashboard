@@ -2,25 +2,23 @@
     $partnerId = (int) request()->query('partner_id', 1);
     $partnerNameFromQuery = trim((string) request()->query('name', ''));
 
-    $partners = collect([
-        ['id' => 1, 'partner_name' => 'MediLine'],
-        ['id' => 2, 'partner_name' => 'SteriPro'],
-        ['id' => 3, 'partner_name' => 'CarePoint'],
-        ['id' => 4, 'partner_name' => 'SafeKit'],
-        ['id' => 5, 'partner_name' => 'OrthoPlus'],
-        ['id' => 6, 'partner_name' => 'ScanTech'],
-    ]);
+    $partner = null;
 
-    $resolvedPartner = $partners->firstWhere('id', $partnerId);
-
-    if (!$resolvedPartner && $partnerNameFromQuery !== '') {
-        $resolvedPartner = $partners->first(function ($item) use ($partnerNameFromQuery) {
-            return $item['partner_name'] === $partnerNameFromQuery;
-        });
+    if ($partnerId > 0) {
+        $partner = \App\Models\SectorsPageMedicalSuppliesPartner::query()->find($partnerId);
     }
 
-    $partnerName = $resolvedPartner['partner_name'] ?? ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'MediLine');
-    $partnerHeroImage = asset('assets/images/1.jpg');
+    if (!$partner && $partnerNameFromQuery !== '') {
+        $partner = \App\Models\SectorsPageMedicalSuppliesPartner::query()
+            ->where('partner_name', $partnerNameFromQuery)
+            ->first();
+    }
+
+    $partnerName = trim((string) ($partner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'MediLine')));
+
+    $partnerHeroImage = !empty($partner?->products_hero_image)
+        ? \Illuminate\Support\Facades\Storage::url($partner->products_hero_image)
+        : asset('assets/images/1.jpg');
 @endphp
 
 <!doctype html>
