@@ -14,7 +14,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->cars_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->cars_image) : asset('assets/images/sectors/sector-details/commercial/7.jpeg') }}"
               alt="Automotive Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Automotive Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.sectors.cars') }}" aria-label="Go to the Automotive Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -56,7 +56,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->paints_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->paints_image) : asset('assets/images/sectors/sector-details/commercial/1.png') }}"
               alt="Paints Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Paints Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.sectors.paints') }}" aria-label="Go to the Paints Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -70,7 +70,7 @@
               src="{{ $sectorsPageCommercialSectorSection?->vocational_training_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->vocational_training_image) : asset('assets/images/sectors/sector-details/commercial/8.jpeg') }}"
               alt="Vocational Training Sector"
             >
-            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.contact') }}" aria-label="Contact us about the Vocational Training Sector">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.en.sectors.vocational_training') }}" aria-label="Go to the Vocational Training Sector page">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>

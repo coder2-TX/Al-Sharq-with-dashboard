@@ -72,5 +72,14 @@ Route::prefix('en')->name('site.en.')->group(function () {
     Route::view('/sectors/communications', 'site.en.pages.sectors-3.sector-pages.communications.index')->name('sectors.communications');
     Route::view('/communications/partner-products', 'site.en.pages.sectors-3.sector-pages.communications.partner-products.index')->name('communications.partner-products');
 
+    Route::view('/sectors/cars', 'site.en.pages.sectors-3.sector-pages.cars.index')->name('sectors.cars');
+    Route::view('/cars/partner-products', 'site.en.pages.sectors-3.sector-pages.cars.partner-products.index')->name('cars.partner-products');
+
+    Route::view('/sectors/paints', 'site.en.pages.sectors-3.sector-pages.paints.index')->name('sectors.paints');
+    Route::view('/paints/partner-products', 'site.en.pages.sectors-3.sector-pages.paints.partner-products.index')->name('paints.partner-products');
+
+    Route::view('/sectors/vocational-training', 'site.en.pages.sectors-3.sector-pages.vocational-training.index')->name('sectors.vocational_training');
+    Route::view('/vocational-training/partner-products', 'site.en.pages.sectors-3.sector-pages.vocational-training.partner-products.index')->name('vocational_training.partner-products');
+
     Route::view('/iso', 'site.en.pages.iso.index')->name('iso');
 });
