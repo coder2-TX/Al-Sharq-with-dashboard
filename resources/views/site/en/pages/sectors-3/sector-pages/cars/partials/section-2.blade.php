@@ -1,5 +1,7 @@
 @php
-    $articleEn = <<<'HTML'
+    $page = \App\Models\SectorsPageCarsPage::query()->first();
+
+    $articleEn = $page?->article_en ?: <<<'HTML'
 <p>
 Our Automotive Sector provides integrated solutions that support the needs of the local market as well as commercial and operational entities. We offer a wide range of products and services including vehicles, spare parts, lubricants, batteries, tires, accessories, and supporting services designed to improve reliability and performance.
 </p>
