@@ -1,83 +1,115 @@
 @php
     $perPage = 6;
 
+    $partnerId = (int) request()->query('partner_id', 1);
+    $partnerNameFromQuery = trim((string) request()->query('name', ''));
+
+    $resolvedPartner = null;
+
+    if ($partnerId > 0) {
+        $resolvedPartner = \App\Models\SectorsPageMedicinesPartner::query()->find($partnerId);
+    }
+
+    if (!$resolvedPartner && $partnerNameFromQuery !== '') {
+        $resolvedPartner = \App\Models\SectorsPageMedicinesPartner::query()
+            ->where('partner_name', $partnerNameFromQuery)
+            ->first();
+    }
+
+    $partnerName = $resolvedPartner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'PharmaNova');
     $partnerNameHasLatin = preg_match('/[A-Za-z]/', $partnerName) === 1;
 
-    $defaultProducts = collect([
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'مضاد حيوي واسع المجال',
-            'description' => 'منتج افتراضي مخصص لعرض فئة الأدوية العلاجية المستخدمة ضمن الخطوط العامة للرعاية الصحية.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'مسكن وخافض حرارة',
-            'description' => 'عنصر افتراضي يعبّر عن الأدوية اليومية الشائعة والمستخدمة لدعم الاحتياجات الأساسية في السوق.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'علاج التهابات الجهاز التنفسي',
-            'description' => 'بطاقة عرض مؤقتة ضمن صفحة المنتجات لتمثيل الفئات العلاجية المرتبطة بالأمراض الموسمية والتنفسية.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'أدوية الأمراض المزمنة',
-            'description' => 'منتج افتراضي موجه لعرض خطوط علاجية مناسبة للفئات التي تحتاج إلى استمرارية في الاستخدام.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'فيتامينات ومكملات دوائية',
-            'description' => 'وحدة عرض افتراضية تعكس المنتجات الداعمة للصحة العامة والمكملات المتداولة ضمن القطاع الدوائي.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'شراب أطفال علاجي',
-            'description' => 'عنصر مؤقت لتمثيل الأدوية الموجهة للأطفال ضمن محتوى الصفحة حتى الربط الفعلي من لوحة التحكم.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'مضاد حساسية',
-            'description' => 'بطاقة افتراضية لعرض أصناف دوائية مرتبطة بعلاجات الحساسية والرعاية اليومية.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'علاج اضطرابات المعدة',
-            'description' => 'منتج تجريبي يعكس الأدوية المرتبطة بالجهاز الهضمي والمستخدمة في القنوات الطبية والصيدلانية.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'محلول وريدي',
-            'description' => 'عنصر افتراضي لتمثيل المنتجات المستخدمة في البيئات العلاجية والمستشفيات ضمن قطاع الأدوية.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'قطرة عين',
-            'description' => 'بطاقة عرض مؤقتة لتوضيح أحد خطوط المستحضرات العلاجية ضمن الصفحة الحالية.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'كريم جلدي علاجي',
-            'description' => 'منتج افتراضي يعبّر عن المستحضرات الموضعية المتخصصة القابلة للإضافة لاحقًا من الداشبورد.',
-        ],
-        [
-            'image' => asset('assets/images/section/1.png'),
-            'name' => 'علاج السكري',
-            'description' => 'وحدة تجريبية تمثل أحد الخطوط العلاجية المزمنة المهمة ضمن قطاع الأدوية.',
-        ],
-    ]);
+    $productsPaginator = null;
+    $usingFallbackProducts = false;
 
-    $currentPage = max((int) request()->query('page', 1), 1);
+    if ($resolvedPartner) {
+        $productsPaginator = \App\Models\SectorsPageMedicinesPartnerProduct::query()
+            ->where('partner_id', $resolvedPartner->id)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->paginate($perPage)
+            ->withQueryString();
+    }
 
-    $productsPaginator = new \Illuminate\Pagination\LengthAwarePaginator(
-        $defaultProducts->forPage($currentPage, $perPage)->values(),
-        $defaultProducts->count(),
-        $perPage,
-        $currentPage,
-        [
-            'path' => url()->current(),
-            'query' => request()->except('page'),
-        ]
-    );
+    if (!$productsPaginator || $productsPaginator->total() === 0) {
+        $usingFallbackProducts = true;
+
+        $defaultProducts = collect([
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'مضاد حيوي واسع المجال',
+                'description' => 'منتج افتراضي مخصص لعرض فئة الأدوية العلاجية المستخدمة ضمن الخطوط العامة للرعاية الصحية.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'مسكن وخافض حرارة',
+                'description' => 'عنصر افتراضي يعبّر عن الأدوية اليومية الشائعة والمستخدمة لدعم الاحتياجات الأساسية في السوق.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'علاج التهابات الجهاز التنفسي',
+                'description' => 'بطاقة عرض مؤقتة ضمن صفحة المنتجات لتمثيل الفئات العلاجية المرتبطة بالأمراض الموسمية والتنفسية.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'أدوية الأمراض المزمنة',
+                'description' => 'منتج افتراضي موجه لعرض خطوط علاجية مناسبة للفئات التي تحتاج إلى استمرارية في الاستخدام.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'فيتامينات ومكملات دوائية',
+                'description' => 'وحدة عرض افتراضية تعكس المنتجات الداعمة للصحة العامة والمكملات المتداولة ضمن القطاع الدوائي.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'شراب أطفال علاجي',
+                'description' => 'عنصر مؤقت لتمثيل الأدوية الموجهة للأطفال ضمن محتوى الصفحة حتى الربط الفعلي من لوحة التحكم.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'مضاد حساسية',
+                'description' => 'بطاقة افتراضية لعرض أصناف دوائية مرتبطة بعلاجات الحساسية والرعاية اليومية.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'علاج اضطرابات المعدة',
+                'description' => 'منتج تجريبي يعكس الأدوية المرتبطة بالجهاز الهضمي والمستخدمة في القنوات الطبية والصيدلانية.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'محلول وريدي',
+                'description' => 'عنصر افتراضي لتمثيل المنتجات المستخدمة في البيئات العلاجية والمستشفيات ضمن قطاع الأدوية.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'قطرة عين',
+                'description' => 'بطاقة عرض مؤقتة لتوضيح أحد خطوط المستحضرات العلاجية ضمن الصفحة الحالية.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'كريم جلدي علاجي',
+                'description' => 'منتج افتراضي يعبّر عن المستحضرات الموضعية المتخصصة القابلة للإضافة لاحقًا من الداشبورد.',
+            ],
+            [
+                'image' => asset('assets/images/section/1.png'),
+                'name' => 'علاج السكري',
+                'description' => 'وحدة تجريبية تمثل أحد الخطوط العلاجية المزمنة المهمة ضمن قطاع الأدوية.',
+            ],
+        ]);
+
+        $currentPage = max((int) request()->query('page', 1), 1);
+
+        $productsPaginator = new \Illuminate\Pagination\LengthAwarePaginator(
+            $defaultProducts->forPage($currentPage, $perPage)->values(),
+            $defaultProducts->count(),
+            $perPage,
+            $currentPage,
+            [
+                'path' => url()->current(),
+                'query' => request()->except('page'),
+            ]
+        );
+    }
 @endphp
 
 <section class="lp-section lp-partnerProducts" id="partner-products" aria-label="منتجات {{ $partnerName }}">
@@ -95,29 +127,68 @@
         </span>
       </h2>
 
-      <p class="lp-partnerProducts__subtitle">
-        هذه منتجات افتراضية لعرض تصميم الصفحة مؤقتًا، وسيتم لاحقًا ربط كل شريك بمنتجاته الفعلية من لوحة التحكم.
-      </p>
+      @if($usingFallbackProducts && $resolvedPartner)
+        <p class="lp-partnerProducts__subtitle">
+          هذه منتجات افتراضية مؤقتة لهذا الشريك، وستُستبدل تلقائياً بمنتجات لوحة التحكم بمجرد إضافتها.
+        </p>
+      @else
+        <p class="lp-partnerProducts__subtitle">
+          هذه منتجات افتراضية لعرض تصميم الصفحة مؤقتًا، وسيتم لاحقًا ربط كل شريك بمنتجاته الفعلية من لوحة التحكم.
+        </p>
+      @endif
     </header>
 
     <div class="lp-partnerProducts__grid" aria-label="قائمة المنتجات">
-      @foreach ($productsPaginator as $product)
-        <article class="lp-partnerProducts__card" aria-label="{{ $product['name'] }}">
-          <div class="lp-partnerProducts__media">
-            <img
-              src="{{ $product['image'] }}"
-              alt="{{ $product['name'] }}"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+      @if($usingFallbackProducts)
+        @foreach ($productsPaginator as $product)
+          <article class="lp-partnerProducts__card" aria-label="{{ $product['name'] }}">
+            <div class="lp-partnerProducts__media">
+              <img
+                src="{{ $product['image'] }}"
+                alt="{{ $product['name'] }}"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
 
-          <div class="lp-partnerProducts__body">
-            <h3 class="lp-partnerProducts__name">{{ $product['name'] }}</h3>
-            <p class="lp-partnerProducts__desc">{{ $product['description'] }}</p>
-          </div>
-        </article>
-      @endforeach
+            <div class="lp-partnerProducts__body">
+              <h3 class="lp-partnerProducts__name">{{ $product['name'] }}</h3>
+              <p class="lp-partnerProducts__desc">{{ $product['description'] }}</p>
+            </div>
+          </article>
+        @endforeach
+      @else
+        @forelse ($productsPaginator as $product)
+          @php
+              $productImage = !empty($product->product_image)
+                  ? \Illuminate\Support\Facades\Storage::url($product->product_image)
+                  : asset('assets/images/section/1.png');
+
+              $productName = trim((string) ($product->name_ar ?: $product->name_en ?: 'منتج'));
+              $productDescription = trim((string) ($product->description_ar ?: $product->description_en ?: ''));
+          @endphp
+
+          <article class="lp-partnerProducts__card" aria-label="{{ $productName }}">
+            <div class="lp-partnerProducts__media">
+              <img
+                src="{{ $productImage }}"
+                alt="{{ $productName }}"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <div class="lp-partnerProducts__body">
+              <h3 class="lp-partnerProducts__name">{{ $productName }}</h3>
+              <p class="lp-partnerProducts__desc">{{ $productDescription }}</p>
+            </div>
+          </article>
+        @empty
+          <p style="grid-column: 1 / -1; text-align: center; margin: 0;">
+            لا توجد منتجات مضافة لهذا الشريك حالياً.
+          </p>
+        @endforelse
+      @endif
     </div>
 
     @if($productsPaginator->hasPages())

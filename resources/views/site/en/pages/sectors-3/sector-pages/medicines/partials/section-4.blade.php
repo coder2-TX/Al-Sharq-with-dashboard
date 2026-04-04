@@ -1,42 +1,49 @@
 @php
-    $partners = collect([
-        (object) [
-            'id' => 1,
-            'default_image' => 'assets/images/parteners/6.png',
-            'partner_name' => 'PharmaNova',
-            'description_en' => 'A sample partner representing companies focused on general therapeutic medicines and pharmaceutical lines supplied to institutional and retail markets.',
-        ],
-        (object) [
-            'id' => 2,
-            'default_image' => 'assets/images/parteners/16.png',
-            'partner_name' => 'VitaCure',
-            'description_en' => 'A sample partner reflecting companies that provide supportive pharmaceutical solutions for everyday care and chronic treatment categories.',
-        ],
-        (object) [
-            'id' => 3,
-            'default_image' => 'assets/images/parteners/4.png',
-            'partner_name' => 'MediCore',
-            'description_en' => 'A sample partner used to present pharmaceutical suppliers offering diversified medicine lines for hospitals and pharmacies.',
-        ],
-        (object) [
-            'id' => 4,
-            'default_image' => 'assets/images/parteners/8.png',
-            'partner_name' => 'BioThera',
-            'description_en' => 'A sample partner representing companies that support the medicines sector with reliable treatment products and multiple product lines.',
-        ],
-        (object) [
-            'id' => 5,
-            'default_image' => 'assets/images/parteners/5.png',
-            'partner_name' => 'Healix',
-            'description_en' => 'A sample partner designed to reflect brands that combine product efficiency, steady availability, and practical distribution support.',
-        ],
-        (object) [
-            'id' => 6,
-            'default_image' => 'assets/images/parteners/3.png',
-            'partner_name' => 'CareMeds',
-            'description_en' => 'A sample partner showcasing companies that contribute to the medicines sector through varied pharmaceutical solutions and healthcare support products.',
-        ],
-    ]);
+    $partners = \App\Models\SectorsPageMedicinesPartner::query()
+        ->orderBy('sort_order')
+        ->orderBy('id')
+        ->get();
+
+    if ($partners->isEmpty()) {
+        $partners = collect([
+            (object) [
+                'id' => 1,
+                'default_image' => 'assets/images/parteners/6.png',
+                'partner_name' => 'PharmaNova',
+                'description_en' => 'A sample partner representing companies focused on general therapeutic medicines and pharmaceutical lines supplied to institutional and retail markets.',
+            ],
+            (object) [
+                'id' => 2,
+                'default_image' => 'assets/images/parteners/16.png',
+                'partner_name' => 'VitaCure',
+                'description_en' => 'A sample partner reflecting companies that provide supportive pharmaceutical solutions for everyday care and chronic treatment categories.',
+            ],
+            (object) [
+                'id' => 3,
+                'default_image' => 'assets/images/parteners/4.png',
+                'partner_name' => 'MediCore',
+                'description_en' => 'A sample partner used to present pharmaceutical suppliers offering diversified medicine lines for hospitals and pharmacies.',
+            ],
+            (object) [
+                'id' => 4,
+                'default_image' => 'assets/images/parteners/8.png',
+                'partner_name' => 'BioThera',
+                'description_en' => 'A sample partner representing companies that support the medicines sector with reliable treatment products and multiple product lines.',
+            ],
+            (object) [
+                'id' => 5,
+                'default_image' => 'assets/images/parteners/5.png',
+                'partner_name' => 'Healix',
+                'description_en' => 'A sample partner designed to reflect brands that combine product efficiency, steady availability, and practical distribution support.',
+            ],
+            (object) [
+                'id' => 6,
+                'default_image' => 'assets/images/parteners/3.png',
+                'partner_name' => 'CareMeds',
+                'description_en' => 'A sample partner showcasing companies that contribute to the medicines sector through varied pharmaceutical solutions and healthcare support products.',
+            ],
+        ]);
+    }
 @endphp
 
 <section
@@ -73,10 +80,19 @@
       <div class="lp-communicationsS3__viewport" data-slider-viewport aria-live="polite">
         @foreach ($partners as $partner)
           @php
-              $partnerImage = asset($partner->default_image);
+              $partnerName = trim((string) ($partner->partner_name ?? 'Our Partner'));
+
+              $partnerImage = !empty($partner->partner_image)
+                  ? (\Illuminate\Support\Str::startsWith((string) $partner->partner_image, ['http://', 'https://'])
+                      ? $partner->partner_image
+                      : \Illuminate\Support\Facades\Storage::url($partner->partner_image))
+                  : (!empty($partner->default_image)
+                      ? asset($partner->default_image)
+                      : asset('assets/images/parteners/6.png'));
+
               $partnerUrl = route('site.en.medicines.partner-products', [
-                  'partner_id' => $partner->id,
-                  'name' => $partner->partner_name,
+                  'partner_id' => $partner->id ?? null,
+                  'name' => $partnerName,
               ]);
           @endphp
 
@@ -85,7 +101,7 @@
               <div class="lp-communicationsS3__media">
                 <img
                   src="{{ $partnerImage }}"
-                  alt="{{ $partner->partner_name }}"
+                  alt="{{ $partnerName }}"
                   loading="lazy"
                   decoding="async"
                 />
@@ -93,18 +109,18 @@
 
               <div class="lp-communicationsS3__content">
                 <h3 class="lp-communicationsS3__partnerName lp-latinTextFix" dir="ltr" lang="en">
-                  {{ $partner->partner_name }}
+                  {{ $partnerName }}
                 </h3>
 
                 <div class="lp-communicationsS3__text lp-latinTextFix" dir="ltr" lang="en">
-                  {!! \App\Support\Text\DisplayTextFormatter::fromPlainText($partner->description_en) !!}
+                  {!! \App\Support\Text\DisplayTextFormatter::fromPlainText((string) ($partner->description_en ?? '')) !!}
                 </div>
 
                 <div class="lp-communicationsS3__actions">
                   <a
                     class="lp-cta lp-cta--partner"
                     href="{{ $partnerUrl }}"
-                    aria-label="View {{ $partner->partner_name }} products"
+                    aria-label="View {{ $partnerName }} products"
                   >
                     <span class="lp-cta__stroke" aria-hidden="true"></span>
                     <span class="lp-cta__layer" aria-hidden="true">
