@@ -1,8 +1,8 @@
 @php
-    $sectorSection = \App\Models\SectorsPageMedicalSectorSection::query()->first();
+    $page = \App\Models\SectorsPageMedicinesPage::query()->first();
 
-    $heroImage = $sectorSection?->medicines_image
-        ? \Illuminate\Support\Facades\Storage::url($sectorSection->medicines_image)
+    $heroImage = $page?->hero_image
+        ? \Illuminate\Support\Facades\Storage::url($page->hero_image)
         : asset('assets/images/sectors/sector-details/medical/4.jpeg');
 @endphp
 

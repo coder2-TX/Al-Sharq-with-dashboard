@@ -1,5 +1,7 @@
 @php
-    $articleEn = <<<'HTML'
+    $page = \App\Models\SectorsPageMedicinesPage::query()->first();
+
+    $articleEn = $page?->article_en ?: <<<'HTML'
 <p>
 Al Sharq’s Medicines Sector focuses on supplying trusted pharmaceutical products that support healthcare continuity and help meet the daily needs of hospitals, pharmacies, clinics, and medical providers across the Yemeni market.
 </p>
