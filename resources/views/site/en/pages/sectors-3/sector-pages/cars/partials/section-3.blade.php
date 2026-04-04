@@ -1,42 +1,49 @@
 @php
-    $partners = collect([
-        (object) [
-            'id' => 1,
-            'partner_image' => asset('assets/images/parteners/6.png'),
-            'partner_name' => 'TOYOTA',
-            'description_en' => 'A globally recognized automotive brand known for reliability, long-term value, and a broad range of vehicles and mobility solutions for individuals and businesses.',
-        ],
-        (object) [
-            'id' => 2,
-            'partner_image' => asset('assets/images/parteners/16.png'),
-            'partner_name' => 'BOSCH',
-            'description_en' => 'An international provider of automotive systems, spare parts, and technical solutions that support efficiency, safety, and vehicle performance.',
-        ],
-        (object) [
-            'id' => 3,
-            'partner_image' => asset('assets/images/parteners/4.png'),
-            'partner_name' => 'DENSO',
-            'description_en' => 'A leading supplier of advanced automotive components and systems with a strong presence in cooling, ignition, and modern vehicle technologies.',
-        ],
-        (object) [
-            'id' => 4,
-            'partner_image' => asset('assets/images/parteners/8.png'),
-            'partner_name' => 'MOBIL',
-            'description_en' => 'A trusted partner in engine oils and lubrication products, offering dependable solutions that help maintain vehicle performance in different operating conditions.',
-        ],
-        (object) [
-            'id' => 5,
-            'partner_image' => asset('assets/images/parteners/5.png'),
-            'partner_name' => 'MICHELIN',
-            'description_en' => 'A leading tire brand providing high-quality solutions for passenger, commercial, and fleet vehicles with strong emphasis on safety and durability.',
-        ],
-        (object) [
-            'id' => 6,
-            'partner_image' => asset('assets/images/parteners/3.png'),
-            'partner_name' => 'ACDelco',
-            'description_en' => 'A well-known supplier of spare parts, batteries, filters, and maintenance products designed for practical and reliable vehicle servicing.',
-        ],
-    ]);
+    $partners = \App\Models\SectorsPageCarsPartner::query()
+        ->orderBy('sort_order')
+        ->orderBy('id')
+        ->get();
+
+    if ($partners->isEmpty()) {
+        $partners = collect([
+            (object) [
+                'id' => 1,
+                'partner_image' => asset('assets/images/parteners/6.png'),
+                'partner_name' => 'TOYOTA',
+                'description_en' => 'A globally recognized automotive brand known for reliability, long-term value, and a broad range of vehicles and mobility solutions for individuals and businesses.',
+            ],
+            (object) [
+                'id' => 2,
+                'partner_image' => asset('assets/images/parteners/16.png'),
+                'partner_name' => 'BOSCH',
+                'description_en' => 'An international provider of automotive systems, spare parts, and technical solutions that support efficiency, safety, and vehicle performance.',
+            ],
+            (object) [
+                'id' => 3,
+                'partner_image' => asset('assets/images/parteners/4.png'),
+                'partner_name' => 'DENSO',
+                'description_en' => 'A leading supplier of advanced automotive components and systems with a strong presence in cooling, ignition, and modern vehicle technologies.',
+            ],
+            (object) [
+                'id' => 4,
+                'partner_image' => asset('assets/images/parteners/8.png'),
+                'partner_name' => 'MOBIL',
+                'description_en' => 'A trusted partner in engine oils and lubrication products, offering dependable solutions that help maintain vehicle performance in different operating conditions.',
+            ],
+            (object) [
+                'id' => 5,
+                'partner_image' => asset('assets/images/parteners/5.png'),
+                'partner_name' => 'MICHELIN',
+                'description_en' => 'A leading tire brand providing high-quality solutions for passenger, commercial, and fleet vehicles with strong emphasis on safety and durability.',
+            ],
+            (object) [
+                'id' => 6,
+                'partner_image' => asset('assets/images/parteners/3.png'),
+                'partner_name' => 'ACDelco',
+                'description_en' => 'A well-known supplier of spare parts, batteries, filters, and maintenance products designed for practical and reliable vehicle servicing.',
+            ],
+        ]);
+    }
 @endphp
 
 <section
@@ -73,6 +80,12 @@
           @php
               $partnerName = trim((string) ($partner->partner_name ?? 'Our Partner'));
 
+              $partnerImage = !empty($partner->partner_image)
+                  ? (\Illuminate\Support\Str::startsWith((string) $partner->partner_image, ['http://', 'https://'])
+                      ? $partner->partner_image
+                      : \Illuminate\Support\Facades\Storage::url($partner->partner_image))
+                  : asset('assets/images/parteners/6.png');
+
               $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText(
                   (string) ($partner->description_en ?? '')
               );
@@ -87,7 +100,7 @@
             <div class="lp-communicationsS3__row">
               <div class="lp-communicationsS3__media">
                 <img
-                  src="{{ $partner->partner_image }}"
+                  src="{{ $partnerImage }}"
                   alt="{{ $partnerName }}"
                   loading="lazy"
                   decoding="async"

@@ -2,8 +2,23 @@
     $partnerId = (int) request()->query('partner_id', 0);
     $partnerNameFromQuery = trim((string) request()->query('name', ''));
 
-    $partnerName = $partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'TOYOTA';
-    $partnerHeroImage = asset('assets/images/sectors/sector-details/commercial/9.png');
+    $partner = null;
+
+    if ($partnerId > 0) {
+        $partner = \App\Models\SectorsPageCarsPartner::query()->find($partnerId);
+    }
+
+    if (!$partner && $partnerNameFromQuery !== '') {
+        $partner = \App\Models\SectorsPageCarsPartner::query()
+            ->where('partner_name', $partnerNameFromQuery)
+            ->first();
+    }
+
+    $partnerName = trim((string) ($partner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'TOYOTA')));
+
+    $partnerHeroImage = !empty($partner?->products_hero_image)
+        ? \Illuminate\Support\Facades\Storage::url($partner->products_hero_image)
+        : asset('assets/images/sectors/sector-details/commercial/9.png');
 @endphp
 
 <!doctype html>
