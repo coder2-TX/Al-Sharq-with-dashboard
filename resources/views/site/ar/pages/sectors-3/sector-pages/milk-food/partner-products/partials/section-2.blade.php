@@ -7,33 +7,23 @@
     $resolvedPartner = $partner ?? null;
 
     if (!$resolvedPartner && $partnerId > 0) {
-        $resolvedPartner = \App\Models\SectorsPageCommunicationsPartner::query()->find($partnerId);
+        $resolvedPartner = \App\Models\SectorsPageMilkFoodPartner::query()->find($partnerId);
     }
 
     if (!$resolvedPartner && $partnerNameFromQuery !== '') {
-        $resolvedPartner = \App\Models\SectorsPageCommunicationsPartner::query()
+        $resolvedPartner = \App\Models\SectorsPageMilkFoodPartner::query()
             ->where('partner_name', $partnerNameFromQuery)
             ->first();
     }
 
-    $partnerName = trim((string) ($resolvedPartner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'ITA POWER')));
+    $partnerName = trim((string) ($resolvedPartner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'NutriBaby')));
     $partnerNameHasLatin = preg_match('/[A-Za-z]/', $partnerName) === 1;
-
-    $normalizedPartnerName = strtoupper((string) preg_replace('/\s+/', ' ', $partnerName));
-    $isItaPower = $normalizedPartnerName === 'ITA POWER';
-
-    $assetFromPublic = static function (string $path): string {
-        $normalized = trim(str_replace('\\', '/', $path), '/');
-        $segments = array_map('rawurlencode', explode('/', $normalized));
-        return asset(implode('/', $segments));
-    };
 
     $productsPaginator = null;
     $usingFallbackProducts = false;
-    $fallbackMode = null;
 
     if ($resolvedPartner) {
-        $productsPaginator = \App\Models\SectorsPageCommunicationsPartnerProduct::query()
+        $productsPaginator = \App\Models\SectorsPageMilkFoodPartnerProduct::query()
             ->where('partner_id', $resolvedPartner->id)
             ->orderBy('sort_order')
             ->orderBy('id')
@@ -41,229 +31,69 @@
             ->withQueryString();
     }
 
-    $shouldUseItaPowerFallback = $isItaPower && (!$resolvedPartner || ($productsPaginator && $productsPaginator->total() === 0));
-
-    if ($shouldUseItaPowerFallback) {
+    if (!$productsPaginator || $productsPaginator->total() === 0) {
         $usingFallbackProducts = true;
-        $fallbackMode = 'ita_power';
-
-        $defaultProducts = collect([
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 opened.png'),
-                'name' => 'Ermes T 100-600 - Opened',
-                'description' => 'منتج افتراضي من سلسلة ITA POWER لعرض تصميم صفحة المنتجات بصورة واضحة ومباشرة.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front.png'),
-                'name' => 'Ermes T 100-600 - Front',
-                'description' => 'وحدة افتراضية ضمن منتجات ITA POWER تم إضافتها لعرض جميع الصور المتوفرة أمام العميل.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front-sideR.png'),
-                'name' => 'Ermes T 100-600 - Front Side R',
-                'description' => 'صورة افتراضية لمنتج من ITA POWER تُستخدم مؤقتاً حتى يتم إدخال البيانات الفعلية من لوحة التحكم.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes T 100-600 front-side.png'),
-                'name' => 'Ermes T 100-600 - Front Side',
-                'description' => 'عنصر افتراضي لعرض المنتج ضمن شبكة المنتجات مع إمكانية استبداله لاحقاً بالبيانات الحقيقية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes interno con batterie.png'),
-                'name' => 'Ermes Interno Con Batterie',
-                'description' => 'صورة افتراضية ضمن منتجات ITA POWER تعرض نموذجاً إضافياً ضمن نفس السلسلة التقنية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Ermes gruppo.jpg'),
-                'name' => 'Ermes Gruppo',
-                'description' => 'منتج افتراضي لإظهار تنوع صور الشريك داخل صفحة المنتجات حتى قبل الربط الديناميكي الكامل.',
-            ],
-
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/14.2.jpg'),
-                'name' => 'Smart Rack 14.2',
-                'description' => 'نموذج افتراضي من سلسلة Smart Rack تم إدراجه لعرض الصور المتوفرة الخاصة بالشريك.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/14.1.jpg'),
-                'name' => 'Smart Rack 14.1',
-                'description' => 'وصف افتراضي بسيط لمنتج من ITA POWER يمكن استبداله لاحقاً من قاعدة البيانات.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.4.jpg'),
-                'name' => 'Smart Rack 13.4',
-                'description' => 'عنصر مؤقت لعرض شكل المنتج وصورته داخل الواجهة حتى يتم إضافة البيانات النهائية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.3.jpg'),
-                'name' => 'Smart Rack 13.3',
-                'description' => 'بطاقة افتراضية مخصصة لعرض منتج من سلسلة Smart Rack ضمن شبكة المنتجات الحالية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/13.2.jpg'),
-                'name' => 'Smart Rack 13.2',
-                'description' => 'منتج افتراضي ضمن العرض الأولي للشريك ITA POWER ليظهر للعميل جميع الصور المتاحة.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.4.jpg'),
-                'name' => 'Smart Rack 12.4',
-                'description' => 'بيان افتراضي تجريبي تم وضعه لإظهار الصورة ضمن بطاقات المنتجات بشكل مرتب.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.2.jpg'),
-                'name' => 'Smart Rack 12.2',
-                'description' => 'صورة افتراضية ضمن محتوى ITA POWER لعرض النماذج المختلفة مؤقتاً لحين التحديث من الداشبورد.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/12.1.jpg'),
-                'name' => 'Smart Rack 12.1',
-                'description' => 'هذا المنتج يستخدم كعنصر عرض مبدئي ليوضح تنوع صور ومنتجات الشريك للعميل.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.4.jpg'),
-                'name' => 'Smart Rack 11.4',
-                'description' => 'وصف تجريبي مرن يمكن تغييره لاحقاً بسهولة بمجرد ربط بيانات المنتجات الحقيقية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.3.jpg'),
-                'name' => 'Smart Rack 11.3',
-                'description' => 'عنصر افتراضي من صور Smart Rack لتمثيل منتج مستقل داخل صفحة الشريك.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.2.jpg'),
-                'name' => 'Smart Rack 11.2',
-                'description' => 'بطاقة منتج مؤقتة تم إعدادها فقط لعرض الصورة والتصميم على العميل بشكل واضح.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart rack/11.1.jpg'),
-                'name' => 'Smart Rack 11.1',
-                'description' => 'منتج افتراضي من ITA POWER يهدف إلى استعراض كامل الصور المتوفرة في هذه المرحلة.',
-            ],
-
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/10.1.jpg'),
-                'name' => 'Smart Plus 10.1',
-                'description' => 'وحدة افتراضية ضمن سلسلة Smart Plus تم إضافتها لتجهيز محتوى العرض أمام العميل.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.5.jpg'),
-                'name' => 'Smart Plus 8.5',
-                'description' => 'وصف افتراضي مبسط لمنتج ضمن ITA POWER مع إمكانية تغييره لاحقاً حسب البيانات الفعلية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.3.jpg'),
-                'name' => 'Smart Plus 8.3',
-                'description' => 'تمثيل افتراضي لصورة منتج من سلسلة Smart Plus ضمن شبكة المنتجات الحالية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Smart plus/8.2.jpg'),
-                'name' => 'Smart Plus 8.2',
-                'description' => 'صورة منتج افتراضية أضيفت لعرض كامل محتوى ITA POWER قبل استكمال الربط مع قاعدة البيانات.',
-            ],
-
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.6.jpg'),
-                'name' => 'Lite 4.6',
-                'description' => 'نموذج افتراضي من سلسلة Lite لعرض صور المنتجات المتعددة الخاصة بالشريك داخل الصفحة.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.5.jpg'),
-                'name' => 'Lite 4.5',
-                'description' => 'بطاقة مؤقتة ضمن سلسلة Lite تم تجهيزها لعرض التصميم والمنتجات بشكل مكتمل.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/4.2.jpg'),
-                'name' => 'Lite 4.2',
-                'description' => 'منتج افتراضي بسيط مخصص للاستعراض فقط، ويمكن لاحقاً استبداله ببيانات حقيقية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/3.3.jpg'),
-                'name' => 'Lite 3.3',
-                'description' => 'عنصر عرض تجريبي ضمن مجموعة Lite لتمكين العميل من مشاهدة كل الصور الحالية.',
-            ],
-            [
-                'image' => $assetFromPublic('assets/images/sectors/sector-pages/communications/partner-products/Lite/3.2.jpg'),
-                'name' => 'Lite 3.2',
-                'description' => 'صورة افتراضية أخيرة ضمن سلسلة Lite لإكمال عرض جميع صور ITA POWER في هذه الصفحة.',
-            ],
-        ]);
-
-        $currentPage = max((int) request()->query('page', 1), 1);
-
-        $productsPaginator = new \Illuminate\Pagination\LengthAwarePaginator(
-            $defaultProducts->forPage($currentPage, $perPage)->values(),
-            $defaultProducts->count(),
-            $perPage,
-            $currentPage,
-            [
-                'path' => url()->current(),
-                'query' => request()->except('page'),
-            ]
-        );
-    } elseif (!$resolvedPartner) {
-        $usingFallbackProducts = true;
-        $fallbackMode = 'generic';
 
         $defaultProducts = collect([
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'راوتر مؤسسي',
-                'description' => 'حل اتصال ثابت وعملي للشركات والمكاتب مع أداء مستقر وتغطية مناسبة للاستخدام اليومي.',
+                'name' => 'تركيبة حليب أطفال المرحلة الأولى',
+                'description' => 'منتج افتراضي مخصص لعرض شكل بطاقة المنتج داخل الصفحة حتى يتم إدخال المنتجات الحقيقية من لوحة التحكم.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'سويتش شبكات ذكي',
-                'description' => 'مُبدّل شبكي لإدارة وتوزيع الاتصال بين الأجهزة بكفاءة مع مرونة في التوسعة مستقبلاً.',
+                'name' => 'تركيبة حليب أطفال المرحلة الثانية',
+                'description' => 'عنصر تجريبي مؤقت يساعد على اختبار شبكة المنتجات وربطها بالشريك المحدد في هذه الصفحة.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'نظام مكالمات IP',
-                'description' => 'منظومة اتصالات داخلية حديثة تدعم جودة صوت واضحة وإدارة أسهل للمكالمات المؤسسية.',
+                'name' => 'تركيبة متابعة المرحلة الثالثة',
+                'description' => 'بطاقة افتراضية لمنتج تغذية أطفال تم وضعها فقط لاستكمال العرض البصري قبل إضافة البيانات الفعلية.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'وحدة توزيع ألياف',
-                'description' => 'حل مخصص لتنظيم وتوزيع خطوط الألياف البصرية بطريقة مرتبة وآمنة داخل المشاريع.',
+                'name' => 'حبوب أطفال مدعمة',
+                'description' => 'منتج افتراضي يعرض مثالاً على الأغذية المساندة للأطفال مع وصف مبسط يمكن استبداله لاحقاً.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'بوابة رسائل قصيرة',
-                'description' => 'منصة لإرسال الإشعارات والتنبيهات النصية بسرعة وفاعلية إلى العملاء أو فرق العمل.',
+                'name' => 'وجبة أرز للأطفال',
+                'description' => 'عنصر مؤقت لعرض أنواع الأغذية المبكرة الخاصة بالأطفال ضمن شبكة المنتجات الحالية.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'جهاز تتبع مركبات',
-                'description' => 'أداة عملية لتتبع الحركة والموقع مع تقارير مبسطة تناسب القطاعات التشغيلية المختلفة.',
+                'name' => 'وجبة قمح للأطفال',
+                'description' => 'وصف تجريبي تم وضعه مؤقتاً ليوضح مكان النص والصورة داخل بطاقة المنتج.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'حل كاميرات مراقبة',
-                'description' => 'منظومة مراقبة مرئية بجودة مناسبة مع إمكانيات متابعة أساسية للمرافق والمنشآت.',
+                'name' => 'هريس فواكه للأطفال',
+                'description' => 'نموذج افتراضي لمنتج غذائي يمكن لاحقاً استبداله بالكامل ببيانات فعلية من الداشبورد.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'وحدة طاقة احتياطية',
-                'description' => 'مصدر دعم كهربائي للشبكات والأنظمة الحساسة بهدف الحفاظ على الاستمرارية وقت الانقطاع.',
+                'name' => 'هريس خضار للأطفال',
+                'description' => 'بطاقة عرض مؤقتة تضمن ظهور المنتجات بشكل كامل حتى قبل ربط المحتوى الحقيقي.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'منصة إدارة الشبكات',
-                'description' => 'لوحة موحدة لمتابعة حالة الشبكة والأجهزة وربط العمليات اليومية بشكل أبسط.',
+                'name' => 'بسكويت أطفال مغذي',
+                'description' => 'منتج افتراضي بسيط لعرض شكل التصميم وآلية الترتيب والتصفح بين صفحات المنتجات.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'هوائي خارجي',
-                'description' => 'خيار مخصص لتحسين الاستقبال والتغطية في البيئات المفتوحة أو المواقع الطرفية.',
+                'name' => 'وجبة خفيفة صحية للأطفال',
+                'description' => 'محتوى تجريبي يساعد على اختبار عدد البطاقات والتوزيع البصري داخل هذا السكشن.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'نظام نقاط بيع متنقل',
-                'description' => 'حل سريع وعملي للمدفوعات وإدارة العمليات الميدانية مع واجهة استخدام سهلة.',
+                'name' => 'حليب قليل اللاكتوز للأطفال',
+                'description' => 'عنصر افتراضي إضافي يوضح إمكانية عرض أصناف متخصصة داخل نفس صفحة الشريك.',
             ],
             [
                 'image' => asset('assets/images/section/1.png'),
-                'name' => 'لوحة تحكم سحابية',
-                'description' => 'واجهة مركزية لعرض البيانات ومتابعة الخدمات والمنتجات بصورة واضحة ومنظمة.',
+                'name' => 'مكمل تغذية للأطفال',
+                'description' => 'آخر منتج افتراضي في هذه المجموعة، وسيتم استبداله مباشرة عند إضافة منتجات حقيقية من لوحة التحكم.',
             ],
         ]);
 
@@ -297,17 +127,13 @@
         </span>
       </h2>
 
-      @if($usingFallbackProducts && $fallbackMode === 'ita_power')
+      @if($usingFallbackProducts && $resolvedPartner)
         <p class="lp-partnerProducts__subtitle">
-          هذه منتجات افتراضية مخصصة لشريك ITA POWER، وستُستبدل تلقائياً بمنتجات لوحة التحكم بمجرد إضافتها لهذا الشريك.
+          هذه منتجات افتراضية مؤقتة لهذا الشريك، وستُستبدل تلقائياً بمنتجات لوحة التحكم بمجرد إضافتها.
         </p>
       @elseif($usingFallbackProducts)
         <p class="lp-partnerProducts__subtitle">
           هذه بيانات افتراضية مؤقتة لعرض التصميم فقط، وبعد اعتماد الشكل النهائي سنربط المنتجات مباشرة من لوحة التحكم حسب الشريك المحدد.
-        </p>
-      @elseif($productsPaginator->total() === 0)
-        <p class="lp-partnerProducts__subtitle">
-          لا توجد منتجات مضافة لهذا الشريك حالياً من لوحة التحكم.
         </p>
       @endif
     </header>
@@ -349,8 +175,8 @@
                   ? \Illuminate\Support\Facades\Storage::url($product->product_image)
                   : asset('assets/images/section/1.png');
 
-              $productName = trim((string) ($product->name_ar ?? 'منتج'));
-              $productDescription = trim((string) ($product->description_ar ?? ''));
+              $productName = trim((string) ($product->name_ar ?: $product->name_en ?: 'منتج'));
+              $productDescription = trim((string) ($product->description_ar ?: $product->description_en ?: ''));
               $productNameHasLatin = preg_match('/[A-Za-z]/', $productName) === 1;
           @endphp
 

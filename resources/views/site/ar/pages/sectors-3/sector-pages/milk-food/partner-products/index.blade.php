@@ -5,16 +5,16 @@
     $partner = null;
 
     if ($partnerId > 0) {
-        $partner = \App\Models\SectorsPageCommunicationsPartner::query()->find($partnerId);
+        $partner = \App\Models\SectorsPageMilkFoodPartner::query()->find($partnerId);
     }
 
     if (!$partner && $partnerNameFromQuery !== '') {
-        $partner = \App\Models\SectorsPageCommunicationsPartner::query()
+        $partner = \App\Models\SectorsPageMilkFoodPartner::query()
             ->where('partner_name', $partnerNameFromQuery)
             ->first();
     }
 
-    $partnerName = trim((string) ($partner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'ITA POWER')));
+    $partnerName = trim((string) ($partner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'NutriBaby')));
 
     $partnerHeroImage = !empty($partner?->products_hero_image)
         ? \Illuminate\Support\Facades\Storage::url($partner->products_hero_image)
