@@ -69,6 +69,14 @@ class SectorsPageMedicinesPartnerResource extends Resource
                         ->maxLength(255)
                         ->columnSpanFull(),
 
+                    TextInput::make('partner_url')
+                        ->label('رابط صفحة الشريك')
+                        ->placeholder('https://example.com')
+                        ->url()
+                        ->maxLength(2048)
+                        ->helperText('اختياري: إذا تم إدخال الرابط سيظهر زر "انتقال لموقع الشريك" في صفحة منتجات هذا الشريك.')
+                        ->columnSpanFull(),
+
                     Textarea::make('description_ar')
                         ->label('الوصف العربي')
                         ->rows(6)
@@ -91,6 +99,15 @@ class SectorsPageMedicinesPartnerResource extends Resource
                 ImageColumn::make('partner_image')->label('صورة الشريك')->disk('public'),
                 ImageColumn::make('products_hero_image')->label('صورة الهيرو')->disk('public'),
                 TextColumn::make('partner_name')->label('الاسم')->limit(50),
+
+                TextColumn::make('partner_url')
+                    ->label('رابط صفحة الشريك')
+                    ->formatStateUsing(fn (?string $state): string => filled($state) ? $state : '—')
+                    ->url(fn (SectorsPageMedicinesPartner $record): ?string => $record->partner_url ?: null)
+                    ->openUrlInNewTab()
+                    ->limit(40)
+                    ->toggleable(),
+
                 TextColumn::make('description_ar')->label('الوصف العربي')->limit(50),
                 TextColumn::make('description_en')->label('الوصف الإنجليزي')->limit(50),
             ])

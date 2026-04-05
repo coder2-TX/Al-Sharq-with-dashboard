@@ -18,6 +18,14 @@
 
     $partnerName = trim((string) ($resolvedPartner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'ITA POWER')));
 
+    $partnerUrl = trim((string) ($resolvedPartner?->partner_url ?? ''));
+
+    if ($partnerUrl !== '' && !preg_match('~^(?:[a-z][a-z0-9+\-.]*:)?//~i', $partnerUrl)) {
+        $partnerUrl = 'https://' . ltrim($partnerUrl, '/');
+    }
+
+    $hasPartnerUrl = $partnerUrl !== '';
+
     $normalizedPartnerName = strtoupper((string) preg_replace('/\s+/', ' ', $partnerName));
     $isItaPower = $normalizedPartnerName === 'ITA POWER';
 
@@ -285,23 +293,44 @@
   <div class="lp-partnerProducts__inner">
 
     <header class="lp-partnerProducts__head">
-      <h2 class="lp-sectors__title lp-partnerProducts__title">
-        Products of <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
-      </h2>
+      <div class="lp-partnerProducts__headMain {{ $hasPartnerUrl ? '' : 'lp-partnerProducts__headMain--centered' }}">
+        <div class="lp-partnerProducts__headContent {{ $hasPartnerUrl ? '' : 'lp-partnerProducts__headContent--centered' }}">
+          <h2 class="lp-sectors__title lp-partnerProducts__title">
+            Products of <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
+          </h2>
 
-      @if($usingFallbackProducts && $fallbackMode === 'ita_power')
-        <p class="lp-partnerProducts__subtitle">
-          These are default products prepared specifically for ITA POWER. They will be replaced automatically by dashboard products as soon as items are added for this partner.
-        </p>
-      @elseif($usingFallbackProducts)
-        <p class="lp-partnerProducts__subtitle">
-          These are temporary default items prepared only for previewing the design. Once the layout is approved, we can connect the products dynamically from the dashboard based on the selected partner.
-        </p>
-      @elseif($productsPaginator->total() === 0)
-        <p class="lp-partnerProducts__subtitle">
-          There are no products added for this partner yet.
-        </p>
-      @endif
+          @if($usingFallbackProducts && $fallbackMode === 'ita_power')
+            <p class="lp-partnerProducts__subtitle">
+              These are default products prepared specifically for ITA POWER. They will be replaced automatically by dashboard products as soon as items are added for this partner.
+            </p>
+          @elseif($usingFallbackProducts)
+            <p class="lp-partnerProducts__subtitle">
+              These are temporary default items prepared only for previewing the design. Once the layout is approved, we can connect the products dynamically from the dashboard based on the selected partner.
+            </p>
+          @elseif($productsPaginator->total() === 0)
+            <p class="lp-partnerProducts__subtitle">
+              There are no products added for this partner yet.
+            </p>
+          @endif
+        </div>
+
+        @if($hasPartnerUrl)
+          <div class="lp-partnerProducts__headAction">
+            <a
+              class="lp-cta lp-cta--partnerSite"
+              href="{{ $partnerUrl }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Go to {{ $partnerName }} website"
+            >
+              <span class="lp-cta__stroke" aria-hidden="true"></span>
+              <span class="lp-cta__layer" aria-hidden="true">
+                <span class="lp-cta__text">Go to Partner Website</span>
+              </span>
+            </a>
+          </div>
+        @endif
+      </div>
     </header>
 
     <div class="lp-partnerProducts__grid" aria-label="Products list">

@@ -47,27 +47,35 @@ class SectorsPageCommunicationsPartnerResource extends Resource
                         ->required()
                         ->columnSpanFull(),
 
-            FileUpload::make('partner_image')
-                ->label('صورة الشريك')
-                ->image()
-                ->disk('public')
-                ->directory('site/sectors/communications/partners')
-                ->visibility('public')
-                ->required()
-                ->columnSpanFull(),
+                    FileUpload::make('partner_image')
+                        ->label('صورة الشريك')
+                        ->image()
+                        ->disk('public')
+                        ->directory('site/sectors/communications/partners')
+                        ->visibility('public')
+                        ->required()
+                        ->columnSpanFull(),
 
-            FileUpload::make('products_hero_image')
-                ->label('صورة أول سكشن لصفحة منتجات الشريك')
-                ->image()
-                ->disk('public')
-                ->directory('site/sectors/communications/partners/products-hero')
-                ->visibility('public')
-                ->columnSpanFull(),
+                    FileUpload::make('products_hero_image')
+                        ->label('صورة أول سكشن لصفحة منتجات الشريك')
+                        ->image()
+                        ->disk('public')
+                        ->directory('site/sectors/communications/partners/products-hero')
+                        ->visibility('public')
+                        ->columnSpanFull(),
 
                     TextInput::make('partner_name')
                         ->label('اسم الشريك')
                         ->required()
                         ->maxLength(255)
+                        ->columnSpanFull(),
+
+                    TextInput::make('partner_url')
+                        ->label('رابط صفحة الشريك')
+                        ->placeholder('https://example.com')
+                        ->url()
+                        ->maxLength(2048)
+                        ->helperText('اختياري: إذا تم إدخال الرابط سيظهر زر "انتقال لموقع الشريك" في صفحة منتجات هذا الشريك.')
                         ->columnSpanFull(),
 
                     Textarea::make('description_ar')
@@ -102,6 +110,14 @@ class SectorsPageCommunicationsPartnerResource extends Resource
                 TextColumn::make('partner_name')
                     ->label('الاسم')
                     ->limit(50),
+
+                TextColumn::make('partner_url')
+                    ->label('رابط صفحة الشريك')
+                    ->formatStateUsing(fn (?string $state): string => filled($state) ? $state : '—')
+                    ->url(fn (SectorsPageCommunicationsPartner $record): ?string => $record->partner_url ?: null)
+                    ->openUrlInNewTab()
+                    ->limit(40)
+                    ->toggleable(),
 
                 TextColumn::make('description_ar')
                     ->label('الوصف العربي')
