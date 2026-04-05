@@ -1,42 +1,49 @@
 @php
-    $partners = collect([
-        (object) [
-            'id' => 1,
-            'partner_image' => asset('assets/images/parteners/6.png'),
-            'partner_name' => 'Pearson',
-            'description_ar' => 'مؤسسة تعليمية معروفة تقدم حلولاً تدريبية ومحتوى تطوير مهني يخدم الأفراد والجهات التعليمية والمؤسسية.',
-        ],
-        (object) [
-            'id' => 2,
-            'partner_image' => asset('assets/images/parteners/16.png'),
-            'partner_name' => 'Cisco',
-            'description_ar' => 'توفر مسارات تدريبية تقنية احترافية تساعد على بناء المهارات العملية في الشبكات والتقنيات الحديثة.',
-        ],
-        (object) [
-            'id' => 3,
-            'partner_image' => asset('assets/images/parteners/4.png'),
-            'partner_name' => 'Autodesk',
-            'description_ar' => 'علامة معروفة في الحلول التعليمية المرتبطة بالتصميم والهندسة، وتدعم برامج تدريبية ذات طابع تطبيقي واضح.',
-        ],
-        (object) [
-            'id' => 4,
-            'partner_image' => asset('assets/images/parteners/8.png'),
-            'partner_name' => 'CompTIA',
-            'description_ar' => 'جهة متخصصة في الشهادات والتدريب المهني التقني، وتوفر مسارات مناسبة للتأهيل العملي والمهني.',
-        ],
-        (object) [
-            'id' => 5,
-            'partner_image' => asset('assets/images/parteners/5.png'),
-            'partner_name' => 'Coursera',
-            'description_ar' => 'منصة تعليمية تقدم برامج تدريبية متنوعة يمكن الاستفادة منها في تطوير المهارات وبناء المسارات المهنية.',
-        ],
-        (object) [
-            'id' => 6,
-            'partner_image' => asset('assets/images/parteners/3.png'),
-            'partner_name' => 'Udemy Business',
-            'description_ar' => 'توفر محتوى تدريبي متنوعاً للجهات والأفراد في مجالات مهنية وتقنية وإدارية متعددة.',
-        ],
-    ]);
+    $partners = \App\Models\SectorsPageVocationalTrainingPartner::query()
+        ->orderBy('sort_order')
+        ->orderBy('id')
+        ->get();
+
+    if ($partners->isEmpty()) {
+        $partners = collect([
+            (object) [
+                'id' => 1,
+                'partner_image' => asset('assets/images/parteners/6.png'),
+                'partner_name' => 'Pearson',
+                'description_ar' => 'مؤسسة تعليمية معروفة تقدم حلولاً تدريبية ومحتوى تطوير مهني يخدم الأفراد والجهات التعليمية والمؤسسية.',
+            ],
+            (object) [
+                'id' => 2,
+                'partner_image' => asset('assets/images/parteners/16.png'),
+                'partner_name' => 'Cisco',
+                'description_ar' => 'توفر مسارات تدريبية تقنية احترافية تساعد على بناء المهارات العملية في الشبكات والتقنيات الحديثة.',
+            ],
+            (object) [
+                'id' => 3,
+                'partner_image' => asset('assets/images/parteners/4.png'),
+                'partner_name' => 'Autodesk',
+                'description_ar' => 'علامة معروفة في الحلول التعليمية المرتبطة بالتصميم والهندسة، وتدعم برامج تدريبية ذات طابع تطبيقي واضح.',
+            ],
+            (object) [
+                'id' => 4,
+                'partner_image' => asset('assets/images/parteners/8.png'),
+                'partner_name' => 'CompTIA',
+                'description_ar' => 'جهة متخصصة في الشهادات والتدريب المهني التقني، وتوفر مسارات مناسبة للتأهيل العملي والمهني.',
+            ],
+            (object) [
+                'id' => 5,
+                'partner_image' => asset('assets/images/parteners/5.png'),
+                'partner_name' => 'Coursera',
+                'description_ar' => 'منصة تعليمية تقدم برامج تدريبية متنوعة يمكن الاستفادة منها في تطوير المهارات وبناء المسارات المهنية.',
+            ],
+            (object) [
+                'id' => 6,
+                'partner_image' => asset('assets/images/parteners/3.png'),
+                'partner_name' => 'Udemy Business',
+                'description_ar' => 'توفر محتوى تدريبي متنوعاً للجهات والأفراد في مجالات مهنية وتقنية وإدارية متعددة.',
+            ],
+        ]);
+    }
 @endphp
 
 <section
@@ -73,6 +80,12 @@
           @php
               $partnerName = trim((string) ($partner->partner_name ?? 'شريكنا'));
 
+              $partnerImage = !empty($partner->partner_image)
+                  ? (\Illuminate\Support\Str::startsWith((string) $partner->partner_image, ['http://', 'https://'])
+                      ? $partner->partner_image
+                      : \Illuminate\Support\Facades\Storage::url($partner->partner_image))
+                  : asset('assets/images/parteners/6.png');
+
               $partnerDescription = \App\Support\Text\DisplayTextFormatter::fromPlainText(
                   (string) ($partner->description_ar ?? '')
               );
@@ -87,7 +100,7 @@
             <div class="lp-communicationsS3__row">
               <div class="lp-communicationsS3__media">
                 <img
-                  src="{{ $partner->partner_image }}"
+                  src="{{ $partnerImage }}"
                   alt="{{ $partnerName }}"
                   loading="lazy"
                   decoding="async"
