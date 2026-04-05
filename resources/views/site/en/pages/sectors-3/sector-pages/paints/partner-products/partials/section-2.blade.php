@@ -81,10 +81,6 @@
         <p class="lp-partnerProducts__subtitle">
           These are temporary default products for this partner. They will be replaced automatically as soon as dashboard products are added.
         </p>
-      @else
-        <p class="lp-partnerProducts__subtitle">
-          These are temporary sample products for the Paints Sector. After the dashboard integration is completed, the real products for each partner will be displayed dynamically.
-        </p>
       @endif
     </header>
 

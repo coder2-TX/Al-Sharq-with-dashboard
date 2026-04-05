@@ -123,10 +123,6 @@
         <p class="lp-partnerProducts__subtitle">
           These are temporary default products for this partner. They will be replaced automatically as soon as dashboard products are added.
         </p>
-      @else
-        <p class="lp-partnerProducts__subtitle">
-          These are temporary default products prepared to preview the page design. Later, each partner can be connected to real products from the dashboard.
-        </p>
       @endif
     </header>
 
