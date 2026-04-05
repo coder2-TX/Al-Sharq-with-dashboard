@@ -69,6 +69,14 @@ class SectorsPageAdvertisingPartnerResource extends Resource
                         ->maxLength(255)
                         ->columnSpanFull(),
 
+                    TextInput::make('partner_url')
+                        ->label('رابط صفحة الشريك')
+                        ->placeholder('https://example.com')
+                        ->url()
+                        ->maxLength(2048)
+                        ->helperText('اختياري: إذا تم إدخال الرابط سيظهر زر "انتقال لموقع الشريك" في صفحة منتجات هذا الشريك.')
+                        ->columnSpanFull(),
+
                     Textarea::make('description_ar')
                         ->label('الوصف العربي')
                         ->rows(6)
@@ -101,6 +109,14 @@ class SectorsPageAdvertisingPartnerResource extends Resource
                 TextColumn::make('partner_name')
                     ->label('الاسم')
                     ->limit(50),
+
+                TextColumn::make('partner_url')
+                    ->label('رابط صفحة الشريك')
+                    ->formatStateUsing(fn (?string $state): string => filled($state) ? $state : '—')
+                    ->url(fn (SectorsPageAdvertisingPartner $record): ?string => $record->partner_url ?: null)
+                    ->openUrlInNewTab()
+                    ->limit(40)
+                    ->toggleable(),
 
                 TextColumn::make('description_ar')
                     ->label('الوصف العربي')

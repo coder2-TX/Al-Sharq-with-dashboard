@@ -18,6 +18,14 @@
 
     $partnerName = trim((string) ($resolvedPartner?->partner_name ?: ($partnerNameFromQuery !== '' ? $partnerNameFromQuery : 'BrandSpark')));
 
+    $partnerUrl = trim((string) ($resolvedPartner?->partner_url ?? ''));
+
+    if ($partnerUrl !== '' && !preg_match('~^(?:[a-z][a-z0-9+\-.]*:)?//~i', $partnerUrl)) {
+        $partnerUrl = 'https://' . ltrim($partnerUrl, '/');
+    }
+
+    $hasPartnerUrl = $partnerUrl !== '';
+
     $productsPaginator = null;
     $usingFallbackProducts = false;
 
@@ -115,19 +123,40 @@
   <div class="lp-partnerProducts__inner">
 
     <header class="lp-partnerProducts__head">
-      <h2 class="lp-sectors__title lp-partnerProducts__title">
-        Products of <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
-      </h2>
+      <div class="lp-partnerProducts__headMain {{ $hasPartnerUrl ? '' : 'lp-partnerProducts__headMain--centered' }}">
+        <div class="lp-partnerProducts__headContent {{ $hasPartnerUrl ? '' : 'lp-partnerProducts__headContent--centered' }}">
+          <h2 class="lp-sectors__title lp-partnerProducts__title">
+            Products of <span class="lp-sectors__titleAccent">{{ $partnerName }}</span>
+          </h2>
 
-      @if($usingFallbackProducts && $resolvedPartner)
-        <p class="lp-partnerProducts__subtitle">
-          These are temporary default products for this partner. They will be replaced automatically as soon as dashboard products are added.
-        </p>
-      @elseif($usingFallbackProducts)
-        <p class="lp-partnerProducts__subtitle">
-          These are temporary preview items prepared only to display the design. Once approved, products will be connected directly from the dashboard for the selected partner.
-        </p>
-      @endif
+          @if($usingFallbackProducts && $resolvedPartner)
+            <p class="lp-partnerProducts__subtitle">
+              These are temporary default products for this partner. They will be replaced automatically as soon as dashboard products are added.
+            </p>
+          @elseif($usingFallbackProducts)
+            <p class="lp-partnerProducts__subtitle">
+              These are temporary preview items prepared only to display the design. Once approved, products will be connected directly from the dashboard for the selected partner.
+            </p>
+          @endif
+        </div>
+
+        @if($hasPartnerUrl)
+          <div class="lp-partnerProducts__headAction">
+            <a
+              class="lp-cta lp-cta--partnerSite"
+              href="{{ $partnerUrl }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Go to {{ $partnerName }} website"
+            >
+              <span class="lp-cta__stroke" aria-hidden="true"></span>
+              <span class="lp-cta__layer" aria-hidden="true">
+                <span class="lp-cta__text">Go to Partner Website</span>
+              </span>
+            </a>
+          </div>
+        @endif
+      </div>
     </header>
 
     <div class="lp-partnerProducts__grid" aria-label="Products list">

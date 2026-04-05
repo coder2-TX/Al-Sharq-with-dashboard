@@ -15,6 +15,7 @@ class SectorsPageAdvertisingPartner extends Model
         'partner_image',
         'products_hero_image',
         'partner_name',
+        'partner_url',
         'description_ar',
         'description_en',
     ];
