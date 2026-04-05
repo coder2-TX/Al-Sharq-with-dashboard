@@ -11,6 +11,9 @@
     $secondSectorImage = $homePageSectorsSection?->second_sector_image
         ? \Illuminate\Support\Facades\Storage::url($homePageSectorsSection->second_sector_image)
         : asset('assets/images/section/2.jpeg');
+
+    $medicalSectorUrl = route('site.ar.sectors.medical.page');
+    $commercialSectorUrl = route('site.ar.sectors.commercial.page');
 @endphp
 
 <section class="lp-section lp-sectors" id="sectors" aria-label="قطاعات شركة الشرق">
@@ -28,7 +31,7 @@
 
           <article class="lp-sectorCard" aria-label="{{ $firstSectorName }}">
             <img src="{{ $firstSectorImage }}" alt="{{ $firstSectorName }}">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل {{ $firstSectorName }}">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $medicalSectorUrl }}" aria-label="تفاصيل {{ $firstSectorName }}">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -39,7 +42,7 @@
 
           <article class="lp-sectorCard" aria-label="{{ $secondSectorName }}">
             <img src="{{ $secondSectorImage }}" alt="{{ $secondSectorName }}">
-            <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل {{ $secondSectorName }}">
+            <a class="lp-iconBtn lp-sectorCard__btn" href="{{ $commercialSectorUrl }}" aria-label="تفاصيل {{ $secondSectorName }}">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
               <span class="lp-iconBtn__layer" aria-hidden="true">
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>

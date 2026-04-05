@@ -12,7 +12,8 @@ Route::view('/sectors', 'site.ar.pages.sectors-3.index')->name('site.ar.sectors'
 Route::view('/sectors/medical', 'site.ar.pages.sectors-3.sector-details.medical.index')->name('site.ar.sectors.medical');
 Route::view('/sectors/commercial', 'site.ar.pages.sectors-3.sector-details.commercial.index')->name('site.ar.sectors.commercial');
 
-Route::redirect('/sectors/medical-sector', '/sectors/medicines')->name('site.ar.sectors.medical.page');
+Route::redirect('/sectors/medical-sector', '/sectors/medical')->name('site.ar.sectors.medical.page');
+Route::redirect('/sectors/commercial-sector', '/sectors/commercial')->name('site.ar.sectors.commercial.page');
 Route::redirect('/sectors/medical/pharmacovigilance', '/sectors/medicines/pharmacovigilance')->name('site.ar.sectors.medical.pharmacovigilance');
 
 Route::view('/sectors/medicines', 'site.ar.pages.sectors-3.sector-pages.medicines.index')->name('site.ar.sectors.medicines');
@@ -53,7 +54,8 @@ Route::prefix('en')->name('site.en.')->group(function () {
     Route::view('/sectors/medical', 'site.en.pages.sectors-3.sector-details.medical.index')->name('sectors.medical');
     Route::view('/sectors/commercial', 'site.en.pages.sectors-3.sector-details.commercial.index')->name('sectors.commercial');
 
-    Route::redirect('/sectors/medical-sector', '/en/sectors/medicines')->name('sectors.medical.page');
+    Route::redirect('/sectors/medical-sector', '/en/sectors/medical')->name('sectors.medical.page');
+    Route::redirect('/sectors/commercial-sector', '/en/sectors/commercial')->name('sectors.commercial.page');
     Route::redirect('/sectors/medical/pharmacovigilance', '/en/sectors/medicines/pharmacovigilance')->name('sectors.medical.pharmacovigilance');
 
     Route::view('/sectors/medicines', 'site.en.pages.sectors-3.sector-pages.medicines.index')->name('sectors.medicines');

@@ -23,13 +23,13 @@ class SectorsPageAdvertisingPartnerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationLabel = 'شركاء قطاع الإعلانات';
+    protected static ?string $navigationLabel = 'شركاء قطاع الدعاية والإعلان';
 
     protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
 
-    protected static ?string $modelLabel = 'شريك قطاع الإعلانات';
+    protected static ?string $modelLabel = 'شريك قطاع الدعاية والإعلان';
 
-    protected static ?string $pluralModelLabel = 'شركاء قطاع الإعلانات';
+    protected static ?string $pluralModelLabel = 'شركاء قطاع الدعاية والإعلان';
 
     protected static ?int $navigationSort = 8;
 

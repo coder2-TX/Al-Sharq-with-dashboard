@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>قطاع الدعاية | شركة الشرق</title>
+  <title>قطاع الدعاية والإعلان | شركة الشرق</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -45,7 +45,7 @@
     <section
       class="lp-section lp-medicalS1"
       id="advertising-hero"
-      aria-label="قطاع الدعاية"
+      aria-label="قطاع الدعاية والإعلان"
       style="position: relative; overflow: hidden; isolation: isolate;"
     >
       <div
@@ -77,7 +77,7 @@
           <div class="lp-medicalS1__text">
             <h1 class="lp-medicalS1__title lp-sectors__title">
               <span class="lp-medicalS1__titleLine">
-                قطاع <span class="lp-medicalS1__accentWord">الدعاية</span>
+                قطاع <span class="lp-medicalS1__accentWord">الدعاية والإعلان</span>
               </span>
             </h1>
           </div>

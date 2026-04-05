@@ -37,10 +37,10 @@
             <div class="lp-sectorCard__name">قطاع الاتصالات</div>
           </article>
 
-          <article class="lp-sectorCard" aria-label="قطاع الدعاية">
+          <article class="lp-sectorCard" aria-label="قطاع الدعاية والإعلان">
             <img
               src="{{ $sectorsPageCommercialSectorSection?->advertising_image ? \Illuminate\Support\Facades\Storage::url($sectorsPageCommercialSectorSection->advertising_image) : asset('assets/images/sectors/sector-details/commercial/2.png') }}"
-              alt="قطاع الدعاية"
+              alt="قطاع الدعاية والإعلان"
             >
             <a class="lp-iconBtn lp-sectorCard__btn" href="{{ route('site.ar.sectors.advertising') }}" aria-label="الانتقال إلى صفحة قطاع الدعاية">
               <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
@@ -48,7 +48,7 @@
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
               </span>
             </a>
-            <div class="lp-sectorCard__name">قطاع الدعاية</div>
+            <div class="lp-sectorCard__name">قطاع الدعاية والإعلان</div>
           </article>
 
           <article class="lp-sectorCard" aria-label="قطاع الدهانات">

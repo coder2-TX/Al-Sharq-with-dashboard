@@ -84,13 +84,13 @@ class SectorsPageMedicalPharmacovigilancePageResource extends Resource
                 ->schema([
                     Textarea::make('report_emails')
                         ->label('البريد الإلكتروني')
-                        ->helperText('ضعي كل بريد في سطر مستقل')
+                        ->helperText('ضع كل بريد في سطر مستقل')
                         ->rows(4)
                         ->columnSpanFull(),
 
                     Textarea::make('report_phones')
                         ->label('أرقام الهاتف')
-                        ->helperText('ضعي كل رقم في سطر مستقل')
+                        ->helperText('ضع كل رقم في سطر مستقل')
                         ->rows(4)
                         ->columnSpanFull(),
 
