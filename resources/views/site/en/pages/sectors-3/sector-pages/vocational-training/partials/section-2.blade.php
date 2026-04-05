@@ -1,5 +1,7 @@
 @php
-    $articleEn = <<<'HTML'
+    $page = \App\Models\SectorsPageVocationalTrainingPage::query()->first();
+
+    $articleEn = $page?->article_en ?: <<<'HTML'
 <p>
 Our Vocational Training Sector delivers practical development programs designed to strengthen skills and improve readiness for real work environments. We focus on structured learning paths that support students, graduates, employees, and institutions seeking measurable professional growth.
 </p>

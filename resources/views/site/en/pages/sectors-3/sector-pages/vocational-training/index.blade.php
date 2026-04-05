@@ -1,5 +1,9 @@
 @php
-    $vocationalTrainingHeroImage = asset('assets/images/sectors/sector-details/commercial/8.jpeg');
+    $page = \App\Models\SectorsPageVocationalTrainingPage::query()->first();
+
+    $vocationalTrainingHeroImage = $page?->hero_image
+        ? \Illuminate\Support\Facades\Storage::url($page->hero_image)
+        : asset('assets/images/sectors/sector-details/commercial/8.jpeg');
 @endphp
 
 <!doctype html>
@@ -16,7 +20,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/iso.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/medical/section-1.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/communications/section-2.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/medical/section-2.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/pages/sectors-3/sector-pages/communications/section-3.css') }}" />
 
   <script src="{{ asset('assets/js/header.js') }}" defer></script>
