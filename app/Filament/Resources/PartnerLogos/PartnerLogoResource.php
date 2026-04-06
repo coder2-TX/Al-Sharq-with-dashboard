@@ -22,9 +22,9 @@ class PartnerLogoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static ?string $navigationLabel = 'الرئيسية - الشركاء';
+    protected static ?string $navigationLabel = 'السادس - الشركاء';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'الموقع';
+    protected static string|\UnitEnum|null $navigationGroup = 'صفحة الرئيسية';
 
     protected static ?string $modelLabel = 'شعار شريك';
 

@@ -20,13 +20,13 @@ class HomePageNumbersSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chart-bar-square';
 
-    protected static ?string $navigationLabel = 'الرئيسية - الأرقام';
+    protected static ?string $navigationLabel = 'الخامس - الأرقام';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'الموقع';
+    protected static string|\UnitEnum|null $navigationGroup = 'صفحة الرئيسية';
 
-    protected static ?string $modelLabel = 'سكشن الأرقام';
+    protected static ?string $modelLabel = 'جزء الأرقام';
 
-    protected static ?string $pluralModelLabel = 'سكشن الأرقام';
+    protected static ?string $pluralModelLabel = 'جزء الأرقام';
 
     protected static ?int $navigationSort = 5;
 

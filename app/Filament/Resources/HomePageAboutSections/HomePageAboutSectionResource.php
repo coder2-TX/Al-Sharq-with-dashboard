@@ -21,9 +21,9 @@ class HomePageAboutSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-information-circle';
 
-    protected static ?string $navigationLabel = 'الرئيسية - من نحن';
+    protected static ?string $navigationLabel = 'الثاني - من نحن';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'الموقع';
+    protected static string|\UnitEnum|null $navigationGroup = 'صفحة الرئيسية';
 
     protected static ?string $modelLabel = 'من نحن';
 

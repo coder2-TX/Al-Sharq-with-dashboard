@@ -22,9 +22,9 @@ class IsoCertificateContentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-shield-check';
 
-    protected static ?string $navigationLabel = 'الشهادة - المحتوى المشترك';
+    protected static ?string $navigationLabel = 'الثالث - المحتوى المشترك للشهادة';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'الموقع';
+    protected static string|\UnitEnum|null $navigationGroup = 'صفحة الرئيسية';
 
     protected static ?string $modelLabel = 'محتوى الشهادة';
 

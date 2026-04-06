@@ -21,13 +21,13 @@ class HomePageSectorsSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-squares-2x2';
 
-    protected static ?string $navigationLabel = 'الرئيسية - القطاعات';
+    protected static ?string $navigationLabel = 'الرابع - القطاعات';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'الموقع';
+    protected static string|\UnitEnum|null $navigationGroup = 'صفحة الرئيسية';
 
-    protected static ?string $modelLabel = 'سكشن القطاعات';
+    protected static ?string $modelLabel = 'القطاعات الاساسية';
 
-    protected static ?string $pluralModelLabel = 'سكشن القطاعات';
+    protected static ?string $pluralModelLabel = 'القطاعات الاساسية';
 
     protected static ?int $navigationSort = 4;
 

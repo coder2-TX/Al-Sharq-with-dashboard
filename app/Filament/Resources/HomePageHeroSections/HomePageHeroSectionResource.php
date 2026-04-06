@@ -20,9 +20,9 @@ class HomePageHeroSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-home-modern';
 
-    protected static ?string $navigationLabel = 'الرئيسية - الهيرو';
+    protected static ?string $navigationLabel = 'الاول - الهيرو';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'الموقع';
+    protected static string|\UnitEnum|null $navigationGroup = 'صفحة الرئيسية';
 
     protected static ?string $modelLabel = 'هيرو الرئيسية';
 
