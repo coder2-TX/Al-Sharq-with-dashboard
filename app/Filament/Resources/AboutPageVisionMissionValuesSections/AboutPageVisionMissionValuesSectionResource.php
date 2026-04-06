@@ -22,13 +22,13 @@ class AboutPageVisionMissionValuesSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-eye';
 
-    protected static ?string $navigationLabel = 'السكشن الثالث - الرؤية والرسالة والقيم';
+    protected static ?string $navigationLabel = 'الثالث - الرؤية والرسالة والقيم';
 
     protected static string|\UnitEnum|null $navigationGroup = 'صفحة من نحن';
 
-    protected static ?string $modelLabel = 'السكشن الثالث - الرؤية والرسالة والقيم';
+    protected static ?string $modelLabel = 'الثالث - الرؤية والرسالة والقيم';
 
-    protected static ?string $pluralModelLabel = 'السكشن الثالث - الرؤية والرسالة والقيم';
+    protected static ?string $pluralModelLabel = 'الثالث - الرؤية والرسالة والقيم';
 
     protected static ?int $navigationSort = 3;
 

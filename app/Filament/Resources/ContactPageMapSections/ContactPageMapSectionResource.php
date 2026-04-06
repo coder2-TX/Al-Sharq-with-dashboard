@@ -20,13 +20,13 @@ class ContactPageMapSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-map';
 
-    protected static ?string $navigationLabel = 'السكشن الرابع - الخريطة';
+    protected static ?string $navigationLabel = 'الثالث - الخريطة';
 
     protected static string|\UnitEnum|null $navigationGroup = 'صفحة تواصل معنا';
 
-    protected static ?string $modelLabel = 'السكشن الرابع - الخريطة';
+    protected static ?string $modelLabel = 'الثالث - الخريطة';
 
-    protected static ?string $pluralModelLabel = 'السكشن الرابع - الخريطة';
+    protected static ?string $pluralModelLabel = 'الثالث - الخريطة';
 
     protected static ?int $navigationSort = 4;
 

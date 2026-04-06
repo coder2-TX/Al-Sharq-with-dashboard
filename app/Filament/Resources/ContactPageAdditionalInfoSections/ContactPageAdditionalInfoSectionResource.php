@@ -22,15 +22,15 @@ class ContactPageAdditionalInfoSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-information-circle';
 
-    protected static ?string $navigationLabel = 'السكشن الثالث - معلومات التواصل العامة';
+    protected static ?string $navigationLabel = 'الثاني - معلومات التواصل العامة';
 
     protected static string|\UnitEnum|null $navigationGroup = 'صفحة تواصل معنا';
 
-    protected static ?string $modelLabel = 'السكشن الثالث - معلومات التواصل العامة';
+    protected static ?string $modelLabel = 'الثاني - معلومات التواصل العامة';
 
-    protected static ?string $pluralModelLabel = 'السكشن الثالث - معلومات التواصل العامة';
+    protected static ?string $pluralModelLabel = 'الثاني - معلومات التواصل العامة';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

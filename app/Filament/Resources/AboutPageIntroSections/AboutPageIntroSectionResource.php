@@ -21,13 +21,13 @@ class AboutPageIntroSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'السكشن الأول - كلمة عن الشركة';
+    protected static ?string $navigationLabel = 'الأول - كلمة عن الشركة';
 
     protected static string|\UnitEnum|null $navigationGroup = 'صفحة من نحن';
 
-    protected static ?string $modelLabel = 'السكشن الأول - كلمة عن الشركة';
+    protected static ?string $modelLabel = 'الأول - كلمة عن الشركة';
 
-    protected static ?string $pluralModelLabel = 'السكشن الأول - كلمة عن الشركة';
+    protected static ?string $pluralModelLabel = 'الأول - كلمة عن الشركة';
 
     protected static ?int $navigationSort = 1;
 

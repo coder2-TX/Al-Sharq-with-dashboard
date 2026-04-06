@@ -21,7 +21,7 @@ class ContactPageBranchResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static ?string $navigationLabel = 'صفحة تواصل معنا - الفروع';
+    protected static ?string $navigationLabel = 'الاول - الفروع ومعلوماتها';
 
     protected static string|\UnitEnum|null $navigationGroup = 'صفحة تواصل معنا';
 

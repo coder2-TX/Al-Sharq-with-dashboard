@@ -24,13 +24,13 @@ class AboutPageLeadershipSectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
 
-    protected static ?string $navigationLabel = 'السكشن الرابع - قيادة الشركة';
+    protected static ?string $navigationLabel = 'الرابع - قيادة الشركة';
 
     protected static string|\UnitEnum|null $navigationGroup = 'صفحة من نحن';
 
-    protected static ?string $modelLabel = 'السكشن الرابع - قيادة الشركة';
+    protected static ?string $modelLabel = 'الرابع - قيادة الشركة';
 
-    protected static ?string $pluralModelLabel = 'السكشن الرابع - قيادة الشركة';
+    protected static ?string $pluralModelLabel = 'الرابع - قيادة الشركة';
 
     protected static ?int $navigationSort = 4;
 

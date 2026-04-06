@@ -24,13 +24,13 @@ class AboutPageTodaySectionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    protected static ?string $navigationLabel = 'السكشن السادس - شركة الشرق اليوم';
+    protected static ?string $navigationLabel = 'الخامس - شركة الشرق اليوم';
 
     protected static string|\UnitEnum|null $navigationGroup = 'صفحة من نحن';
 
-    protected static ?string $modelLabel = 'السكشن السادس - شركة الشرق اليوم';
+    protected static ?string $modelLabel = 'الخامس - شركة الشرق اليوم';
 
-    protected static ?string $pluralModelLabel = 'السكشن السادس - شركة الشرق اليوم';
+    protected static ?string $pluralModelLabel = 'الخامس- شركة الشرق اليوم';
 
     protected static ?int $navigationSort = 6;
 
