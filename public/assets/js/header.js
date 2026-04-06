@@ -379,17 +379,17 @@
     nodes.forEach(wrapMixedTextNode);
   }
 
-  function initAutoLatinFix() {
-    const html = document.documentElement;
+function initAutoLatinFix() {
+  const html = document.documentElement;
 
-    if (!html || html.getAttribute('dir') !== 'rtl') {
-      return;
-    }
-
-    const roots = document.querySelectorAll('main');
-
-    roots.forEach(processRoot);
+  if (!html || html.getAttribute('dir') !== 'rtl') {
+    return;
   }
+
+  const roots = document.querySelectorAll('main, .lp-footer');
+
+  roots.forEach(processRoot);
+}
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAutoLatinFix);

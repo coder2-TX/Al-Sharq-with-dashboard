@@ -57,6 +57,7 @@
     $emailHref = $siteFooterSection?->email_href ?: 'mailto:info@ata-yemen.com';
     $emailDisplay = $siteFooterSection?->email_display ?: 'info@ata-yemen.com';
     $addressDisplay = $siteFooterSection?->address_ar_display ?: 'صنعاء , شارع الستين - خلف مبنى الأمم المتحدة';
+    $copyrightTextAr = $siteFooterSection?->copyright_text_ar_display ?: 'جميع الحقوق محفوظة شركة الشرق للتجارة والتوكيلات .';
 @endphp
 
 <footer class="lp-footer" id="contact" aria-label="Footer">
@@ -183,7 +184,21 @@
     </div>
 
     <div class="lp-footer__bottom">
-      © <span class="lp-enDigits" dir="ltr" lang="en">{{ now()->year }}</span> جميع الحقوق محفوظة شركة الشرق للتجارة والتوكيلات .
+      <div class="lp-footer__bottomCopy">
+        © <span class="lp-enDigits" dir="ltr" lang="en">{{ now()->year }}</span> {!! $copyrightTextAr !!}
+      </div>
+
+      <div class="lp-footer__bottomPowered">
+        <a
+          class="lp-footer__bottomPoweredLink"
+          href="https://destination-media.pro/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="تصميم بواسطة Destination Media"
+        >
+          <span class="lp-autoLatin" dir="ltr" lang="en">Powered by Destination Media</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>

@@ -28,6 +28,8 @@ class SiteFooterSection extends Model
         'sectors_description_en',
         'contact_description_ar',
         'contact_description_en',
+        'copyright_text_ar',
+        'copyright_text_en',
     ];
 
     public function getWhatsappNumberDisplayAttribute(): string
@@ -103,6 +105,16 @@ class SiteFooterSection extends Model
     public function getContactDescriptionEnDisplayAttribute(): string
     {
         return DisplayTextFormatter::fromPlainText($this->contact_description_en);
+    }
+
+    public function getCopyrightTextArDisplayAttribute(): string
+    {
+        return DisplayTextFormatter::fromPlainText($this->copyright_text_ar);
+    }
+
+    public function getCopyrightTextEnDisplayAttribute(): string
+    {
+        return DisplayTextFormatter::fromPlainText($this->copyright_text_en);
     }
 
     public function getWhatsappHrefAttribute(): string

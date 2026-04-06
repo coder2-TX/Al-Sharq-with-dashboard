@@ -59,6 +59,7 @@
     $emailHref = $siteFooterSection?->email_href ?: 'mailto:info@ata-yemen.com';
     $emailDisplay = $siteFooterSection?->email_display ?: 'info@ata-yemen.com';
     $addressDisplay = $siteFooterSection?->address_en_display ?: 'Sana’a, Al-Siteen Street - Behind the United Nations Building';
+    $copyrightTextEn = $siteFooterSection?->copyright_text_en_display ?: 'All rights reserved. Al Sharq Trading & Agencies Company.';
 @endphp
 
 <footer class="lp-footer" id="contact" aria-label="Footer">
@@ -185,7 +186,21 @@
     </div>
 
     <div class="lp-footer__bottom">
-      © <span class="lp-enDigits" dir="ltr" lang="en">{{ now()->year }}</span> All rights reserved. Al Sharq Trading & Agencies Company.
+      <div class="lp-footer__bottomCopy">
+        © <span class="lp-enDigits" dir="ltr" lang="en">{{ now()->year }}</span> {!! $copyrightTextEn !!}
+      </div>
+
+      <div class="lp-footer__bottomPowered">
+        <a
+          class="lp-footer__bottomPoweredLink"
+          href="https://destination-media.pro/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Powered by Destination Media"
+        >
+          Powered by Destination Media
+        </a>
+      </div>
     </div>
   </div>
 </footer>

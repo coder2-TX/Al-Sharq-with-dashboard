@@ -26,18 +26,68 @@
             $isHomeRoute = request()->routeIs('site.ar.home');
             $isAboutRoute = request()->routeIs('site.ar.about');
             $isNewsRoute = request()->routeIs('site.ar.news');
-            $isSectorRoute = request()->routeIs('site.ar.sectors*');
+
+            $isMedicinesRoute =
+                request()->routeIs('site.ar.sectors.medicines') ||
+                request()->routeIs('site.ar.medicines.partner-products') ||
+                request()->routeIs('site.ar.sectors.medicines.pharmacovigilance') ||
+                request()->routeIs('site.ar.sectors.medical.pharmacovigilance');
+
+            $isMedicalSuppliesRoute =
+                request()->routeIs('site.ar.sectors.medical_supplies') ||
+                request()->routeIs('site.ar.medical_supplies.partner-products');
+
+            $isMilkFoodRoute =
+                request()->routeIs('site.ar.sectors.milk_food') ||
+                request()->routeIs('site.ar.milk-food.partner-products');
+
+            $isCarsRoute =
+                request()->routeIs('site.ar.sectors.cars') ||
+                request()->routeIs('site.ar.cars.partner-products');
+
+            $isCommunicationsRoute =
+                request()->routeIs('site.ar.sectors.communications') ||
+                request()->routeIs('site.ar.communications.partner-products');
+
+            $isAdvertisingRoute =
+                request()->routeIs('site.ar.sectors.advertising') ||
+                request()->routeIs('site.ar.advertising.partner-products');
+
+            $isPaintsRoute =
+                request()->routeIs('site.ar.sectors.paints') ||
+                request()->routeIs('site.ar.paints.partner-products');
+
+            $isVocationalTrainingRoute =
+                request()->routeIs('site.ar.sectors.vocational_training') ||
+                request()->routeIs('site.ar.vocational_training.partner-products');
 
             $isMedicalGroupRoute =
                 request()->routeIs('site.ar.sectors.medical') ||
                 request()->routeIs('site.ar.sectors.medical.page') ||
-                request()->routeIs('site.ar.sectors.milk_food') ||
-                request()->routeIs('site.ar.sectors.medical.pharmacovigilance');
+                $isMedicinesRoute ||
+                $isMedicalSuppliesRoute ||
+                $isMilkFoodRoute;
 
             $isCommercialGroupRoute =
                 request()->routeIs('site.ar.sectors.commercial') ||
-                request()->routeIs('site.ar.sectors.advertising') ||
-                request()->routeIs('site.ar.sectors.communications');
+                request()->routeIs('site.ar.sectors.commercial.page') ||
+                $isCarsRoute ||
+                $isCommunicationsRoute ||
+                $isAdvertisingRoute ||
+                $isPaintsRoute ||
+                $isVocationalTrainingRoute;
+
+            $isSectorRoute =
+                request()->routeIs('site.ar.sectors') ||
+                request()->routeIs('site.ar.sectors.*') ||
+                request()->routeIs('site.ar.medicines.*') ||
+                request()->routeIs('site.ar.medical_supplies.*') ||
+                request()->routeIs('site.ar.milk-food.*') ||
+                request()->routeIs('site.ar.advertising.*') ||
+                request()->routeIs('site.ar.communications.*') ||
+                request()->routeIs('site.ar.cars.*') ||
+                request()->routeIs('site.ar.paints.*') ||
+                request()->routeIs('site.ar.vocational_training.*');
         @endphp
 
         <div class="lp-drawer__top">
@@ -46,7 +96,7 @@
                aria-label="Switch to English">
                 <span class="lp-cta__stroke" aria-hidden="true"></span>
                 <span class="lp-cta__layer" aria-hidden="true">
-                    <span class="lp-cta__text">English</span>
+                    <span class="lp-cta__text">EN</span>
                 </span>
             </a>
         </div>
@@ -67,7 +117,7 @@
             <a class="lp-drawer__link {{ $isNewsRoute ? 'is-active' : '' }}"
                href="{{ route('site.ar.news') }}"
                @if($isNewsRoute) aria-current="page" @endif>
-                الاخبار
+                الأخبار
             </a>
 
             <details class="lp-drawer__group" @if($isSectorRoute) open @endif>
@@ -97,11 +147,27 @@
 
                         <div class="lp-drawer__subItems">
                             <a
-                                class="lp-drawer__subLink {{ request()->routeIs('site.ar.sectors.milk_food') ? 'is-active' : '' }}"
-                                href="{{ route('site.ar.sectors.milk_food') }}"
-                                @if(request()->routeIs('site.ar.sectors.milk_food')) aria-current="page" @endif
+                                class="lp-drawer__subLink {{ $isMedicinesRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.medicines') }}"
+                                @if($isMedicinesRoute) aria-current="page" @endif
                             >
-                                قطاع حليب الأطفال والأغذية
+                                قطاع الأدوية
+                            </a>
+
+                            <a
+                                class="lp-drawer__subLink {{ $isMedicalSuppliesRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.medical_supplies') }}"
+                                @if($isMedicalSuppliesRoute) aria-current="page" @endif
+                            >
+                                قطاع المستلزمات الطبية
+                            </a>
+
+                            <a
+                                class="lp-drawer__subLink {{ $isMilkFoodRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.milk_food') }}"
+                                @if($isMilkFoodRoute) aria-current="page" @endif
+                            >
+                                قطاع الحليب وغذاء الأطفال
                             </a>
                         </div>
                     </details>
@@ -119,25 +185,45 @@
                         </summary>
 
                         <div class="lp-drawer__subItems">
-                            <button class="lp-drawer__subLink" type="button">قطاع زيوت المحركات</button>
+                            <a
+                                class="lp-drawer__subLink {{ $isCarsRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.cars') }}"
+                                @if($isCarsRoute) aria-current="page" @endif
+                            >
+                                قطاع السيارات
+                            </a>
 
                             <a
-                                class="lp-drawer__subLink {{ request()->routeIs('site.ar.sectors.advertising') ? 'is-active' : '' }}"
+                                class="lp-drawer__subLink {{ $isCommunicationsRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.communications') }}"
+                                @if($isCommunicationsRoute) aria-current="page" @endif
+                            >
+                                قطاع الاتصالات
+                            </a>
+
+                            <a
+                                class="lp-drawer__subLink {{ $isAdvertisingRoute ? 'is-active' : '' }}"
                                 href="{{ route('site.ar.sectors.advertising') }}"
-                                @if(request()->routeIs('site.ar.sectors.advertising')) aria-current="page" @endif
+                                @if($isAdvertisingRoute) aria-current="page" @endif
                             >
                                 قطاع الدعاية والإعلان
                             </a>
 
                             <a
-                                class="lp-drawer__subLink {{ request()->routeIs('site.ar.sectors.communications') ? 'is-active' : '' }}"
-                                href="{{ route('site.ar.sectors.communications') }}"
-                                @if(request()->routeIs('site.ar.sectors.communications')) aria-current="page" @endif
+                                class="lp-drawer__subLink {{ $isPaintsRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.paints') }}"
+                                @if($isPaintsRoute) aria-current="page" @endif
                             >
-                                قطاع الإتصالات
+                                قطاع الدهانات
                             </a>
 
-                            <button class="lp-drawer__subLink" type="button">قطاع التدريب</button>
+                            <a
+                                class="lp-drawer__subLink {{ $isVocationalTrainingRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.ar.sectors.vocational_training') }}"
+                                @if($isVocationalTrainingRoute) aria-current="page" @endif
+                            >
+                                قطاع التدريب المهني
+                            </a>
                         </div>
                     </details>
                 </div>

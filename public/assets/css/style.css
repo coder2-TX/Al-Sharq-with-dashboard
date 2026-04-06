@@ -184,6 +184,14 @@ html[dir="ltr"]{
   pointer-events: auto;
 }
 
+html[dir="ltr"] .lp-iconBtn__stroke{
+  border-radius: 0 14px 0 0;
+}
+
+html[dir="ltr"] .lp-iconBtn__layer{
+  border-radius: 0 14px 0 0;
+}
+
 .lp-iconBtn__layer i{
   color: #fff;
   font-size: 16px;
@@ -198,6 +206,10 @@ html[dir="ltr"]{
   outline: 2px solid rgba(0,191,242,.35);
   outline-offset: 6px;
   border-radius: 14px 0 0 0;
+}
+
+html[dir="ltr"] .lp-iconBtn:focus-visible{
+  border-radius: 0 14px 0 0;
 }
 
 /* Shared Social Icon */
@@ -302,4 +314,58 @@ html[lang="en"]{
   display: inline-block;
   font-variant-numeric: lining-nums;
   font-feature-settings: "lnum" 1;
+}
+
+/* Global Scrollbar */
+html{
+  scrollbar-width: thin;
+  scrollbar-color: var(--lp-about-title) #e5e5e5;
+}
+
+body::-webkit-scrollbar,
+*::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+}
+
+body::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track{
+  background: #e5e5e5;
+  border-radius: 999px;
+}
+
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb{
+  background: var(--lp-about-title);
+  border-radius: 999px;
+  border: 2px solid #e5e5e5;
+}
+
+body::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:hover{
+  background: #2E3191;
+}
+
+.lp-drawer__panel{
+  scrollbar-width: thin;
+  scrollbar-color: var(--lp-about-title) #e5e5e5;
+}
+
+.lp-drawer__panel::-webkit-scrollbar{
+  width: 6px;
+}
+
+.lp-drawer__panel::-webkit-scrollbar-track{
+  background: #e5e5e5;
+  border-radius: 999px;
+}
+
+.lp-drawer__panel::-webkit-scrollbar-thumb{
+  background: var(--lp-about-title);
+  border-radius: 999px;
+  border: 1px solid #e5e5e5;
+}
+
+.lp-drawer__panel::-webkit-scrollbar-thumb:hover{
+  background: #2E3191;
 }

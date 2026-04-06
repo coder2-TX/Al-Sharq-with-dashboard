@@ -139,6 +139,21 @@ class SiteFooterSectionResource extends Resource
                         ->rows(3)
                         ->required(),
                 ]),
+
+            Section::make('النص السفلي للفوتر')
+                ->columnSpanFull()
+                ->columns(2)
+                ->schema([
+                    Textarea::make('copyright_text_ar')
+                        ->label('نص الحقوق بالعربية')
+                        ->rows(3)
+                        ->helperText('سيتم عرض السنة تلقائيًا قبل هذا النص في الموقع.'),
+
+                    Textarea::make('copyright_text_en')
+                        ->label('Copyright text in English')
+                        ->rows(3)
+                        ->helperText('The year will be displayed automatically before this text on the website.'),
+                ]),
         ]);
     }
 

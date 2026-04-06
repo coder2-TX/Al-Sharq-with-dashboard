@@ -26,25 +26,68 @@
             $isHomeRoute = request()->routeIs('site.en.home');
             $isAboutRoute = request()->routeIs('site.en.about');
             $isNewsRoute = request()->routeIs('site.en.news');
-            $isSectorRoute = request()->routeIs('site.en.sectors*') || request()->routeIs('site.en.sector*');
+
+            $isMedicinesRoute =
+                request()->routeIs('site.en.sectors.medicines') ||
+                request()->routeIs('site.en.medicines.partner-products') ||
+                request()->routeIs('site.en.sectors.medicines.pharmacovigilance') ||
+                request()->routeIs('site.en.sectors.medical.pharmacovigilance');
+
+            $isMedicalSuppliesRoute =
+                request()->routeIs('site.en.sectors.medical_supplies') ||
+                request()->routeIs('site.en.medical_supplies.partner-products');
+
+            $isMilkFoodRoute =
+                request()->routeIs('site.en.sectors.milk_food') ||
+                request()->routeIs('site.en.milk-food.partner-products');
+
+            $isCarsRoute =
+                request()->routeIs('site.en.sectors.cars') ||
+                request()->routeIs('site.en.cars.partner-products');
+
+            $isCommunicationsRoute =
+                request()->routeIs('site.en.sectors.communications') ||
+                request()->routeIs('site.en.communications.partner-products');
+
+            $isAdvertisingRoute =
+                request()->routeIs('site.en.sectors.advertising') ||
+                request()->routeIs('site.en.advertising.partner-products');
+
+            $isPaintsRoute =
+                request()->routeIs('site.en.sectors.paints') ||
+                request()->routeIs('site.en.paints.partner-products');
+
+            $isVocationalTrainingRoute =
+                request()->routeIs('site.en.sectors.vocational_training') ||
+                request()->routeIs('site.en.vocational_training.partner-products');
 
             $isMedicalGroupRoute =
                 request()->routeIs('site.en.sectors.medical') ||
                 request()->routeIs('site.en.sectors.medical.page') ||
-                request()->routeIs('site.en.sectors.milk_food') ||
-                request()->routeIs('site.en.sectors.medical.pharmacovigilance');
+                $isMedicinesRoute ||
+                $isMedicalSuppliesRoute ||
+                $isMilkFoodRoute;
 
             $isCommercialGroupRoute =
                 request()->routeIs('site.en.sectors.commercial') ||
-                request()->routeIs('site.en.sectors.advertising') ||
-                request()->routeIs('site.en.sectors.communications');
+                request()->routeIs('site.en.sectors.commercial.page') ||
+                $isCarsRoute ||
+                $isCommunicationsRoute ||
+                $isAdvertisingRoute ||
+                $isPaintsRoute ||
+                $isVocationalTrainingRoute;
 
-            $hasEnSectorsRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors');
-            $hasEnMedicalSectorRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.medical');
-            $hasEnCommercialSectorRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.commercial');
-            $hasEnMilkFoodRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.milk_food');
-            $hasEnAdvertisingRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.advertising');
-            $hasEnCommunicationsRoute = \Illuminate\Support\Facades\Route::has('site.en.sectors.communications');
+            $isSectorRoute =
+                request()->routeIs('site.en.sectors') ||
+                request()->routeIs('site.en.sectors.*') ||
+                request()->routeIs('site.en.medicines.*') ||
+                request()->routeIs('site.en.medical_supplies.*') ||
+                request()->routeIs('site.en.milk-food.*') ||
+                request()->routeIs('site.en.advertising.*') ||
+                request()->routeIs('site.en.communications.*') ||
+                request()->routeIs('site.en.cars.*') ||
+                request()->routeIs('site.en.paints.*') ||
+                request()->routeIs('site.en.vocational_training.*');
         @endphp
 
         <div class="lp-drawer__top">
@@ -53,7 +96,7 @@
                aria-label="التبديل إلى العربية">
                 <span class="lp-cta__stroke" aria-hidden="true"></span>
                 <span class="lp-cta__layer" aria-hidden="true">
-                    <span class="lp-cta__text">العربية</span>
+                    <span class="lp-cta__text">AR</span>
                 </span>
             </a>
         </div>
@@ -80,7 +123,7 @@
             <details class="lp-drawer__group" @if($isSectorRoute) open @endif>
                 <summary
                     class="lp-drawer__link lp-drawer__link--toggle {{ $isSectorRoute ? 'is-active' : '' }}"
-                    @if($hasEnSectorsRoute) data-nav-href="{{ route('site.en.sectors') }}" @endif
+                    data-nav-href="{{ route('site.en.sectors') }}"
                 >
                     <span>Sectors</span>
 
@@ -93,7 +136,7 @@
                     <details class="lp-drawer__subGroup" @if($isMedicalGroupRoute) open @endif>
                         <summary
                             class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle"
-                            @if($hasEnMedicalSectorRoute) data-nav-href="{{ route('site.en.sectors.medical') }}" @endif
+                            data-nav-href="{{ route('site.en.sectors.medical') }}"
                         >
                             <span>Medical Sector</span>
 
@@ -103,24 +146,36 @@
                         </summary>
 
                         <div class="lp-drawer__subItems">
-                            @if($hasEnMilkFoodRoute)
-                                <a
-                                    class="lp-drawer__subLink {{ request()->routeIs('site.en.sectors.milk_food') ? 'is-active' : '' }}"
-                                    href="{{ route('site.en.sectors.milk_food') }}"
-                                    @if(request()->routeIs('site.en.sectors.milk_food')) aria-current="page" @endif
-                                >
-                                    Infant Formula &amp; Food Sector
-                                </a>
-                            @else
-                                <button class="lp-drawer__subLink" type="button">Infant Formula &amp; Food Sector</button>
-                            @endif
+                            <a
+                                class="lp-drawer__subLink {{ $isMedicinesRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.medicines') }}"
+                                @if($isMedicinesRoute) aria-current="page" @endif
+                            >
+                                Medicines Sector
+                            </a>
+
+                            <a
+                                class="lp-drawer__subLink {{ $isMedicalSuppliesRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.medical_supplies') }}"
+                                @if($isMedicalSuppliesRoute) aria-current="page" @endif
+                            >
+                                Medical Supplies Sector
+                            </a>
+
+                            <a
+                                class="lp-drawer__subLink {{ $isMilkFoodRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.milk_food') }}"
+                                @if($isMilkFoodRoute) aria-current="page" @endif
+                            >
+                                Infant Formula &amp; Food Sector
+                            </a>
                         </div>
                     </details>
 
                     <details class="lp-drawer__subGroup" @if($isCommercialGroupRoute) open @endif>
                         <summary
                             class="lp-drawer__subSectionTitle lp-drawer__subSectionTitle--toggle"
-                            @if($hasEnCommercialSectorRoute) data-nav-href="{{ route('site.en.sectors.commercial') }}" @endif
+                            data-nav-href="{{ route('site.en.sectors.commercial') }}"
                         >
                             <span>Commercial Sector</span>
 
@@ -130,33 +185,45 @@
                         </summary>
 
                         <div class="lp-drawer__subItems">
-                            <button class="lp-drawer__subLink" type="button">Motor Oils Sector</button>
+                            <a
+                                class="lp-drawer__subLink {{ $isCarsRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.cars') }}"
+                                @if($isCarsRoute) aria-current="page" @endif
+                            >
+                                Automotive Sector
+                            </a>
 
-                            @if($hasEnAdvertisingRoute)
-                                <a
-                                    class="lp-drawer__subLink {{ request()->routeIs('site.en.sectors.advertising') ? 'is-active' : '' }}"
-                                    href="{{ route('site.en.sectors.advertising') }}"
-                                    @if(request()->routeIs('site.en.sectors.advertising')) aria-current="page" @endif
-                                >
-                                    Advertising Sector
-                                </a>
-                            @else
-                                <button class="lp-drawer__subLink" type="button">Advertising Sector</button>
-                            @endif
+                            <a
+                                class="lp-drawer__subLink {{ $isCommunicationsRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.communications') }}"
+                                @if($isCommunicationsRoute) aria-current="page" @endif
+                            >
+                                Telecommunications Sector
+                            </a>
 
-                            @if($hasEnCommunicationsRoute)
-                                <a
-                                    class="lp-drawer__subLink {{ request()->routeIs('site.en.sectors.communications') ? 'is-active' : '' }}"
-                                    href="{{ route('site.en.sectors.communications') }}"
-                                    @if(request()->routeIs('site.en.sectors.communications')) aria-current="page" @endif
-                                >
-                                    Telecommunications Sector
-                                </a>
-                            @else
-                                <button class="lp-drawer__subLink" type="button">Telecommunications Sector</button>
-                            @endif
+                            <a
+                                class="lp-drawer__subLink {{ $isAdvertisingRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.advertising') }}"
+                                @if($isAdvertisingRoute) aria-current="page" @endif
+                            >
+                                Advertising Sector
+                            </a>
 
-                            <button class="lp-drawer__subLink" type="button">Training Sector</button>
+                            <a
+                                class="lp-drawer__subLink {{ $isPaintsRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.paints') }}"
+                                @if($isPaintsRoute) aria-current="page" @endif
+                            >
+                                Paints Sector
+                            </a>
+
+                            <a
+                                class="lp-drawer__subLink {{ $isVocationalTrainingRoute ? 'is-active' : '' }}"
+                                href="{{ route('site.en.sectors.vocational_training') }}"
+                                @if($isVocationalTrainingRoute) aria-current="page" @endif
+                            >
+                                Vocational Training Sector
+                            </a>
                         </div>
                     </details>
                 </div>

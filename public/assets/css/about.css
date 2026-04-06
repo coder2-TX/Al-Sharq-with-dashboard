@@ -110,6 +110,22 @@
   background: var(--lp-about-title);
 }
 
+html[dir="ltr"] .lp-cta.lp-cta--more .lp-cta__stroke{
+  border-top-left-radius: 0;
+  border-top-right-radius: 24px;
+}
+
+html[dir="ltr"] .lp-cta.lp-cta--more .lp-cta__layer{
+  border-top-left-radius: 0;
+  border-top-right-radius: 24px;
+  transform: translate(-6px, 6px);
+}
+
+html[dir="ltr"] .lp-cta.lp-cta--more:hover .lp-cta__layer,
+html[dir="ltr"] .lp-cta.lp-cta--more:focus-visible .lp-cta__layer{
+  transform: translate(0, 0);
+}
+
 .lp-about__body{
   flex: 1 1 auto;
   min-width: 0;

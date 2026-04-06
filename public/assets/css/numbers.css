@@ -74,6 +74,15 @@
   z-index: 2;
 }
 
+html[dir="ltr"] .lp-stats__badgeStroke{
+  border-radius: 0 25px 0 0;
+}
+
+html[dir="ltr"] .lp-stats__badgeLayer{
+  border-radius: 0 25px 0 0;
+  transform: translate(-5px, 5px);
+}
+
 .lp-stats__item:hover .lp-stats__badgeLayer,
 .lp-stats__item:focus-within .lp-stats__badgeLayer{
   transform: translate(0, 0);

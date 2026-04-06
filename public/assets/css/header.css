@@ -235,7 +235,7 @@ body.lp-drawer-open .lp-headerBrand{
 }
 
 .lp-drawer__langBtn{
-  width: 132px;
+  width: 64px;
   height: 40px;
   flex: 0 0 auto;
   display: inline-block;
@@ -244,8 +244,19 @@ body.lp-drawer-open .lp-headerBrand{
 
 .lp-drawer__langBtn .lp-cta__stroke,
 .lp-drawer__langBtn .lp-cta__layer{
-  width: 126px;
+  width: 60px;
   height: 34px;
+  border-top-left-radius: 16px;
+}
+
+html[dir="ltr"] .lp-drawer__langBtn .lp-cta__stroke{
+  border-top-left-radius: 0;
+  border-top-right-radius: 16px;
+}
+
+html[dir="ltr"] .lp-drawer__langBtn .lp-cta__layer{
+  border-top-left-radius: 0;
+  border-top-right-radius: 16px;
 }
 
 .lp-drawer__nav{
@@ -309,6 +320,7 @@ body.lp-drawer-open .lp-headerBrand{
   opacity: 1;
   transform: scaleY(1);
 }
+
 .lp-drawer__link.is-active,
 .lp-drawer__link--toggle.is-active,
 .lp-drawer__group[open] > .lp-drawer__link--toggle{
@@ -459,6 +471,7 @@ body.lp-drawer-open .lp-headerBrand{
   opacity: 1;
   transform: scaleY(1);
 }
+
 .lp-drawer__subGroup[open] .lp-drawer__subSectionTitle{
   background: #fff;
   border-color: rgba(46,49,145,.08);
@@ -550,6 +563,7 @@ html[dir="rtl"] .lp-drawer__subLink{
 html[dir="ltr"] .lp-drawer__subLink{
   text-align: left;
 }
+
 .lp-drawer__subLink,
 .lp-drawer__subLink:link,
 .lp-drawer__subLink:visited,
@@ -566,6 +580,7 @@ html[dir="ltr"] .lp-drawer__subLink{
   text-decoration: none;
   color: inherit;
 }
+
 .lp-drawer__cta{
   margin-top: auto;
   padding-top: 24px;
@@ -589,6 +604,16 @@ html[dir="ltr"] .lp-drawer__subLink{
   width: calc(100% - 6px);
   height: 52px;
   border-top-left-radius: 24px;
+}
+
+html[dir="ltr"] .lp-drawer__cta .lp-cta__stroke{
+  border-top-left-radius: 0;
+  border-top-right-radius: 24px;
+}
+
+html[dir="ltr"] .lp-drawer__cta .lp-cta__layer{
+  border-top-left-radius: 0;
+  border-top-right-radius: 24px;
 }
 
 .lp-drawer__cta .lp-cta__text{
@@ -615,14 +640,15 @@ html[dir="ltr"] .lp-drawer__subLink{
   }
 
   .lp-drawer__langBtn{
-    width: 118px;
+    width: 46px;
     height: 38px;
   }
 
   .lp-drawer__langBtn .lp-cta__stroke,
   .lp-drawer__langBtn .lp-cta__layer{
-    width: 112px;
+    width: 42px;
     height: 32px;
+    border-top-left-radius: 8px;
   }
 
   .lp-drawer__nav{
@@ -639,12 +665,12 @@ html[dir="ltr"] .lp-drawer__subLink{
   }
 
   .lp-drawer__chevron,
-.lp-drawer__subChevron{
-  width: auto;
-  height: auto;
-  border-radius: 0;
-  font-size: 12px;
-}
+  .lp-drawer__subChevron{
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    font-size: 12px;
+  }
 
   .lp-drawer__subNav{
     padding: 12px;

@@ -7,6 +7,7 @@
     #ffffff 100%
   );
   color: #111;
+  overflow-x: hidden;
 }
 
 .lp-communicationsS3__inner{
@@ -25,6 +26,8 @@
   padding-top: clamp(28px, 4vw, 42px);
   padding-bottom: clamp(12px, 1.6vw, 18px);
   padding-inline: clamp(52px, 5vw, 84px);
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .lp-communicationsS3__title{
@@ -34,6 +37,7 @@
   font-size: clamp(26px, 3vw, 40px);
   line-height: 1.15;
   font-weight: 700;
+  padding-inline: clamp(28px, 6vw, 90px);
 }
 
 .lp-communicationsS3__nav{
@@ -84,14 +88,19 @@
 
 .lp-communicationsS3__viewport{
   position: relative;
+  width: 100%;
+  min-width: 0;
   margin-top: clamp(24px, 3vw, 36px);
   min-height: clamp(180px, 16vw, 230px);
+  overflow: hidden;
   transition: height .35s ease;
 }
 
 .lp-communicationsS3__slide{
   position: absolute;
   inset: 0;
+  width: 100%;
+  min-width: 0;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -114,20 +123,24 @@ html[dir="ltr"] .lp-communicationsS3__slide{
 
 .lp-communicationsS3__row{
   display: grid;
-  grid-template-columns: minmax(220px, 340px) minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
   align-items: center;
   gap: clamp(24px, 3vw, 44px);
+  min-width: 0;
 }
 
 .lp-communicationsS3__media{
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .lp-communicationsS3__media img{
-  width: 100%;
-  max-width: 300px;
+  width: min(100%, 300px);
+  max-width: 100%;
+  max-height: clamp(180px, 24vw, 320px);
   height: auto;
   display: block;
   object-fit: contain;
@@ -135,30 +148,53 @@ html[dir="ltr"] .lp-communicationsS3__slide{
 
 .lp-communicationsS3__content{
   text-align: start;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .lp-communicationsS3__partnerName{
   margin: 0 0 12px;
   color: var(--lp-about-title);
   font-size: clamp(22px, 2.4vw, 34px);
-  line-height: 1.08;
+  line-height: 1.12;
   font-weight: 400;
   letter-spacing: .02em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .lp-communicationsS3__text{
   margin: 0;
+  min-width: 0;
+  max-width: 100%;
   color: #111;
   font-size: var(--lp-subtitle-size);
   line-height: 2;
   text-align: justify;
   text-justify: inter-word;
   text-align-last: start;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.lp-communicationsS3__text > *{
+  margin: 0;
+}
+
+.lp-communicationsS3__text > * + *{
+  margin-top: .7em;
+}
+
+.lp-communicationsS3__text a{
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .lp-communicationsS3__actions{
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: clamp(18px, 2.4vw, 26px);
 }
 
@@ -205,7 +241,44 @@ html[dir="rtl"] .lp-communicationsS3__text{
   text-align-last: right;
 }
 
+@media (max-width: 1100px){
+  .lp-communicationsS3__card{
+    padding-inline: clamp(42px, 4vw, 64px);
+  }
+
+  .lp-communicationsS3__row{
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    gap: clamp(20px, 2.5vw, 34px);
+  }
+
+  .lp-communicationsS3__media img{
+    width: min(100%, 270px);
+  }
+}
+
 @media (max-width: 900px){
+  .lp-communicationsS3__card{
+    padding-top: 72px;
+  }
+
+  .lp-communicationsS3__title{
+    padding-inline: 40px;
+  }
+
+  .lp-communicationsS3__nav{
+    top: 26px;
+    transform: none;
+    font-size: 22px;
+  }
+
+  .lp-communicationsS3__nav--prev:hover{
+    transform: translateX(2px);
+  }
+
+  .lp-communicationsS3__nav--next:hover{
+    transform: translateX(-2px);
+  }
+
   .lp-communicationsS3__row{
     grid-template-columns: 1fr;
     gap: 22px;
@@ -213,6 +286,10 @@ html[dir="rtl"] .lp-communicationsS3__text{
 
   .lp-communicationsS3__content{
     text-align: center;
+  }
+
+  .lp-communicationsS3__partnerName{
+    margin-bottom: 10px;
   }
 
   .lp-communicationsS3__text{
@@ -241,25 +318,40 @@ html[dir="rtl"] .lp-communicationsS3__text{
 
   .lp-communicationsS3__card{
     border-radius: 22px;
-    padding-top: 24px;
-    padding-bottom: 10px;
-    padding-inline: 42px;
+    padding-top: 68px;
+    padding-bottom: 16px;
+    padding-inline: clamp(18px, 5vw, 24px);
+  }
+
+  .lp-communicationsS3__title{
+    font-size: clamp(22px, 6vw, 30px);
+    padding-inline: 34px;
   }
 
   .lp-communicationsS3__nav{
-    font-size: 22px;
+    font-size: 20px;
+    top: 24px;
   }
 
   .lp-communicationsS3__nav--prev{
-    inset-inline-start: 10px;
+    inset-inline-start: 12px;
   }
 
   .lp-communicationsS3__nav--next{
-    inset-inline-end: 10px;
+    inset-inline-end: 12px;
   }
 
   .lp-communicationsS3__media img{
-    max-width: 240px;
+    width: min(100%, 240px);
+    max-height: 220px;
+  }
+
+  .lp-communicationsS3__partnerName{
+    font-size: clamp(20px, 5.4vw, 28px);
+  }
+
+  .lp-communicationsS3__text{
+    line-height: 1.9;
   }
 
   .lp-communicationsS3__viewport{
@@ -279,5 +371,40 @@ html[dir="rtl"] .lp-communicationsS3__text{
   .lp-cta.lp-cta--partner .lp-cta__layer{
     width: 148px;
     height: 36px;
+  }
+}
+
+@media (max-width: 420px){
+  .lp-communicationsS3__card{
+    padding-inline: 16px;
+  }
+
+  .lp-communicationsS3__title{
+    padding-inline: 28px;
+  }
+
+  .lp-communicationsS3__media img{
+    width: min(100%, 210px);
+    max-height: 190px;
+  }
+
+  .lp-communicationsS3__text{
+    font-size: clamp(14px, 3.9vw, 16px);
+    line-height: 1.85;
+  }
+
+  .lp-cta.lp-cta--partner{
+    width: 146px;
+    height: 42px;
+  }
+
+  .lp-cta.lp-cta--partner .lp-cta__stroke{
+    width: 140px;
+    height: 34px;
+  }
+
+  .lp-cta.lp-cta--partner .lp-cta__layer{
+    width: 140px;
+    height: 34px;
   }
 }
