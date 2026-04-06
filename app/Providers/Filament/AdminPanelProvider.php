@@ -33,6 +33,22 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->navigationGroups([
+                'صفحة الرئيسية',
+                'صفحة من نحن',
+                'صفحة الأخبار',
+                'القطاعات',
+                'قطاع الأدوية',
+                'قطاع المستلزمات الطبية',
+                'قطاع حليب الأطفال والأغذية',
+                'قطاع السيارات',
+                'قطاع الاتصالات',
+                'قطاع الدعاية والإعلان',
+                'قطاع الدهانات',
+                'قطاع التدريب المهني',
+                'صفحة تواصل معنا',
+                'الإعدادات العامة',
+            ])
             ->pages([
                 Dashboard::class,
             ])
