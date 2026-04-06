@@ -24,15 +24,15 @@ class SectorsPageMilkFoodPageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'صفحة قطاع حليب الأطفال والأغذية';
+    protected static ?string $navigationLabel = 'الصفحة الرئيسية';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+    protected static string|\UnitEnum|null $navigationGroup = 'قطاع حليب الأطفال والأغذية';
 
     protected static ?string $modelLabel = 'صفحة قطاع حليب الأطفال والأغذية';
 
     protected static ?string $pluralModelLabel = 'صفحة قطاع حليب الأطفال والأغذية';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

@@ -25,15 +25,15 @@ class SectorsPageMedicalPharmacovigilancePageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-shield-check';
 
-    protected static ?string $navigationLabel = 'التيقض الدوائي';
+    protected static ?string $navigationLabel = 'التيقظ الدوائي';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+    protected static string|\UnitEnum|null $navigationGroup = 'قطاع الأدوية';
 
-    protected static ?string $modelLabel = 'التيقض الدوائي';
+    protected static ?string $modelLabel = 'التيقظ الدوائي';
 
-    protected static ?string $pluralModelLabel =  'التيقض الدوائي';
+    protected static ?string $pluralModelLabel = 'التيقظ الدوائي';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {

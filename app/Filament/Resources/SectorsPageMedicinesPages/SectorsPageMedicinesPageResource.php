@@ -24,15 +24,15 @@ class SectorsPageMedicinesPageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'صفحة قطاع الأدوية';
+    protected static ?string $navigationLabel = 'الصفحة الرئيسية';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+    protected static string|\UnitEnum|null $navigationGroup = 'قطاع الأدوية';
 
     protected static ?string $modelLabel = 'صفحة قطاع الأدوية';
 
     protected static ?string $pluralModelLabel = 'صفحة قطاع الأدوية';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

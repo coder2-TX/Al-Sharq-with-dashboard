@@ -24,15 +24,15 @@ class SectorsPageMilkFoodPartnerProductResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-squares-2x2';
 
-    protected static ?string $navigationLabel = 'منتجات شركاء قطاع حليب الأطفال والأغذية';
+    protected static ?string $navigationLabel = 'المنتجات';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+    protected static string|\UnitEnum|null $navigationGroup = 'قطاع حليب الأطفال والأغذية';
 
     protected static ?string $modelLabel = 'منتج شريك قطاع حليب الأطفال والأغذية';
 
     protected static ?string $pluralModelLabel = 'منتجات شركاء قطاع حليب الأطفال والأغذية';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {
