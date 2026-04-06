@@ -24,15 +24,15 @@ class SectorsPageCommunicationsPartnerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationLabel = 'شركاء قطاع الاتصالات';
+    protected static ?string $navigationLabel = 'الشركاء';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+    protected static string|\UnitEnum|null $navigationGroup = 'قطاع الاتصالات';
 
     protected static ?string $modelLabel = 'شريك قطاع الاتصالات';
 
     protected static ?string $pluralModelLabel = 'شركاء قطاع الاتصالات';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

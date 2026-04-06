@@ -24,15 +24,15 @@ class SectorsPageAdvertisingPageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'صفحة قطاع الدعاية والإعلان';
+    protected static ?string $navigationLabel = 'الصفحة الرئيسية';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+    protected static string|\UnitEnum|null $navigationGroup = 'قطاع الدعاية والإعلان';
 
     protected static ?string $modelLabel = 'صفحة قطاع الدعاية والإعلان';
 
     protected static ?string $pluralModelLabel = 'صفحة قطاع الدعاية والإعلان';
 
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

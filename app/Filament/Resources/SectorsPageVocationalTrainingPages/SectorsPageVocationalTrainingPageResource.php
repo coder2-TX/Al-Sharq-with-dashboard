@@ -24,15 +24,15 @@ class SectorsPageVocationalTrainingPageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'صفحة قطاع التدريب المهني';
+    protected static ?string $navigationLabel = 'الصفحة الرئيسية';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'القطاعات';
+    protected static string|\UnitEnum|null $navigationGroup = 'قطاع التدريب المهني';
 
     protected static ?string $modelLabel = 'صفحة قطاع التدريب المهني';
 
     protected static ?string $pluralModelLabel = 'صفحة قطاع التدريب المهني';
 
-    protected static ?int $navigationSort = 11;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
